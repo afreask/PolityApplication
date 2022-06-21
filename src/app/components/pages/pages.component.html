@@ -1,0 +1,48 @@
+<div>
+    <table class="center" 
+        style=" margin-left: auto; margin-right: auto;word-wrap: break-word;"
+    >
+        <tbody>
+            <tr>
+                <td>Place Image here</td>
+                <td></td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <h1>
+                                    {{pageBody.candidate.firstName}}
+                                    {{pageBody.candidate.lastName}}
+                                </h1>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                {{pageBody.candidate.bio}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Donate | 
+                                Lawn Signs | 
+                                Volunteer
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <h1>Media</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/42M3esYyHdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    
+    <!-- {{urlList}} -->
+    <ng-container *ngFor = "let url of urlList?.value">
+        <p>{{url.link}}</p>
+    </ng-container>
+</div>
+
+

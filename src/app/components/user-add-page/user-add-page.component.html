@@ -1,0 +1,74 @@
+<div class="alert.alert-success" *ngIf="successMsg">
+    <p>Page added</p>
+</div>
+
+<div class="alert.alert-success" *ngIf="errorMsg">
+    <p>Page exists. Please choose another.</p>
+</div>
+
+<h1 class="page-title">Build up your own website</h1>
+
+<form novalidate #candidateBio = "ngForm" (ngSubmit)="addCandidate(candidateBio)">
+    <div class="form-group">
+        <label>First Name</label>
+        <input 
+            type = "text" 
+            class = "form-control"
+            placeholder="Enter name"
+            name = "firstName"
+            [(ngModel)] = "firstName"
+            #pageTitle = "ngModel"
+            required
+        >  
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input 
+            type = "text" 
+            class = "form-control"
+            placeholder="Enter name"
+            name = "lastName"
+            [(ngModel)] = "lastName"
+            #pageTitle = "ngModel"
+            required
+        >  
+    </div>
+    <div class="form-group">
+        <label>Bio</label>
+        <input 
+            type = "text" 
+            class = "form-control"
+            placeholder="Enter name"
+            name = "bio"
+            [(ngModel)] = "bio"
+            #pageTitle = "ngModel"
+            required
+        >  
+    </div>
+    <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
+        First name is required!
+    </div> -->
+    <div class="form-group">
+        <button class = "btn btn-default" [disabled] = "!candidateBio.valid">Save</button>
+        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+    </div>
+</form>
+
+<form novalidate #f="ngForm" (ngSubmit)="addURL(f)">
+    <div class="form-group">
+        <label>Facebook</label> 
+        <input 
+            type="url" 
+            class="form-control" 
+            placeholder="facebook.com" 
+            name="facebook" 
+            [(ngModel)]= "facebook"
+            #pageTitle = "ngModel"
+            required
+        >
+    </div>
+    <div class="form-group">
+        <button class = "btn btn-default" [disabled] = "!f.valid">Save</button>
+        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+    </div>
+</form>

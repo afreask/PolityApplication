@@ -15,10 +15,12 @@ export class NavbarComponent implements OnInit
 
   ngOnInit(): void 
   {
+      // Instantiates the pages object
       this.pageService.getPages().subscribe(pages => 
       {
           this.pageService.pagesBS.next(pages);
           this.pages = this.pageService.pagesBS;
+          // console.log(pages);
       });
   }
 

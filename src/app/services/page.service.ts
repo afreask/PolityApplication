@@ -14,7 +14,17 @@ export class PageService {
 
   getPages()
   {
-      return this.http.get('https://localhost:44394/');
+      return this.http.get('https://localhost:44394/pages');
   }
 
+  getPage(pageID: string)
+  {
+      return this.http.get(`https://localhost:44394/pages/` + pageID);
+  }
+
+  postAddPage(value: any)
+  {
+      console.log(value)
+      return this.http.post(`https://localhost:44394/pages/addCandidate`, value);
+  }
 }
