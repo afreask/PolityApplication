@@ -16,29 +16,29 @@
             <tr>
                 <td><label>First Name &nbsp;</label></td>
                 <td>
-                    <input 
-                        type = "text" 
+                    <input
+                        type = "text"
                         class = "form-control"
                         placeholder="Enter name"
                         name = "firstName"
                         [(ngModel)] = "firstName"
                         #pageTitle = "ngModel"
                         required
-                    >  
+                    >
                 </td>
             </tr>
             <tr>
                 <td><label>Last Name &nbsp;</label></td>
                 <td>
-                    <input 
-                        type = "text" 
+                    <input
+                        type = "text"
                         class = "form-control"
                         placeholder="Enter name"
                         name = "lastName"
                         [(ngModel)] = "lastName"
                         #pageTitle = "ngModel"
                         required
-                    >  
+                    >
                 </td>
             </tr>
             <tr>
@@ -48,9 +48,9 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <textarea 
-                        class="form-control" 
-                        cols="30" rows="5" 
+                    <textarea
+                        class="form-control"
+                        cols="30" rows="5"
                         name = "bio"
                         [(ngModel)] = "bio"
                         #pageTitle = "ngModel"
@@ -64,14 +64,14 @@
                     <label>Email</label>
                 </td>
                 <td>
-                    <input 
-                        type = "email" 
+                    <input
+                        type = "email"
                         class = "form-control"
                         placeholder="Enter email"
                         name = "email"
                         [(ngModel)] = "email"
                         #pageTitle = "ngModel"
-                    >  
+                    >
                 </td>
             </tr>
             <tr>
@@ -79,19 +79,19 @@
                     <label>Profile Image</label>
                 </td>
                 <td>
-                    <input 
-                        type = "file" 
+                    <input
+                        type = "file"
                         class = "file-input"
                         placeholder="Upload"
                         name = "profilePicture"
                         accept="image/*"
                         (change)= "getFile($event, 1)"
-                    >  
+                    >
                 </td>
-            </tr>  
+            </tr>
             <tr>
                 <td></td>
-                <td>    
+                <td>
                     <div class="form-group text-end">
                         <button class = "btn btn-default" [disabled] = "!candidateBio.valid">Save</button>
                         <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
@@ -108,26 +108,29 @@
 <br><br>
 
 <!-- Form for the Urls -->
-<form  novalidate #f="ngForm" (ngSubmit)="addURL(f)">
+<form  #f="ngForm" (ngSubmit)="addURL(f)">
     <div class="form-group" align="center">
         <h4>Urls</h4>
         <table class="">
-            <ng-container *ngFor = "let url of urlList">     
-                <tr>
-                    <td><label>{{url.urlName}}</label> &nbsp;</td>                   
+            <tr *ngFor = "let url of urlList">
+                  <ng-container  *ngIf= "url.urlName != 'Profile Picture' && url.urlName != 'Key Platform Image'">
+                    <td><label>{{url.urlName}}</label> &nbsp;</td>
                     <td>
-                        <input 
-                            type="url" 
-                            class="form-control" 
-                            placeholder="Please type a url" 
-                            name="{{url.urlName.toLowerCase()}}" 
+                        <input
+                            type="url"
+                            class="form-control"
+                            placeholder="Please type a url"
+                            name="{{url.urlName.toLowerCase()}}"
                             value="{url.urlID}"
                             [(ngModel)]= "url.link"
                             #pageTitle = "ngModel"
                         >
+                        <div class="errors" *ngIf="url.urlName?.invalid && url.urlName?.dirty">
+                          Problem detected
+                      </div>
                     </td>
-                </tr>    
-            </ng-container>
+                  </ng-container>
+            </tr>
             <tr>
                 <td></td>
                 <td>
@@ -136,7 +139,7 @@
                         <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
                     </div>
                 </td>
-            </tr>      
+            </tr>
         </table>
     </div>
 </form>
@@ -150,14 +153,14 @@
             <tr>
                 <td><label>Choose a category: &nbsp;</label></td>
                 <td>
-                    <select 
-                        class="form-control" 
+                    <select
+                        class="form-control"
                         name="policyID"
                         [(ngModel)] = "policyID"
                         #pageTitle = "ngModel"
                     >
-                        <ng-container *ngFor = "let category of categories">                            
-                            <option value="{{category.policyID}}" [selected]="category.policyID == 1">{{category.category}}</option>
+                        <ng-container *ngFor = "let category of categories">
+                            <option value="{{category.policyID}}" [selected] ="category.policyID == 1">{{category.category}}</option>
                         </ng-container>
                     </select>
                 </td>
@@ -167,15 +170,15 @@
             <tr>
                 <td><label>Title &nbsp;</label></td>
                 <td>
-                    <input 
-                        type = "text" 
+                    <input
+                        type = "text"
                         class = "form-control"
                         placeholder="Enter title"
                         name = "cardTitle"
                         [(ngModel)] = "cardTitle"
                         #pageTitle = "ngModel"
                         required
-                    >  
+                    >
                 </td>
             </tr>
             <tr>
@@ -185,9 +188,9 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <textarea 
-                        class="form-control" 
-                        cols="30" rows="5" 
+                    <textarea
+                        class="form-control"
+                        cols="30" rows="5"
                         name = "cardDetails"
                         [(ngModel)] = "cardDetails"
                         #pageTitle = "ngModel"
@@ -199,7 +202,7 @@
 
             <tr>
                 <td></td>
-                <td>    
+                <td>
                     <div class="form-group text-end">
                         <button class = "btn btn-default" [disabled] = "!policyCards.valid">Save</button>
                         <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
@@ -223,15 +226,15 @@
             <tr>
                 <td><label>Title idea &nbsp;</label></td>
                 <td>
-                    <input 
-                        type = "text" 
+                    <input
+                        type = "text"
                         class = "form-control"
                         placeholder="Enter title"
                         name = "ideaTitle"
                         [(ngModel)] = "ideaTitle"
                         #pageTitle = "ngModel"
                         required
-                    >  
+                    >
                 </td>
             </tr>
             <tr>
@@ -241,9 +244,9 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <textarea 
-                        class="form-control" 
-                        cols="30" rows="5" 
+                    <textarea
+                        class="form-control"
+                        cols="30" rows="5"
                         name = "platformDescription"
                         [(ngModel)] = "platformDescription"
                         #pageTitle = "ngModel"
@@ -257,21 +260,21 @@
                     <label>Upload:</label>&nbsp;
                 </td>
                 <td>
-                    <input 
-                        type = "file" 
+                    <input
+                        type = "file"
                         class = "file-input"
                         placeholder="Upload"
                         name = "platformImage"
                         accept="image/*"
                         (change)= "getFile($event, 2)"
-                    >  
+                    >
                 </td>
-            </tr>  
+            </tr>
             <tr>
                 <td></td>
-                <td>    
+                <td>
                     <div class="form-group text-end">
-                        <button class = "btn btn-default" [disabled] = "!keyPlatforms.valid">Save</button>
+                        <button class = "btn btn-primary" [disabled] = "!keyPlatforms.valid">Save</button>
                         <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
                     </div>
                 </td>

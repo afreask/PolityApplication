@@ -3,60 +3,60 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PageService {
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
+  // An observable that is used to auto update every component that uses pages
+  public pagesBS = new BehaviorSubject<Object>(1);
 
-    // An observable that is used to auto update every component that uses pages
-    public pagesBS = new BehaviorSubject<Object>(1);
-    
-    // public user = this.getUser();
-    
-    // getUser()
-    // {
-    //     return this.http.get(`https://localhost:44394/`);
-    // }
+  // public user = this.getUser();
 
-    getPages()
-    {
-        return this.http.get('https://localhost:44394/pages');
-    }
+  // getUser()
+  // {
+  //     return this.http.get(`https://localhost:44394/`);
+  // }
 
-    getPage(pageID: string)
-    {
-        return this.http.get(`https://localhost:44394/pages/` + pageID);
-    }
+  getPages() {
+    return this.http.get('https://localhost:44394/pages');
+  }
 
-    getPolicies()
-    {
-        return this.http.get(`https://localhost:44394/pages/Policies`)
-    }
+  getPage(pageID: string) {
+    return this.http.get(`https://localhost:44394/pages/` + pageID);
+  }
 
-    getURLs()
-    {
-        return this.http.get(`https://localhost:44394/pages/URLs`)
-    }
+  getPolicies() {
+    return this.http.get(`https://localhost:44394/pages/Policies`);
+  }
 
-    postAddPage(value: any)
-    {
-        // console.log(value)
-        return this.http.post(`https://localhost:44394/pages/AddCandidate`, value);
-    }
+  getURLs() {
+    return this.http.get(`https://localhost:44394/pages/URLs`);
+  }
 
-    postAddPageLinks(value: any)
-    {
-        // console.log(value)
-        return this.http.post(`https://localhost:44394/pages/AddPageLinks`, value);
-    }
+  postAddPage(value: any) {
+    // console.log(value)
+    return this.http.post(`https://localhost:44394/pages/AddCandidate`, value);
+  }
 
-    postImage(file: File)
-    {
-        const fd = new FormData();
-        fd.append('image', file, file.name);
-        console.log(fd.has("image"))
+  postAddPageLinks(value: any) {
+    // console.log(value)
+    return this.http.post(`https://localhost:44394/pages/AddPageLinks`, value);
+  }
 
-        return this.http.post(`https://localhost:44394/pages/UploadImage`, fd);
-    }
+  postAddCandidatePlatforms(value: any) {
+    // console.log(value)
+    return this.http.post(
+      `https://localhost:44394/pages/AddCandidatePlatforms`,
+      value
+    );
+  }
+
+  postImage(file: File) {
+    const fd = new FormData();
+    fd.append('image', file, file.name);
+    // console.log(fd.has("image"))
+
+    return this.http.post(`https://localhost:44394/pages/UploadImage`, fd);
+  }
 }

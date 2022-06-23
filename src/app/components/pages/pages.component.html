@@ -3,7 +3,7 @@
         <tbody>
             <tr>
                 <td>
-                    <img 
+                    <img
                         src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
                         width="500"
                         height="400"
@@ -27,25 +27,33 @@
                         </tr>
                         <tr>
                             <td>
-                                Donate | 
-                                Lawn Signs | 
+                                Donate |
+                                Lawn Signs |
                                 Volunteer
                             </td>
                         </tr>
                     </table>
+
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-<div>
+<div class="">
     <h1>Media</h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/42M3esYyHdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    
+
     <!-- {{urlList}} -->
-    <ng-container *ngFor = "let url of urlList?.value">
-        <p>{{url.link}}</p>
-    </ng-container>
+    <div *ngFor = "let url of urlList">
+        <ng-container *ngIf= "url.urlID ==  2">
+          <p >{{url.urlID}}</p>
+          <p><a href="{{url.link}}">{{url.urlName}}</a></p>
+          <iframe  width="560" height="315" src= url.link.toString() title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        </ng-container>
+    </div>
+</div>
+<div class="">
+
 </div>
 
 
