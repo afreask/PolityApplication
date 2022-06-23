@@ -44,7 +44,7 @@ export class PagesComponent implements OnInit {
                 this.pageBody = page;
                 console.log(this.pageBody)
                 this.urlList = this.pageBody["urlList"]
-                console.log(this.pageBody["urlList"]);
+                // console.log(this.pageBody["urlList"]);
             });
         })
 

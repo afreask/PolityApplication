@@ -21,7 +21,9 @@ export class NavbarComponent implements OnInit
           this.pageService.pagesBS.next(pages);
           this.pages = this.pageService.pagesBS;
           // console.log(pages);
+          
       });
-  }
-
+      // console.log(this.pageService.user);
+    }
+    
 }
