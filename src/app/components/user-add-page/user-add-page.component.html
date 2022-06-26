@@ -75,21 +75,6 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <label>Profile Image</label>
-                </td>
-                <td>
-                    <input
-                        type = "file"
-                        class = "file-input"
-                        placeholder="Upload"
-                        name = "profilePicture"
-                        accept="image/*"
-                        (change)= "getFile($event, 1)"
-                    >
-                </td>
-            </tr>
-            <tr>
                 <td></td>
                 <td>
                     <div class="form-group text-end">
@@ -106,7 +91,36 @@
 
 </form>
 <br><br>
+<!-- Form for the profile pricture-->
+<form novalidate #profilePicture = "ngForm" (ngSubmit)="addImage(profilePicture , 1)">
+    <div class="form-group" align="center">
+        <table>
+            <tr>
+                <td>
+                    <label>Upload Image:</label>&nbsp;
+                </td>
+                <td>
+                    <input
+                        type = "file"
+                        class = "file-input"
+                        placeholder="Upload"
+                        name = "profilePicture"
+                        accept="image/*"
+                        (change)= "getFile($event, 1)"
+                    >
+                </td>
+                <td>
+                    <button class = "btn btn-primary" [disabled] = "!profilePicture.valid">Upload</button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
 
+            </tr>
+        </table>
+    </div>
+</form>
+<br><br>
 <!-- Form for the Urls -->
 <form  #f="ngForm" (ngSubmit)="addURL(f)">
     <div class="form-group" align="center">
@@ -219,7 +233,7 @@
 <br><br>
 
 <!-- Form for the key platforms. -->
-<form novalidate #keyPlatforms = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms)">
+<form novalidate #keyPlatforms = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms, 1)">
     <div class="form-group" align="center">
         <h4>Key Platforms</h4>
         <table>
@@ -230,8 +244,8 @@
                         type = "text"
                         class = "form-control"
                         placeholder="Enter title"
-                        name = "ideaTitle"
-                        [(ngModel)] = "ideaTitle"
+                        name = "ideaTitle1"
+                        [(ngModel)] = "ideaTitle1"
                         #pageTitle = "ngModel"
                         required
                     >
@@ -247,27 +261,12 @@
                     <textarea
                         class="form-control"
                         cols="30" rows="5"
-                        name = "platformDescription"
-                        [(ngModel)] = "platformDescription"
+                        name = "platformDescription1"
+                        [(ngModel)] = "platformDescription1"
                         #pageTitle = "ngModel"
                         required
                     >
                     </textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Upload:</label>&nbsp;
-                </td>
-                <td>
-                    <input
-                        type = "file"
-                        class = "file-input"
-                        placeholder="Upload"
-                        name = "platformImage"
-                        accept="image/*"
-                        (change)= "getFile($event, 2)"
-                    >
                 </td>
             </tr>
             <tr>
@@ -281,9 +280,135 @@
             </tr>
         </table>
     </div>
+</form>
+
+<!-- Form for the key platforms. -->
+<form novalidate #keyPlatforms2 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms2, 2)">
+    <div class="form-group" align="center">
+        <table>
+            <tr>
+                <td><label>Title idea &nbsp;</label></td>
+                <td>
+                    <input
+                        type = "text"
+                        class = "form-control"
+                        placeholder="Enter title"
+                        name = "ideaTitle2"
+                        [(ngModel)] = "ideaTitle2"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Description</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea
+                        class="form-control"
+                        cols="30" rows="5"
+                        name = "platformDescription2"
+                        [(ngModel)] = "platformDescription2"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="form-group text-end">
+                        <button class = "btn btn-primary" [disabled] = "!keyPlatforms2.valid">Save</button>
+                        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<br/>
+<!-- Form for the key platforms. -->
+<form novalidate #keyPlatforms3 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms3, 3)">
+    <div class="form-group" align="center">
+        <table>
+            <tr>
+                <td><label>Title idea &nbsp;</label></td>
+                <td>
+                    <input
+                        type = "text"
+                        class = "form-control"
+                        placeholder="Enter title"
+                        name = "ideaTitle3"
+                        [(ngModel)] = "ideaTitle3"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Description</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea
+                        class="form-control"
+                        cols="30" rows="5"
+                        name = "platformDescription3"
+                        [(ngModel)] = "platformDescription3"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="form-group text-end">
+                        <button class = "btn btn-primary" [disabled] = "!keyPlatforms3.valid">Save</button>
+                        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
     <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
         First name is required!
     </div> -->
 
+</form>
+<br/><br/>
+
+<!-- Form for the platform image -->
+<form novalidate #platformImage = "ngForm" (ngSubmit)="addImage(platformImage , 2)">
+    <div class="form-group" align="center">
+        <table>
+            <tr>
+                <td>
+                    <label>Upload Image:</label>&nbsp;
+                </td>
+                <td>
+                    <input
+                        type = "file"
+                        class = "file-input"
+                        placeholder="Upload"
+                        name = "platformImage"
+                        accept="image/*"
+                        (change)= "getFile($event, 2)"
+                    >
+                </td>
+                <td align="right">
+                    <button class = "btn btn-primary" [disabled] = "!platformImage.valid">Upload</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </form>
 <br><br>

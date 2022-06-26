@@ -35,10 +35,16 @@ export class UserAddPageComponent implements OnInit {
   profilePicture: File = null;
   platformImage: File = null;
   ideaTitle: string = '';
+  ideaTitle1: string = '';
+  ideaTitle2: string = '';
+  ideaTitle3: string = '';
   cardTitle: string = '';
   cardDetails: string = '';
   youtube: string;
   platformDescription: string = '';
+  platformDescription1: string = '';
+  platformDescription2: string = '';
+  platformDescription3: string = '';
   policyID: any;
 
   constructor(private router: Router, private pageService: PageService) {}
@@ -71,14 +77,6 @@ export class UserAddPageComponent implements OnInit {
     if (value.email != null && value.email.trim() != '') {
       value['emailList'] = [{ emailAddress: value.email }];
       delete value['email'];
-    }
-
-    if (this.profilePicture != null) {
-      this.pageService.postImage(this.profilePicture).subscribe((res) => {
-        console.log(res);
-        this.success = true;
-        this.successMsg = res.toString();
-      });
     }
 
     this.pageService.postAddPage(value).subscribe((res) => {
@@ -146,18 +144,61 @@ export class UserAddPageComponent implements OnInit {
     console.log(this.page);
   }
 
-  addKeyPlatforms({ form, value }: any): void {
+  addKeyPlatforms({ form, value }: any, num: number): void {
     form.reset();
+    console.log(value)
     const temp = value;
     this.page.candidate['kpList'] = [];
+    if(num === 1)
+    {
+        this.ideaTitle = value.ideaTitle1;
+        this.platformDescription = value.platformDescription1;
+    }
+    else if(num === 2)
+    {
+        this.ideaTitle = value.ideaTitle2;
+        this.platformDescription = value.platformDescription2;
+    }
+    else if(num === 3)
+    {
+        this.ideaTitle = value.ideaTitle3;
+        this.platformDescription = value.platformDescription3;
+    }
+    console.log(this.ideaTitle)
     this.page.candidate['kpList'].push({
       kpID: 0,
       ideaTitle: value.ideaTitle,
       platformDescription: value.platformDescription,
     });
-    this.pageService.postAddCandidatePlatforms(this.page).subscribe((res) => {
-      console.log(res);
-      console.log(this.page);
-    });
+    // this.pageService.postAddCandidatePlatforms(this.page).subscribe((res) => {
+    //   console.log(res);
+    //   console.log(this.page);
+    // });
   }
+
+  addImage({ form, value }: any, num: number): void 
+  {
+      if (num > 0)
+      {
+          if(num === 1 && this.profilePicture != null)
+          {
+              console.log(this.profilePicture);
+              this.pageService.postImage(this.profilePicture).subscribe((res) => {
+                console.log(res);
+                this.success = true;
+                this.successMsg = res.toString();
+              });
+          }
+          else if (num === 2 && this.platformImage != null)
+          {
+              console.log(this.platformImage);
+              this.pageService.postImage(this.platformImage).subscribe((res) => {
+                  console.log(res);
+                  this.success = true;
+                  this.successMsg = res.toString();
+              });
+          }
+      }
+  }
+  
 }
