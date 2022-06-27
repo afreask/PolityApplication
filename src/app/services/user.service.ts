@@ -29,7 +29,7 @@ export class UserService {
 
     logout()
     {
-        return this.http.post(`https://localhost:44394/user/logout`);
+        return this.http.post(`https://localhost:44394/user/logout`, 1);
     }
 
 
