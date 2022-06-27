@@ -16,7 +16,7 @@ export class PageService {
   }
 
   getPage(pageID: string) {
-    return this.http.post(`https://localhost:44394/pages/`, pageID);
+    return this.http.get(`https://localhost:44394/pages/` + pageID);
   }
 
   getPolicies() {

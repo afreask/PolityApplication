@@ -1,0 +1,13 @@
+.td-num
+{
+    width: 2px;
+}
+
+td
+{
+    height: 80px;
+    width: 450px;
+    padding: 5px 10px;
+    vertical-align: middle;
+    word-wrap: break-word;
+}

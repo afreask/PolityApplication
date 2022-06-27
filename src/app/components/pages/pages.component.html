@@ -1,16 +1,17 @@
-<div>
-    <table align="center" >
+
+<div class="container" >
+    <table>
         <tbody>
             <tr>
-                <td>
+                <td style="width:160px">
                     <img
                         src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-                        width="500"
-                        height="400"
+                        width="500px"
+                        height="500px"
                     >
                 </td>
-                <td>
-                    <table style="table-layout: fixed; width: 100%">
+                <td >
+                    <table >
                         <tr>
                             <td>
                                 <h1>
@@ -21,15 +22,19 @@
 
                         </tr>
                         <tr>
-                            <td style="word-wrap: break-word; ">
+                            <td>
                                 {{pageBody.candidate.bio}}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Donate |
-                                Lawn Signs |
-                                Volunteer
+                                <div *ngFor = "let url of urlList" style="display:inline-block">
+                                    <p *ngIf= "url.urlName ==  'Donate'">
+                                        <a  href="{{url.link}}" >Donate</a> | &nbsp;
+                                    </p>
+                                    <p *ngIf= "url.urlName ==  'Lawn Sign'"><a href="{{url.link}}">Lawn Signs</a> | &nbsp;</p>
+                                    <p *ngIf= "url.urlName ==  'Volunteer'"><a href="{{url.link}}">Volunteer</a> | &nbsp;</p>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -39,21 +44,153 @@
         </tbody>
     </table>
 </div>
-<div class="">
-    <h1>Media</h1>
+<br/><br/>
+
+<div class="container"  *ngIf="urlList.length > 0">
+  <h1><b>MEDIA</b></h1><br>
+  <div *ngFor = "let url of urlList" >
+      <ng-container *ngIf= "url.urlID ==  2">
+        <iframe  [src] = 'safeVideoUrl' width="1000" height="500"  title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </ng-container>
+  </div>
 
     <!-- {{urlList}} -->
-    <div *ngFor = "let url of urlList">
-        <ng-container *ngIf= "url.urlID ==  2">
-          <p >{{url.urlID}}</p>
-          <p><a href="{{url.link}}">{{url.urlName}}</a></p>
-          <iframe  width="560" height="315" src= url.link.toString() title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-        </ng-container>
-    </div>
-</div>
-<div class="">
 
 </div>
+<br/><br/>
+<div class="container" *ngIf="pageBody.candidate.cardList.length > 0">
+    <table>
+      <tr>
+          <td colspan="4">
+            <h1><b>POLICY CARDS</b></h1>
+          </td>
+      </tr>
+      <tr>
+          <td *ngFor="let category of categories" >
+              <h3><b>{{category.category}}</b></h3>
+          </td>
+      </tr>
+      <tr >
+        <td>
+            <table *ngFor="let pc of pageBody.candidate.cardList">
+              <tr *ngIf="pc.category == 'Economic'; else elseBlock">
+                <td >
+                  <p><b>{{pc.cardTitle}}</b></p>
+                  <p>{{pc.cardDetails}}</p>
+                </td>
+              </tr>
+            </table>
+        </td>
+        <td>
+            <table *ngFor="let pc of pageBody.candidate.cardList">
+              <tr *ngIf="pc.category == 'Environment'; else elseBlock">
+                <td >
+                  <p><b>{{pc.cardTitle}}</b></p>
+                  <p>{{pc.cardDetails}}</p>
+                </td>
+              </tr>
+            </table>
+        </td>
+        <td>
+            <table *ngFor="let pc of pageBody.candidate.cardList">
+              <tr *ngIf="pc.category == 'Leadership'; else elseBlock">
+                <td >
+                  <p><b>{{pc.cardTitle}}</b></p>
+                  <p>{{pc.cardDetails}}</p>
+                </td>
+              </tr>
+            </table>
+        </td>
+        <td>
+            <table *ngFor="let pc of pageBody.candidate.cardList">
+              <tr *ngIf="pc.category == 'Social'; else elseBlock">
+                <td >
+                  <p><b>{{pc.cardTitle}}</b></p>
+                  <p>{{pc.cardDetails}}</p>
+                </td>
+              </tr>
+            </table>
+        </td>
+      </tr>
+    </table>
+</div>
+<ng-template #elseBlock><td></td></ng-template>
 
+<div align="center" *ngIf="pageBody.candidate.kpList.length > 0" >
+  <div style="display: inline-block;">
+    <table>
+        <tr>
+          <td>
+            <h1><b>KEY PLATFORM</b></h1>
+            <br/>
+          </td>
+        </tr>
+        <tr>
+            <td>
+              <table>
+                <tr>
+                    <td class="td-num" style="width: 100px"><h1>1.</h1></td>
+                    <td>
+                      <h2>
+                        {{pageBody.candidate.kpList[0].ideaTitle}}
+                      </h2>
+
+                    </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    <p>
+                      {{pageBody.candidate.kpList[0].platformDescription}}
+                    </p>
+                  </td>
+                </tr>
+                <tr *ngIf="pageBody.candidate.kpList.length > 1">
+                  <td><h1>2.</h1></td>
+                  <td>
+                    <h2>
+                      {{pageBody.candidate.kpList[1].ideaTitle}}
+                    </h2>
+
+                  </td>
+                </tr>
+                <tr *ngIf="pageBody.candidate.kpList.length > 1">
+                  <td></td>
+                  <td>
+                    <p>
+                      {{pageBody.candidate.kpList[1].platformDescription}}
+                    </p>
+                  </td>
+                </tr>
+                <tr *ngIf="pageBody.candidate.kpList.length > 2">
+                    <td></td>
+                    <td>
+                      <h1>3.</h1>
+                      <h2>
+                        {{pageBody.candidate.kpList[2].ideaTitle}}
+                      </h2>
+
+                    </td>
+                </tr>
+                <tr *ngIf="pageBody.candidate.kpList.length > 2">
+                  <td></td>
+                  <td>
+                    <p>
+                      {{pageBody.candidate.kpList[2].platformDescription}}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+        </tr>
+    </table>
+  </div>
+  <div style="display: inline-block;">
+      <img
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+          width="500"
+          height="500"
+      >
+  </div>
+</div>
 
