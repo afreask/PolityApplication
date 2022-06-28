@@ -43,8 +43,9 @@ export class PagesComponent implements OnInit {
         this.pageBody = page;
         // console.log(this.pageBody);
         this.urlList = page['urlList'];
-        console.log(this.pageBody.candidate.kpList);
-
+        console.log(this.pageBody.candidate.cardList);
+        if (this.categories) {
+        }
         for (var y in page['urlList']) {
           // console.log();
           if (page['urlList'][y]['urlName'] == 'Youtube') {
@@ -52,6 +53,18 @@ export class PagesComponent implements OnInit {
               page['urlList'][y]['link']
             );
             // console.log(page['urlList'][y]['link']);
+          }
+          if (page['urlList'][y]['urlName'] == 'Profile Picture') {
+            this.safeProfilePicture =
+              this.sanitizer.bypassSecurityTrustResourceUrl(
+                page['urlList'][y]['link']
+              );
+          }
+          if (page['urlList'][y]['urlName'] == 'Key Platform Image') {
+            this.safePlatformImage =
+              this.sanitizer.bypassSecurityTrustResourceUrl(
+                page['urlList'][y]['link']
+              );
           }
         }
       });
@@ -65,7 +78,9 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
     this.pageService.getPolicies().subscribe((res) => {
       // console.log(res);
-      this.categories = res;
+        this.categories = res;
+
+
     });
     // Check if the url parameter exists
     // if not return home

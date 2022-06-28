@@ -1,4 +1,5 @@
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container" >
     <table>
         <tbody>
@@ -33,7 +34,17 @@
                                         <a  href="{{url.link}}" >Donate</a> | &nbsp;
                                     </p>
                                     <p *ngIf= "url.urlName ==  'Lawn Sign'"><a href="{{url.link}}">Lawn Signs</a> | &nbsp;</p>
-                                    <p *ngIf= "url.urlName ==  'Volunteer'"><a href="{{url.link}}">Volunteer</a> | &nbsp;</p>
+                                    <p *ngIf= "url.urlName ==  'Volunteer'"><a href="{{url.link}}">Volunteer</a></p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div *ngFor = "let url of urlList" style="display:inline-block">
+                                    <p *ngIf= "url.urlName ==  'Facebook'">
+                                        <a  href="{{url.link}}" class="fa fa-facebook" ></a>
+                                    </p>
+
                                 </div>
                             </td>
                         </tr>
@@ -53,25 +64,26 @@
         <iframe  [src] = 'safeVideoUrl' width="1000" height="500"  title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </ng-container>
   </div>
-
-    <!-- {{urlList}} -->
-
 </div>
 <br/><br/>
+
 <div class="container" *ngIf="pageBody.candidate.cardList.length > 0">
+
     <table>
       <tr>
-          <td colspan="4">
+          <td colspan="4" >
             <h1><b>POLICY CARDS</b></h1>
           </td>
       </tr>
       <tr>
           <td *ngFor="let category of categories" >
-              <h3><b>{{category.category}}</b></h3>
+              <h3>
+                <b>{{category.category}}</b>
+              </h3>
           </td>
       </tr>
       <tr >
-        <td>
+        <td >
             <table *ngFor="let pc of pageBody.candidate.cardList">
               <tr *ngIf="pc.category == 'Economic'; else elseBlock">
                 <td >
@@ -115,21 +127,22 @@
     </table>
 </div>
 <ng-template #elseBlock><td></td></ng-template>
+<br/><br/>
 
-<div align="center" *ngIf="pageBody.candidate.kpList.length > 0" >
+
+<div class="container" *ngIf="pageBody.candidate.kpList.length > 0" >
   <div style="display: inline-block;">
     <table>
-        <tr>
-          <td>
-            <h1><b>KEY PLATFORM</b></h1>
-            <br/>
-          </td>
-        </tr>
         <tr>
             <td>
               <table>
                 <tr>
-                    <td class="td-num" style="width: 100px"><h1>1.</h1></td>
+                  <td colspan="2">
+                    <h1><b>KEY PLATFORM</b></h1>
+                  </td>
+                </tr>
+                <tr>
+                    <td class="td-num" style="width: 10%"><h1>1.</h1></td>
                     <td>
                       <h2>
                         {{pageBody.candidate.kpList[0].ideaTitle}}
@@ -182,15 +195,15 @@
                 </tr>
               </table>
             </td>
+            <td>
+                <img
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                    width="500"
+                    height="500"
+                >
+            </td>
         </tr>
     </table>
-  </div>
-  <div style="display: inline-block;">
-      <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-          width="500"
-          height="500"
-      >
   </div>
 </div>
 

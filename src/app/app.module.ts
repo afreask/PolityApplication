@@ -14,16 +14,17 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserEditPageComponent } from './components/user-edit-page/user-edit-page.component';
 
-const appRoutes: Routes =
-[
-    {path: 'user/page', component: UserPageComponent},
-    {path: 'user/add-page', component: UserAddPageComponent},
-    {path: 'user/login', component: LoginComponent},
-    {path: 'user/logout', component: LogoutComponent},
-    {path: 'user/register', component: RegisterComponent},
-    {path: ':page', component: PagesComponent},
-    {path: '', component: LandingPageComponent}
+const appRoutes: Routes = [
+  { path: 'user/page', component: UserPageComponent },
+  { path: 'user/add-page', component: UserAddPageComponent },
+  { path: 'user/edit-page', component: UserEditPageComponent },
+  { path: 'user/login', component: LoginComponent },
+  { path: 'user/logout', component: LogoutComponent },
+  { path: 'user/register', component: RegisterComponent },
+  { path: ':page', component: PagesComponent },
+  { path: '', component: LandingPageComponent },
 ];
 
 @NgModule({
@@ -36,15 +37,16 @@ const appRoutes: Routes =
     LandingPageComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserEditPageComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [PageService, UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
