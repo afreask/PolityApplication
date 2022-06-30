@@ -18,7 +18,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <ng-container *ngFor = "let page of pages?.value">
-                <li><a routerLink="/{{page.pageID}}">{{ page.candidate.firstName }} {{page.candidate.lastName}}</a></li>
+                <li class="dropdown-item"><a routerLink="/{{page.pageID}}">{{ page.candidate.firstName }} {{page.candidate.lastName}}</a></li>
               </ng-container>
             </ul>
           </li>

@@ -19,10 +19,22 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        if(localStorage.getItem('userRegistered'))
-        {
-            this.userRegistered = true;
-        }
+        // if(localStorage.getItem('userRegistered'))
+        // {
+        //     this.userRegistered = true;
+        // }
+    }
+
+    login({ form, value, valid }: any): void 
+    {
+        console.log(value)
+        // if(valid)
+        // {
+        //     this.userService.login(value).subscribe(res =>
+        //     {
+        //         console.log(res);
+        //     });
+        // }
     }
 
 }
