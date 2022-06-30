@@ -78,9 +78,7 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
     this.pageService.getPolicies().subscribe((res) => {
       // console.log(res);
-        this.categories = res;
-
-
+      this.categories = res;
     });
     // Check if the url parameter exists
     // if not return home
