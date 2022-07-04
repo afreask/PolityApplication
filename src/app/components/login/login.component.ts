@@ -15,11 +15,13 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  private loginFailed: boolean = false;
-  private userRegistered: boolean = false;
-  email: string;
-  password: string;
-  user: any = {};
+    private loginFailed: boolean = false;
+    private userRegistered: boolean = false;
+    email: string;
+    password: string;
+    user: any = {};
+    message: string;
+
   // userLoginForm = new FormGroup({
   //   email: new FormControl('', [
   //     Validators.required,
@@ -34,10 +36,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
-    // if(localStorage.getItem('userRegistered'))
-    // {
-    //     this.userRegistered = true;
-    // }
+    
   }
 
   login({ form, value, valid }: any): void {
@@ -51,13 +50,19 @@ export class LoginComponent implements OnInit {
       this.user.emailList.push(email);
       this.user.password = value.password;
       // console.log(this.user);
-      this.userService.login(this.user).subscribe((res) => {
-        if (res != 'Invalid login') {
-          this.router.navigateByUrl('/user/page');
-          console.log(res);
-        }
-        else {
-        }
+      this.userService.login(this.user).subscribe((res) => 
+      {
+          if (res == 'Invalid login') 
+          {
+              
+          }
+          else 
+          {
+              localStorage.setItem("user", JSON.stringify(res));
+              console.log(localStorage.getItem("user"));
+              this.router.navigateByUrl('/user/page');
+              // console.log()
+          }
       });
     }
   }

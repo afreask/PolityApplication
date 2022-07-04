@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   // public user = this.getUser();
 
@@ -37,5 +38,13 @@ export class UserService {
 
   logout() {
     return this.http.post(`https://localhost:44394/user/logout`, 1);
+  }
+
+  loginCheck()
+  {
+      if(localStorage.getItem("user") == null)
+      {
+          this.router.navigateByUrl('user/login');
+      }
   }
 }

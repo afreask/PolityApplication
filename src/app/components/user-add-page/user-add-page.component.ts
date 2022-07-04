@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageService } from 'src/app/services/page.service';
+import { UserService } from 'src/app/services/user.service';
 import { __values } from 'tslib';
 
 @Component({
@@ -47,9 +48,16 @@ export class UserAddPageComponent implements OnInit {
   platformDescription3: string = '';
   policyID: any;
 
-  constructor(private router: Router, private pageService: PageService) {}
+  constructor(
+    private router: Router, 
+    private pageService: PageService, 
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+
+    this.userService.loginCheck()
+
     this.pageService.getPolicies().subscribe((res) => {
       // console.log(res);
       this.categories = res;
@@ -58,6 +66,7 @@ export class UserAddPageComponent implements OnInit {
     this.pageService.getURLs().subscribe((res) => {
       this.urlList = res;
     });
+
     this.pageService.getPages().subscribe((pages) => {
       this.pageService.pagesBS.next(pages);
       // console.log(pages);

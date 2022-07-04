@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageService } from 'src/app/services/page.service';
+import { UserService } from 'src/app/services/user.service';
 import { __values } from 'tslib';
 
 @Component({
@@ -46,10 +47,19 @@ export class UserEditPageComponent implements OnInit {
   platformDescription2: string = '';
   platformDescription3: string = '';
   policyID: any;
+  user: any;
 
-  constructor(private router: Router, private pageService: PageService) {}
+  constructor
+  (
+    private router: Router, 
+    private pageService: PageService, 
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+
+    this.userService.loginCheck();
+
     this.pageService.getPolicies().subscribe((res) => {
       // console.log(res);
       this.categories = res;
@@ -61,7 +71,8 @@ export class UserEditPageComponent implements OnInit {
     this.pageService.getPages().subscribe((pages) => {
       this.pageService.pagesBS.next(pages);
       // console.log(pages);
-      if (Object.keys(pages).length > 0) {
+      if (Object.keys(pages).length > 0) 
+      {
         // console.log('It went into the if');
         // console.log(pages[Object.keys(pages).length-1])
         this.page = pages[Object.keys(pages).length - 1];
