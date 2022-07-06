@@ -227,7 +227,25 @@
                 <td colspan="2">
                     <textarea
                         class="form-control"
-                        cols="30" rows="5"
+                        cols="10" rows="2"
+                        name = "cardDetails"
+                        [(ngModel)] = "cardDetails"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Learn More</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea
+                        class="form-control"
+                        cols="50" rows="5"
                         name = "cardDetails"
                         [(ngModel)] = "cardDetails"
                         #pageTitle = "ngModel"

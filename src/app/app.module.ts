@@ -12,7 +12,6 @@ import { UserAddPageComponent } from './components/user-add-page/user-add-page.c
 import { FormsModule } from '@angular/forms';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserEditPageComponent } from './components/user-edit-page/user-edit-page.component';
 
@@ -21,7 +20,6 @@ const appRoutes: Routes = [
   { path: 'user/add-page', component: UserAddPageComponent },
   { path: 'user/edit-page', component: UserEditPageComponent },
   { path: 'user/login', component: LoginComponent },
-  { path: 'user/logout', component: LogoutComponent },
   { path: 'user/register', component: RegisterComponent },
   { path: ':page', component: PagesComponent },
   { path: '', component: LandingPageComponent },
@@ -36,7 +34,6 @@ const appRoutes: Routes = [
     UserAddPageComponent,
     LandingPageComponent,
     LoginComponent,
-    LogoutComponent,
     RegisterComponent,
     UserEditPageComponent,
   ],

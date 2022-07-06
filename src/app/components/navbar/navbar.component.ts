@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component
 ({
@@ -16,12 +17,14 @@ export class NavbarComponent implements OnInit
   constructor
   (
     public pageService: PageService,
-    public userService: UserService
+    public userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void 
   {
       this.user = localStorage.getItem("user");
+      console.log(this.user);
       // Instantiates the pages object
       this.pageService.getPages().subscribe(pages => 
       {
@@ -31,6 +34,13 @@ export class NavbarComponent implements OnInit
           
       });
       // console.log(this.pageService.user);
-    }
+  }
+
+  logout(): void
+  {
+      localStorage.removeItem("user");
+      this.router.navigateByUrl('user/login');
+      console.log(localStorage.getItem("user"))
+  }
     
 }
