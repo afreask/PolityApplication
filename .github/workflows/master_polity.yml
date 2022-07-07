@@ -54,4 +54,4 @@ jobs:
           app-name: 'Polity'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C403B8EB88424DC1BC976AC87E490924 }}
-          package: .
+          package: ./dist/PolityApplication
