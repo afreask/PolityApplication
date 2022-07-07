@@ -8,12 +8,15 @@ import { Router } from '@angular/router';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 import { __values } from 'tslib';
+import { FormsModule }   from '@angular/forms';
+
 
 @Component({
   selector: 'app-user-add-page',
   templateUrl: './user-add-page.component.html',
   styleUrls: ['./user-add-page.component.css'],
 })
+
 export class UserAddPageComponent implements OnInit {
   public categories: any;
   public urlList: any;
@@ -47,6 +50,7 @@ export class UserAddPageComponent implements OnInit {
   platformDescription2: string = '';
   platformDescription3: string = '';
   policyID: any;
+  user: any;
 
   constructor(
     private router: Router, 
@@ -57,6 +61,7 @@ export class UserAddPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.userService.loginCheck()
+    this.user = localStorage.getItem("user");
 
     this.pageService.getPolicies().subscribe((res) => {
       // console.log(res);
@@ -67,7 +72,7 @@ export class UserAddPageComponent implements OnInit {
       this.urlList = res;
     });
 
-    this.pageService.getPages().subscribe((pages) => {
+    this.pageService.getPages(this.user.userID).subscribe((pages) => {
       this.pageService.pagesBS.next(pages);
       // console.log(pages);
       if (Object.keys(pages).length > 0) {
@@ -89,7 +94,7 @@ export class UserAddPageComponent implements OnInit {
     }
 
     this.pageService.postAddPage(value).subscribe((res) => {
-      this.pageService.getPages().subscribe((pages) => {
+      this.pageService.getPages(this.user.userID).subscribe((pages) => {
         this.pageService.pagesBS.next(pages);
       });
       this.page = res;

@@ -11,8 +11,8 @@ export class PageService {
   // An observable that is used to auto update every component that uses pages
   public pagesBS = new BehaviorSubject<Object>(1);
 
-  getPages() {
-    return this.http.get('https://politywebapplication20220706124808.azurewebsites.net/pages');
+  getPages(userID: number) {
+    return this.http.get('https://localhost:44394/pages'+userID);
   }
 
   getPage(pageID: string) {

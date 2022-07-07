@@ -16,9 +16,13 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Pages
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <ng-container *ngFor = "let page of pages?.value">
-                <li class="dropdown-item"><a routerLink="/{{page.pageID}}">{{ page.candidate.firstName }} {{page.candidate.lastName}}</a></li>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="this.pages.length > 0">
+              <ng-container *ngFor = "let page of this.pages">
+                <li class="dropdown-item">
+                  <a routerLink="/{{page.pageID}}">
+                    {{ page.candidate.firstName }} {{page.candidate.lastName}}
+                  </a>
+                </li>
               </ng-container>
             </ul>
           </li>

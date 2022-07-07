@@ -59,7 +59,7 @@ export class UserEditPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.userService.loginCheck();
-
+    this.user = localStorage.getItem("user");
     this.pageService.getPolicies().subscribe((res) => {
       // console.log(res);
       this.categories = res;
@@ -68,7 +68,7 @@ export class UserEditPageComponent implements OnInit {
     this.pageService.getURLs().subscribe((res) => {
       this.urlList = res;
     });
-    this.pageService.getPages().subscribe((pages) => {
+    this.pageService.getPages(this.user.userID).subscribe((pages) => {
       this.pageService.pagesBS.next(pages);
       // console.log(pages);
       if (Object.keys(pages).length > 0) 
@@ -91,7 +91,7 @@ export class UserEditPageComponent implements OnInit {
     }
 
     this.pageService.postAddPage(value).subscribe((res) => {
-      this.pageService.getPages().subscribe((pages) => {
+      this.pageService.getPages(this.user.userID).subscribe((pages) => {
         this.pageService.pagesBS.next(pages);
       });
       this.page = res;

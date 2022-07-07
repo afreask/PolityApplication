@@ -26,7 +26,7 @@ export class UserPageComponent implements OnInit {
         this.userService.loginCheck()
         this.pages = this.pageService.pagesBS;
         this.user = localStorage.getItem("user");
-        console.log(this.user);
+        // console.log(this.user);
     }
 
 }

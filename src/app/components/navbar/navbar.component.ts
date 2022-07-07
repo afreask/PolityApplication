@@ -23,16 +23,18 @@ export class NavbarComponent implements OnInit
 
   ngOnInit(): void 
   {
-      this.user = localStorage.getItem("user");
+      this.user = JSON.parse(localStorage.getItem("user"));
       console.log(this.user);
       // Instantiates the pages object
-      this.pageService.getPages().subscribe(pages => 
-      {
-          this.pageService.pagesBS.next(pages);
-          this.pages = this.pageService.pagesBS;
-          // console.log(pages);
+      this.pages = this.user.pageList;
+      // this.pageService.getPages(this.user.userID).subscribe(pages => 
+      // {
+      //     this.pageService.pagesBS.next(pages);
+      //     this.pages = this.pageService.pagesBS;
+      //     console.log(pages);
           
-      });
+      // });
+      console.log(this.pages);
       // console.log(this.pageService.user);
   }
 

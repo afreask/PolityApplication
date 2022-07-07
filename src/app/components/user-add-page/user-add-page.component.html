@@ -274,43 +274,44 @@
 <br><br>
 
 <!-- Form for the key platforms. -->
-<form novalidate #keyPlatforms = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms, 1)">
-    <div class="form-group container" align="center">
-      <div class="row justify-content-md-center text-center">
-                <h4>Key Platforms</h4>
-      </div>
 
-      <table>
-          <tr>
-              <td><label>Title idea &nbsp;</label></td>
-              <td>
-                  <input
-                      type = "text"
-                      class = "form-control"
-                      placeholder="Enter title"
-                      name = "ideaTitle1"
+<form novalidate #keyPlatforms = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms, 1)">
+        <div class="form-group container" align="center">
+            <div class="row justify-content-md-center text-center">
+                <h4 class="col-sm-8" data-bs-toggle="collapse" href="#keyForm">Key Platforms</h4>
+            </div>
+
+            <table id="keyForm">
+                <tr>
+                    <td><label>Title idea &nbsp;</label></td>
+                    <td>
+                        <input
+                        type = "text"
+                        class = "form-control"
+                        placeholder="Enter title"
+                        name = "ideaTitle1"
                       [(ngModel)] = "ideaTitle1"
                       #pageTitle = "ngModel"
                       required
-                  >
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label>Description</label>
-              </td>
-          </tr>
+                      >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Description</label>
+                    </td>
+                </tr>
           <tr>
               <td colspan="2">
                   <textarea
-                      class="form-control"
-                      cols="30" rows="5"
-                      name = "platformDescription1"
-                      [(ngModel)] = "platformDescription1"
-                      #pageTitle = "ngModel"
-                      required
+                  class="form-control"
+                  cols="30" rows="5"
+                  name = "platformDescription1"
+                  [(ngModel)] = "platformDescription1"
+                  #pageTitle = "ngModel"
+                  required
                   >
-                  </textarea>
+                </textarea>
               </td>
           </tr>
           <tr>
@@ -319,28 +320,28 @@
                   <div class="form-group text-end">
                       <button class = "btn btn-primary" [disabled] = "!keyPlatforms.valid">Save</button>
                       <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                  </div>
-              </td>
-          </tr>
-      </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </form>
 
 <!-- Form for the key platforms. -->
 <form novalidate #keyPlatforms2 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms2, 2)">
     <div class="form-group" align="center">
-        <table>
+        <table id="keyForm">
             <tr>
                 <td><label>Title idea &nbsp;</label></td>
                 <td>
                     <input
-                        type = "text"
-                        class = "form-control"
-                        placeholder="Enter title"
-                        name = "ideaTitle2"
-                        [(ngModel)] = "ideaTitle2"
-                        #pageTitle = "ngModel"
-                        required
+                    type = "text"
+                    class = "form-control"
+                    placeholder="Enter title"
+                    name = "ideaTitle2"
+                    [(ngModel)] = "ideaTitle2"
+                    #pageTitle = "ngModel"
+                    required
                     >
                 </td>
             </tr>
@@ -352,13 +353,13 @@
             <tr>
                 <td colspan="2">
                     <textarea
-                        class="form-control"
-                        cols="30" rows="5"
-                        name = "platformDescription2"
-                        [(ngModel)] = "platformDescription2"
+                    class="form-control"
+                    cols="30" rows="5"
+                    name = "platformDescription2"
+                    [(ngModel)] = "platformDescription2"
                         #pageTitle = "ngModel"
                         required
-                    >
+                        >
                     </textarea>
                 </td>
             </tr>
@@ -378,37 +379,37 @@
 <br/>
 <!-- Form for the key platforms. -->
 <form novalidate #keyPlatforms3 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms3, 3)">
-    <div class="form-group" align="center">
-        <table>
+    <div class="form-group" align="center" >
+        <table id="keyForm">
             <tr>
                 <td><label>Title idea &nbsp;</label></td>
                 <td>
                     <input
-                        type = "text"
-                        class = "form-control"
+                    type = "text"
+                    class = "form-control"
                         placeholder="Enter title"
                         name = "ideaTitle3"
                         [(ngModel)] = "ideaTitle3"
                         #pageTitle = "ngModel"
                         required
-                    >
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Description</label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Description</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea
                         class="form-control"
                         cols="30" rows="5"
                         name = "platformDescription3"
                         [(ngModel)] = "platformDescription3"
                         #pageTitle = "ngModel"
                         required
-                    >
+                        >
                     </textarea>
                 </td>
             </tr>
@@ -426,30 +427,30 @@
     <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
         First name is required!
     </div> -->
-
+    
 </form>
 <br/><br/>
 
 <!-- Form for the platform image -->
 <form novalidate #platformImage = "ngForm" (ngSubmit)="addImage(platformImage , 2)" >
     <div class="form-group" align="center">
-        <table>
+        <table id="keyForm">
             <tr>
                 <td>
                     <label>Upload Image:</label>&nbsp;
                 </td>
                 <td>
                     <input
-                        type = "file"
-                        class = "file-input"
+                    type = "file"
+                    class = "file-input"
                         placeholder="Upload"
                         name = "platformImage"
                         accept="image/*"
                         (change)= "getFile($event, 2)"
-                    >
-                </td>
+                        >
+                    </td>
                 <td align="right">
-                    <button class = "btn btn-primary" [disabled] = "!platformImage.valid">Upload</button>
+                <button class = "btn btn-primary" [disabled] = "!platformImage.valid">Upload</button>
                 </td>
             </tr>
         </table>

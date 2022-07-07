@@ -51,6 +51,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'PolityApplication'
-          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3EAE624F001B4EBABC348B7497005AD3 }}
-          package: .
+          package: ./dist/polity-application
