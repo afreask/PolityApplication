@@ -12,7 +12,7 @@ export class PageService {
   public pagesBS = new BehaviorSubject<Object>(1);
 
   getPages() {
-    return this.http.get('https://localhost:44394/pages');
+    return this.http.get('https://politywebapplication20220706124808.azurewebsites.net/pages');
   }
 
   getPage(pageID: string) {
