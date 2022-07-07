@@ -51,5 +51,6 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'Polity'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BE36D3E81F49458DBA7081864FE50EB8 }}
           package: ./dist/polity-application
