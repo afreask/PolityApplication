@@ -38,12 +38,12 @@ export class PagesComponent implements OnInit {
           this.router.navigateByUrl('');
         }
         // console.log(page);
-
+        console.log(page);
         // this.candidateName = page["candidate"]
         this.pageBody = page;
         // console.log(this.pageBody);
         this.urlList = page['urlList'];
-        console.log(this.pageBody.candidate.cardList);
+        // console.log(this.pageBody.candidate.cardList);
         if (this.categories) {
         }
         for (var y in page['urlList']) {
