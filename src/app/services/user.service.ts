@@ -33,18 +33,15 @@ export class UserService {
     //   headers: headers,
     //   params: params,
     // });
-    return this.http.post(`https://localhost:44394/user/login`, user);
-  }
-
-  logout() {
-    return this.http.post(`https://localhost:44394/user/logout`, 1);
+    return this.http.post(`https://politywebapplication20220706124808.azurewebsites.net/user/login`, user);
+    // return this.http.post(`https://localhost:44394/user/login`, user);
   }
 
   loginCheck()
   {
       if(localStorage.getItem("user") == null)
       {
-          this.router.navigateByUrl('user/login');
+          this.router.navigateByUrl('user/login')
       }
   }
 }
