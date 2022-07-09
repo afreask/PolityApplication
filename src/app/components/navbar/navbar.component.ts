@@ -34,15 +34,18 @@ export class NavbarComponent implements OnInit
       //     console.log(pages);
           
       // });
-      console.log(this.pages);
+      // console.log(this.pages);
       // console.log(this.pageService.user);
   }
 
   logout(): void
   {
       localStorage.removeItem("user");
-      this.router.navigateByUrl('user/login');
-      console.log(localStorage.getItem("user"))
+      this.router.navigateByUrl('user/login')
+        .then(() => {
+          window.location.reload();
+        });
+      // console.log(localStorage.getItem("user"))
   }
     
 }
