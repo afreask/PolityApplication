@@ -52,11 +52,7 @@ export class LoginComponent implements OnInit {
       // console.log(this.user);
       this.userService.login(this.user).subscribe((res) => 
       {
-          if (res == 'Invalid login') 
-          {
-              
-          }
-          else 
+          if (res != 'Invalid login') 
           {
               localStorage.setItem("user", JSON.stringify(res));
               console.log(localStorage.getItem("user"));
