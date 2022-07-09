@@ -1,7 +1,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
-    <div class="row justify-content-md-center ">
+    <!-- <div class="row justify-content-md-center ">
       <div class="col-sm-8">
           <img
               [src] = "safeProfilePicture"
@@ -15,11 +15,11 @@
             {{pageBody.candidate.lastName}}
         </h1>
       </div>
-    </div>
+    </div> -->
     <table>
         <tbody>
             <tr>
-                <td style="width:160px">
+                <td style="width:160px" *ngIf= "safeProfilePicture != ''; else elsePictureBlock">
                     <img
                         [src] = "safeProfilePicture"
                         width="500px"
@@ -59,7 +59,15 @@
                                     <p *ngIf= "url.urlName ==  'Facebook'">
                                         <a  href="{{url.link}}" class="fa fa-facebook" ></a>
                                     </p>
-
+                                    <p *ngIf= "url.urlName ==  'LinkedIn'">
+                                      <a  href="{{url.link}}" class="fa fa-linkedin" ></a>
+                                    </p>
+                                    <p *ngIf= "url.urlName ==  'Twitter'">
+                                      <a  href="{{url.link}}" class="fa fa-twitter" ></a>
+                                    </p>
+                                    <p *ngIf= "url.urlName ==  'Instagram'">
+                                      <a  href="{{url.link}}" class="fa fa-instagram" ></a>
+                                    </p>
                                 </div>
                             </td>
                         </tr>
@@ -70,6 +78,13 @@
         </tbody>
     </table>
 </div>
+<ng-template #elsePictureBlock>
+  <img
+    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+    width="500"
+    height="500"
+  >
+</ng-template>
 <br/><br/>
 
 <div class="container"  *ngIf="urlList.length > 0">
@@ -210,10 +225,10 @@
                 </tr>
               </table>
             </td>
-            <td>
+            <td *ngIf = "safePlatformImage != '' ; else elsePictureBlock">
                 <img
-                    *ngIf = "safePlatformImage != null"
-                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                    
+                    src="safePlatformImage"
                     width="500"
                     height="500"
                 >

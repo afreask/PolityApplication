@@ -17,6 +17,7 @@ export class PagesComponent implements OnInit {
   public safeVideoUrl: any = '';
   public safeProfilePicture: any = '';
   public safePlatformImage: any = '';
+  user: any;
   // public sanitizer: DomSanitizer;
 
   // The DomSanitizer needs to be done here
@@ -38,7 +39,7 @@ export class PagesComponent implements OnInit {
           this.router.navigateByUrl('');
         }
         // console.log(page);
-        console.log(page);
+        // console.log(page);
         // this.candidateName = page["candidate"]
         this.pageBody = page;
         // console.log(this.pageBody);
