@@ -49,8 +49,10 @@ export class UserAddPageComponent implements OnInit {
   platformDescription1: string = '';
   platformDescription2: string = '';
   platformDescription3: string = '';
-  policyID: any;
+  policyID: any = 1;
   user: any;
+  learnMore: string;
+  pages: any;
 
   constructor(
     private router: Router, 
@@ -61,7 +63,7 @@ export class UserAddPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.userService.loginCheck()
-    this.user = localStorage.getItem("user");
+    this.user = JSON.parse(localStorage.getItem("user"));
 
     this.pageService.getPolicies().subscribe((res) => {
       // console.log(res);
@@ -72,17 +74,19 @@ export class UserAddPageComponent implements OnInit {
       this.urlList = res;
     });
 
-    this.pageService.getPages(this.user.userID).subscribe((pages) => {
-      this.pageService.pagesBS.next(pages);
-      // console.log(pages);
-      if (Object.keys(pages).length > 0) {
-        // console.log('It went into the if');
-        // console.log(pages[Object.keys(pages).length-1])
-        this.page = pages[Object.keys(pages).length - 1];
-        console.log(this.page);
-      }
-      // console.log(Object.keys(value).length)
-    });
+    this.pages = this.user.pageList;
+    if (Object.keys(this.pages).length > 0) {
+      // console.log('It went into the if');
+      // console.log(pages[Object.keys(pages).length-1])
+      this.page = this.pages[Object.keys(this.pages).length - 1];
+      console.log(this.page);
+    }
+    // this.pageService.getPages(this.user.userID).subscribe((pages) => {
+    //   this.pageService.pagesBS.next(pages);
+    //   // console.log(pages);
+
+    //   // console.log(Object.keys(value).length)
+    // });
   }
 
   addCandidate({ form, value }: any): void {
@@ -92,8 +96,8 @@ export class UserAddPageComponent implements OnInit {
       value['emailList'] = [{ emailAddress: value.email }];
       delete value['email'];
     }
-
-    this.pageService.postAddPage(value).subscribe((res) => {
+    // console.log(this.user)
+    this.pageService.postAddPage(value, this.user.userID).subscribe((res) => {
       this.pageService.getPages(this.user.userID).subscribe((pages) => {
         this.pageService.pagesBS.next(pages);
       });
@@ -105,6 +109,7 @@ export class UserAddPageComponent implements OnInit {
   addURL({ form, value }: any) {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     const temp = value;
+    
     // console.log(value);
     this.page['urlList'] = [];
     for (var i in value) {
@@ -118,9 +123,9 @@ export class UserAddPageComponent implements OnInit {
       this.page['urlList'].push({ urlID: urlID, urlName: i, link: temp[i] });
     }
 
-    this.pageService.postAddPageLinks(this.page).subscribe((res) => {
-      console.log(res);
-      console.log(this.page);
+    this.pageService.postAddPageLinks(this.page, this.user.userID).subscribe((res) => {
+        console.log(res);
+        this.success = res;
     });
   }
 
@@ -143,19 +148,24 @@ export class UserAddPageComponent implements OnInit {
     form.reset();
     console.log(value);
 
-    if (this.platformImage != null) {
-      this.pageService.postImage(this.platformImage).subscribe((res) => {
-        console.log(res);
-        this.success = true;
-        this.successMsg = res.toString();
-      });
-    }
-    this.page.candidate['cardList'].push({
-      policyID: 0,
-      cardTitle: value.ideaTitle,
-      platformDescription: value.platformDescription,
-    });
+    // if (this.platformImage != null) {
+    //   this.pageService.postImage(this.platformImage).subscribe((res) => {
+    //     console.log(res);
+    //     this.success = true;
+    //     this.successMsg = res.toString();
+    //   });
+    // }
     console.log(this.page);
+    this.page.candidate['cardList'].push({
+      policyID: value.policyID,
+      cardTitle: value.cardTitle,
+      cardDetails: value.cardDetails,
+      learnMore: value.learnMore
+    });
+    this.pageService.postAddPolicyCard(this.page, this.user.userID).subscribe((res) => {
+      console.log(res);
+      this.success = res;
+  });
   }
 
   addKeyPlatforms({ form, value }: any, num: number): void {
@@ -178,16 +188,17 @@ export class UserAddPageComponent implements OnInit {
         this.ideaTitle = value.ideaTitle3;
         this.platformDescription = value.platformDescription3;
     }
-    console.log(this.ideaTitle)
+
     this.page.candidate['kpList'].push({
       kpID: 0,
-      ideaTitle: value.ideaTitle,
-      platformDescription: value.platformDescription,
+      ideaTitle: this.ideaTitle,
+      platformDescription: this.platformDescription,
     });
-    // this.pageService.postAddCandidatePlatforms(this.page).subscribe((res) => {
-    //   console.log(res);
-    //   console.log(this.page);
-    // });
+
+    this.pageService.postAddCandidatePlatforms(this.page, this.user.userID).subscribe((res) => {
+      console.log(res);
+      this.page.kpList = res;
+    });
   }
 
   addImage({ form, value }: any, num: number): void 
