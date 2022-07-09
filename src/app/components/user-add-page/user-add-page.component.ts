@@ -100,8 +100,11 @@ export class UserAddPageComponent implements OnInit {
     this.pageService.postAddPage(value, this.user.userID).subscribe((res) => {
       this.pageService.getPages(this.user.userID).subscribe((pages) => {
         this.pageService.pagesBS.next(pages);
+        
       });
       this.page = res;
+      this.user.pageList.append(this.page);
+      localStorage.setItem("user", JSON.stringify(this.user));
       this.success = true;
     });
   }
@@ -203,6 +206,7 @@ export class UserAddPageComponent implements OnInit {
 
   addImage({ form, value }: any, num: number): void 
   {
+      var tmpPage={"pageID": this.page.pageID, "urlList": []}; 
       if (num > 0)
       {
           if(num === 1 && this.profilePicture != null)
@@ -212,7 +216,11 @@ export class UserAddPageComponent implements OnInit {
                 console.log(res);
                 this.success = true;
                 this.successMsg = res.toString();
+                
+
+                  
               });
+              
           }
           else if (num === 2 && this.platformImage != null)
           {
@@ -221,6 +229,13 @@ export class UserAddPageComponent implements OnInit {
                   console.log(res);
                   this.success = true;
                   this.successMsg = res.toString();
+                  tmpPage['urlList'].push({ urlID: 10, urlName: "profilePicture", link: res });
+                  // this.page['urlList'] = [];
+                  console.log(tmpPage)
+                  this.pageService.postAddPageLinks(tmpPage, this.user.userID).subscribe((res) => {
+                    console.log(res);
+                    this.success = res;
+                  });
               });
           }
       }
