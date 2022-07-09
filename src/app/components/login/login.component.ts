@@ -60,7 +60,10 @@ export class LoginComponent implements OnInit {
           {
               localStorage.setItem("user", JSON.stringify(res));
               console.log(localStorage.getItem("user"));
-              this.router.navigateByUrl('/user/page');
+              this.router.navigateByUrl('/user/page')
+                .then(() => {
+                  window.location.reload();
+                });
               // console.log()
           }
       });
