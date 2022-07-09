@@ -10,18 +10,24 @@
 <h1 class="page-title text-center">Build up your own website</h1>
 <br/>
 <br/>
+<p class="text-center">
+    Please note that you need to create a candidate first before making the rest. <br/>
+    This add function will not let you make links without the page created.<br/>
+    An edit page function is being created for you to modify your pages.<br/>
+    Thank you for your patience.
+</p>
 
 <!-- Form for the candidate. -->
 <div class="container">
     <div class="row justify-content-md-center text-center">
-      <h2 class="col-sm-8" data-bs-toggle="collapse" href="#candidateForm">
+      <h4 class="col-sm-8" data-bs-toggle="collapse" href="#candidateForm">
         Candidate Bio
-      </h2>
+      </h4>
 
     </div>
     <br/>
     <div class="row justify-content-md-center text-center">
-      <form novalidate #candidateBio = "ngForm" (ngSubmit)="addCandidate(candidateBio)">
+      <form ngNativeValidate #candidateBio = "ngForm" (ngSubmit)="addCandidate(candidateBio)">
         <div class="form-group collapse" id="candidateForm" align="center">
             <table>
                 <tr>
@@ -141,39 +147,47 @@
 <div class="container">
   <div class="row justify-content-md-center text-center">
       <h4 class="col-sm-8" data-bs-toggle="collapse" href="#urlForm">Urls</h4>
+
   </div>
-  <form  #f="ngForm" (ngSubmit)="addURL(f)">
+  <form ngNativeValidate #f="ngForm" (ngSubmit)="addURL(f)">
       <div class="form-group collapse" id="urlForm" align="center">
-          <table class="">
-              <tr *ngFor = "let url of urlList">
-                    <ng-container  *ngIf= "url.urlName != 'Profile Picture' && url.urlName != 'Key Platform Image'">
-                      <td><label class="fw-bold">{{url.urlName}}</label> &nbsp;</td>
-                      <td>
-                          <input
-                              type="url"
-                              class="form-control"
-                              placeholder="Please type a url"
-                              name="{{url.urlName.toLowerCase()}}"
-                              value="{url.urlID}"
-                              [(ngModel)]= "url.link"
-                              #pageTitle = "ngModel"
-                          >
-                          <div class="errors" *ngIf="url.urlName?.invalid && url.urlName?.dirty">
-                            Problem detected
+            <p>
+                Please remember that you need the embed link for youtube videos as they will not<br/>
+                allow the use of the basic url. 
+            </p>
+            <table class="">
+                <tr *ngFor = "let url of urlList">
+                        <ng-container  
+                            *ngIf= "url.urlName != 'Profile Picture' 
+                            && url.urlName != 'Key Platform Image'"
+                        >
+                            <td><label class="fw-bold">{{url.urlName}}</label> &nbsp;</td>
+                            <td>
+                                <input
+                                    type="url"
+                                    class="form-control"
+                                    placeholder="Please type a url"
+                                    name="{{url.urlName.toLowerCase()}}"
+                                    value="{url.urlID}"
+                                    [(ngModel)]= "url.link"
+                                    #pageTitle = "ngModel"
+                                >
+                                <div class="errors" *ngIf="url.urlName?.invalid && url.urlName?.dirty">
+                                    Problem detected
+                                </div>
+                            </td>
+                        </ng-container>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="d-flex float-end">
+                            <button class = "btn btn-default" [disabled] = "!f.valid">Save</button>
+                            <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
                         </div>
-                      </td>
-                    </ng-container>
-              </tr>
-              <tr>
-                  <td></td>
-                  <td>
-                      <div class="d-flex float-end">
-                          <button class = "btn btn-default" [disabled] = "!f.valid">Save</button>
-                          <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                      </div>
-                  </td>
-              </tr>
-          </table>
+                    </td>
+                </tr>
+            </table>
       </div>
   </form>
   <br><br>
@@ -246,8 +260,8 @@
                     <textarea
                         class="form-control"
                         cols="50" rows="5"
-                        name = "cardDetails"
-                        [(ngModel)] = "cardDetails"
+                        name = "learnMore"
+                        [(ngModel)] = "learnMore"
                         #pageTitle = "ngModel"
                         required
                     >
@@ -281,7 +295,7 @@
                 <h4 class="col-sm-8" data-bs-toggle="collapse" href="#keyForm">Key Platforms</h4>
             </div>
 
-            <table id="keyForm">
+            <table  class="form-group collapse" id="keyForm">
                 <tr>
                     <td><label>Title idea &nbsp;</label></td>
                     <td>
@@ -330,7 +344,7 @@
 <!-- Form for the key platforms. -->
 <form novalidate #keyPlatforms2 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms2, 2)">
     <div class="form-group" align="center">
-        <table id="keyForm">
+        <table  class="form-group collapse" id="keyForm">
             <tr>
                 <td><label>Title idea &nbsp;</label></td>
                 <td>
@@ -380,7 +394,7 @@
 <!-- Form for the key platforms. -->
 <form novalidate #keyPlatforms3 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms3, 3)">
     <div class="form-group" align="center" >
-        <table id="keyForm">
+        <table  class="form-group collapse" id="keyForm">
             <tr>
                 <td><label>Title idea &nbsp;</label></td>
                 <td>
@@ -434,7 +448,7 @@
 <!-- Form for the platform image -->
 <form novalidate #platformImage = "ngForm" (ngSubmit)="addImage(platformImage , 2)" >
     <div class="form-group" align="center">
-        <table id="keyForm">
+        <table  class="form-group collapse" id="keyForm">
             <tr>
                 <td>
                     <label>Upload Image:</label>&nbsp;
