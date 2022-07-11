@@ -33,15 +33,16 @@ export class UserService {
     //   headers: headers,
     //   params: params,
     // });
-    return this.http.post(`https://politywebapplication20220706124808.azurewebsites.net/user/login`, user);
+    return this.http.post(
+      `https://politywebapplication20220706124808.azurewebsites.net/user/login`,
+      user
+    );
     // return this.http.post(`https://localhost:44394/user/login`, user);
   }
 
-  loginCheck()
-  {
-      if(localStorage.getItem("user") == null)
-      {
-          this.router.navigateByUrl('user/login')
-      }
+  loginCheck() {
+    if (localStorage.getItem('user') == null) {
+      this.router.navigateByUrl('user/login');
+    }
   }
 }

@@ -1,3 +1,4 @@
+
 <div class="alert.alert-success" *ngIf="success">
    <!-- <img src={{successMsg}}> -->
    <p>success</p>
@@ -153,12 +154,12 @@
       <div class="form-group collapse" id="urlForm" align="center">
             <p>
                 Please remember that you need the embed link for youtube videos as they will not<br/>
-                allow the use of the basic url. 
+                allow the use of the basic url.
             </p>
             <table class="">
                 <tr *ngFor = "let url of urlList">
-                        <ng-container  
-                            *ngIf= "url.urlName != 'Profile Picture' 
+                        <ng-container
+                            *ngIf= "url.urlName != 'Profile Picture'
                             && url.urlName != 'Key Platform Image'"
                         >
                             <td><label class="fw-bold">{{url.urlName}}</label> &nbsp;</td>
@@ -300,14 +301,14 @@
                     <td><label>Title idea &nbsp;</label></td>
                     <td>
                         <input
-                        type = "text"
-                        class = "form-control"
-                        placeholder="Enter title"
-                        name = "ideaTitle1"
-                      [(ngModel)] = "ideaTitle1"
-                      #pageTitle = "ngModel"
-                      required
-                      >
+                          type = "text"
+                          class = "form-control"
+                          placeholder="Enter title"
+                          name = "ideaTitle1"
+                          [(ngModel)] = "ideaTitle1"
+                          #pageTitle = "ngModel"
+                          required
+                        >
                     </td>
                 </tr>
                 <tr>
@@ -318,12 +319,12 @@
           <tr>
               <td colspan="2">
                   <textarea
-                  class="form-control"
-                  cols="30" rows="5"
-                  name = "platformDescription1"
-                  [(ngModel)] = "platformDescription1"
-                  #pageTitle = "ngModel"
-                  required
+                    class="form-control"
+                    cols="30" rows="5"
+                    name = "platformDescription1"
+                    [(ngModel)] = "platformDescription1"
+                    #pageTitle = "ngModel"
+                    required
                   >
                 </textarea>
               </td>
@@ -334,7 +335,7 @@
                   <div class="form-group text-end">
                       <button class = "btn btn-primary" [disabled] = "!keyPlatforms.valid">Save</button>
                       <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                    </div>
+                  </div>
                 </td>
             </tr>
         </table>
@@ -349,13 +350,13 @@
                 <td><label>Title idea &nbsp;</label></td>
                 <td>
                     <input
-                    type = "text"
-                    class = "form-control"
-                    placeholder="Enter title"
-                    name = "ideaTitle2"
-                    [(ngModel)] = "ideaTitle2"
-                    #pageTitle = "ngModel"
-                    required
+                      type = "text"
+                      class = "form-control"
+                      placeholder="Enter title"
+                      name = "ideaTitle2"
+                      [(ngModel)] = "ideaTitle2"
+                      #pageTitle = "ngModel"
+                      required
                     >
                 </td>
             </tr>
@@ -399,31 +400,31 @@
                 <td><label>Title idea &nbsp;</label></td>
                 <td>
                     <input
-                    type = "text"
-                    class = "form-control"
+                        type = "text"
+                        class = "form-control"
                         placeholder="Enter title"
                         name = "ideaTitle3"
                         [(ngModel)] = "ideaTitle3"
                         #pageTitle = "ngModel"
                         required
-                        >
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Description</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <textarea
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Description</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea
                         class="form-control"
                         cols="30" rows="5"
                         name = "platformDescription3"
                         [(ngModel)] = "platformDescription3"
                         #pageTitle = "ngModel"
                         required
-                        >
+                    >
                     </textarea>
                 </td>
             </tr>
@@ -441,7 +442,7 @@
     <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
         First name is required!
     </div> -->
-    
+
 </form>
 <br/><br/>
 

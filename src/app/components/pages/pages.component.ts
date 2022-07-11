@@ -34,40 +34,43 @@ export class PagesComponent implements OnInit {
         this.param = '';
         this.title.setTitle('Polity');
       }
+      console.log(this.param);
       this.pageService.getPage(this.param).subscribe((page) => {
         if (page === 'PageNotFound') {
           this.router.navigateByUrl('');
         }
         // console.log(page);
-        // console.log(page);
+        console.log(page);
         // this.candidateName = page["candidate"]
         this.pageBody = page;
         // console.log(this.pageBody);
-        this.urlList = page['urlList'];
+        if (page['urlList'].length > 0) {
+          this.urlList = page['urlList'];
+          if (this.categories) {
+          }
+          for (var y in page['urlList']) {
+            // console.log();
+            if (page['urlList'][y]['urlName'] == 'Youtube') {
+              this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+                page['urlList'][y]['link']
+              );
+              // console.log(page['urlList'][y]['link']);
+            }
+            if (page['urlList'][y]['urlName'] == 'Profile Picture') {
+              this.safeProfilePicture =
+                this.sanitizer.bypassSecurityTrustResourceUrl(
+                  page['urlList'][y]['link']
+                );
+            }
+            if (page['urlList'][y]['urlName'] == 'Key Platform Image') {
+              this.safePlatformImage =
+                this.sanitizer.bypassSecurityTrustResourceUrl(
+                  page['urlList'][y]['link']
+                );
+            }
+          }
+        }
         // console.log(this.pageBody.candidate.cardList);
-        if (this.categories) {
-        }
-        for (var y in page['urlList']) {
-          // console.log();
-          if (page['urlList'][y]['urlName'] == 'Youtube') {
-            this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-              page['urlList'][y]['link']
-            );
-            // console.log(page['urlList'][y]['link']);
-          }
-          if (page['urlList'][y]['urlName'] == 'Profile Picture') {
-            this.safeProfilePicture =
-              this.sanitizer.bypassSecurityTrustResourceUrl(
-                page['urlList'][y]['link']
-              );
-          }
-          if (page['urlList'][y]['urlName'] == 'Key Platform Image') {
-            this.safePlatformImage =
-              this.sanitizer.bypassSecurityTrustResourceUrl(
-                page['urlList'][y]['link']
-              );
-          }
-        }
       });
     });
     // console.log(this.safeVideoUrl);

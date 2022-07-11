@@ -14,6 +14,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserEditPageComponent } from './components/user-edit-page/user-edit-page.component';
+import { UserNavComponent } from './components/user-nav/user-nav.component';
 
 const appRoutes: Routes = [
   { path: 'user/page', component: UserPageComponent },
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     UserEditPageComponent,
+    UserNavComponent,
   ],
   imports: [
     BrowserModule,
