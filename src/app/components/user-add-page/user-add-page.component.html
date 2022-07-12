@@ -22,7 +22,7 @@
 <div class="container">
     <div class="row justify-content-md-center text-center">
       <h4 class="col-sm-8" data-bs-toggle="collapse" href="#candidateForm">
-        Candidate Bio
+        Candidate Biography
       </h4>
 
     </div>
@@ -62,7 +62,7 @@
                 <tr>
                     <td>
                         <br/>
-                        <label class="fw-bold">Bio</label>
+                        <label class="fw-bold">Biography</label>
                     </td>
                 </tr>
                 <tr>
@@ -119,7 +119,7 @@
             <table>
                 <tr>
                     <td class="col-sm-4 text-end">
-                        <label class="fw-bold">Upload Image:</label>&nbsp;
+                        <label class="fw-bold">Upload Profile Picture:</label>&nbsp;
                     </td>
                     <td class="col-sm-4">
                         <input
@@ -147,8 +147,7 @@
 <!-- Form for the Urls -->
 <div class="container">
   <div class="row justify-content-md-center text-center">
-      <h4 class="col-sm-8" data-bs-toggle="collapse" href="#urlForm">Urls</h4>
-
+      <h4 class="col-sm-8" data-bs-toggle="collapse" href="#urlForm">URLS</h4>
   </div>
   <form ngNativeValidate #f="ngForm" (ngSubmit)="addURL(f)">
       <div class="form-group collapse" id="urlForm" align="center">
@@ -193,100 +192,6 @@
   </form>
   <br><br>
 </div>
-
-
-<!-- Form for the policy card. -->
-<form novalidate #policyCards = "ngForm" (ngSubmit)="addPolicyCard(policyCards)">
-    <div class="form-group" align="center">
-        <div class="row justify-content-md-center text-center">
-            <h4 class="col-sm-8" data-bs-toggle="collapse" href="#cardForm">Policy Cards</h4>
-        </div>
-        <table class="form-group collapse" id="cardForm">
-            <tr>
-                <td><label>Choose a category: &nbsp;</label></td>
-                <td>
-                    <select
-                        class="form-control"
-                        name="policyID"
-                        [(ngModel)] = "policyID"
-                        #pageTitle = "ngModel"
-                    >
-                        <ng-container *ngFor = "let category of categories">
-                            <option value="{{category.policyID}}" [selected] ="category.policyID == 1">{{category.category}}</option>
-                        </ng-container>
-                    </select>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td><label>Title &nbsp;</label></td>
-                <td>
-                    <input
-                        type = "text"
-                        class = "form-control"
-                        placeholder="Enter title"
-                        name = "cardTitle"
-                        [(ngModel)] = "cardTitle"
-                        #pageTitle = "ngModel"
-                        required
-                    >
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Details</label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea
-                        class="form-control"
-                        cols="10" rows="2"
-                        name = "cardDetails"
-                        [(ngModel)] = "cardDetails"
-                        #pageTitle = "ngModel"
-                        required
-                    >
-                    </textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Learn More</label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea
-                        class="form-control"
-                        cols="50" rows="5"
-                        name = "learnMore"
-                        [(ngModel)] = "learnMore"
-                        #pageTitle = "ngModel"
-                        required
-                    >
-                    </textarea>
-                </td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td>
-                    <div class="form-group text-end">
-                        <button class = "btn btn-default" [disabled] = "!policyCards.valid">Save</button>
-                        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
-        First name is required!
-    </div> -->
-
-</form>
-<br><br>
 
 <!-- Form for the key platforms. -->
 
@@ -470,5 +375,97 @@
             </tr>
         </table>
     </div>
+</form>
+
+<!-- Form for the policy card. -->
+<form novalidate #policyCards = "ngForm" (ngSubmit)="addPolicyCard(policyCards)">
+    <div class="form-group" align="center">
+        <div class="row justify-content-md-center text-center">
+            <h4 class="col-sm-8" data-bs-toggle="collapse" href="#cardForm">Policy Cards</h4>
+        </div>
+        <table class="form-group collapse" id="cardForm">
+            <tr>
+                <td><label>Choose a category: &nbsp;</label></td>
+                <td>
+                    <select
+                        class="form-control"
+                        name="policyID"
+                        [(ngModel)] = "policyID"
+                        #pageTitle = "ngModel"
+                    >
+                        <ng-container *ngFor = "let category of categories">
+                            <option value="{{category.policyID}}" [selected] ="category.policyID == 1">{{category.category}}</option>
+                        </ng-container>
+                    </select>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Title &nbsp;</label></td>
+                <td>
+                    <input
+                        type = "text"
+                        class = "form-control"
+                        placeholder="Enter title"
+                        name = "cardTitle"
+                        [(ngModel)] = "cardTitle"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Details</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea
+                        class="form-control"
+                        cols="10" rows="2"
+                        name = "cardDetails"
+                        [(ngModel)] = "cardDetails"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Learn More</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea
+                        class="form-control"
+                        cols="50" rows="5"
+                        name = "learnMore"
+                        [(ngModel)] = "learnMore"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                    </textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <div class="form-group text-end">
+                        <button class = "btn btn-default" [disabled] = "!policyCards.valid">Save</button>
+                        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
+        First name is required!
+    </div> -->
+
 </form>
 <br><br>
