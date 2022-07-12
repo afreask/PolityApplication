@@ -87,7 +87,7 @@
 </ng-template>
 <br/><br/>
 
-<div class="container"  *ngIf="urlList.length > 0">
+<div class="container"  *ngIf="urlList != null && urlList.length > 0">
   <h1><b>MEDIA</b></h1><br>
   <div *ngFor = "let url of urlList" >
       <ng-container *ngIf= "url.urlID ==  2">
@@ -228,7 +228,7 @@
             <td *ngIf = "safePlatformImage != '' ; else elsePictureBlock">
                 <img
 
-                    src="safePlatformImage"
+                    [src]="safePlatformImage"
                     width="500"
                     height="500"
                 >
