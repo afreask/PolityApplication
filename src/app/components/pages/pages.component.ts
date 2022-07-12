@@ -27,7 +27,9 @@ export class PagesComponent implements OnInit {
     private title: Title,
     private pageService: PageService,
     private sanitizer: DomSanitizer
-  ) {
+  ) 
+  {
+    this.user = localStorage.getItem("user");
     this.route.params.subscribe((params) => {
       this.param = params['page'];
       if (this.param === undefined) {
