@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           if (res != 'Invalid login') 
           {
               localStorage.setItem("user", JSON.stringify(res));
-              console.log(localStorage.getItem("user"));
+              
               this.router.navigateByUrl('/user/page')
                 .then(() => {
                   window.location.reload();
