@@ -87,7 +87,6 @@ export class UserAddPageComponent implements OnInit {
   }
 
   addCandidate({ form, value }: any): void {
-    form.reset();
     // console.log(value);
     if (value.email != null && value.email.trim() != '') {
       value['emailList'] = [{ emailAddress: value.email }];
@@ -148,7 +147,6 @@ export class UserAddPageComponent implements OnInit {
   }
 
   addPolicyCard({ form, value }: any): void {
-    form.reset();
     console.log(value);
 
     // if (this.platformImage != null) {
@@ -174,7 +172,6 @@ export class UserAddPageComponent implements OnInit {
   }
 
   addKeyPlatforms({ form, value }: any, num: number): void {
-    form.reset();
     console.log(value);
     const temp = value;
     this.page.candidate['kpList'] = [];
@@ -224,7 +221,7 @@ export class UserAddPageComponent implements OnInit {
             .subscribe((res) => {
               console.log(res);
               this.success = res;
-          });
+            });
         });
       } else if (num === 2 && this.platformImage != null) {
         console.log(this.platformImage);
@@ -244,7 +241,7 @@ export class UserAddPageComponent implements OnInit {
             .subscribe((res) => {
               console.log(res);
               this.success = res;
-          });
+            });
         });
       }
     }
