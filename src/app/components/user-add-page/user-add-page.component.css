@@ -6,3 +6,9 @@ label
   /* text-orientation: vertical-rl; */
   /* padding: -10px 20px; */
 }
+
+.small-icon
+{
+    font-size:8px;
+    color: white
+}
