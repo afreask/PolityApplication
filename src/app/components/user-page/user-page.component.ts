@@ -13,6 +13,7 @@ export class UserPageComponent implements OnInit {
     pages: any;
     successMsg: boolean = false;
     user: any;
+    page: any;
 
     constructor
     (
@@ -25,8 +26,9 @@ export class UserPageComponent implements OnInit {
     {
         this.userService.loginCheck()
         this.pages = this.pageService.pagesBS;
-        this.user = localStorage.getItem("user");
-        // console.log(this.user);
+        this.user = JSON.parse(localStorage.getItem("user"));
+        console.log(this.user);
+        this.page = this.user.pageList[this.user.pageList.length - 1];
     }
 
 }
