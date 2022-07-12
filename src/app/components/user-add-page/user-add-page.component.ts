@@ -212,15 +212,8 @@ export class UserAddPageComponent implements OnInit {
           console.log(res);
           this.success = true;
           this.successMsg = res.toString();
-        });
-      } else if (num === 2 && this.platformImage != null) {
-        console.log(this.platformImage);
-        this.pageService.postImage(this.platformImage).subscribe((res) => {
-          console.log(res);
-          this.success = true;
-          this.successMsg = res.toString();
           tmpPage['urlList'].push({
-            urlID: 10,
+            urlID: 9,
             urlName: 'profilePicture',
             link: res,
           });
@@ -231,7 +224,27 @@ export class UserAddPageComponent implements OnInit {
             .subscribe((res) => {
               console.log(res);
               this.success = res;
-            });
+          });
+        });
+      } else if (num === 2 && this.platformImage != null) {
+        console.log(this.platformImage);
+        this.pageService.postImage(this.platformImage).subscribe((res) => {
+          console.log(res);
+          this.success = true;
+          this.successMsg = res.toString();
+          tmpPage['urlList'].push({
+            urlID: 10,
+            urlName: 'platformImage',
+            link: res,
+          });
+          // this.page['urlList'] = [];
+          console.log(tmpPage);
+          this.pageService
+            .postAddPageLinks(tmpPage, this.user.userID)
+            .subscribe((res) => {
+              console.log(res);
+              this.success = res;
+          });
         });
       }
     }
