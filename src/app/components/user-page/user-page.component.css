@@ -5,8 +5,9 @@
   transform: translate(-50%, -50%);
 }
 
-.small-icon
+.dashboard-image
 {
-    font-size:8px;
-    color: white
+  width: 552px;
+  height: 353px;
 }
+
