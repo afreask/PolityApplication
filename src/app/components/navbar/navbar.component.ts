@@ -22,8 +22,12 @@ export class NavbarComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     // console.log(this.user);
     // Instantiates the pages object
-    this.pages = this.user.pageList;
-    console.log(this.pages);
+    if(this.user!= null)
+    {
+        this.pages = this.user.pageList;
+        console.log(this.pages);
+
+    }
     // this.pageService.getPages(this.user.userID).subscribe((pages) => {
     //   console.log(pages);
     //   this.pageService.pagesBS.next(pages);
