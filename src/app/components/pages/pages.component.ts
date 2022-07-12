@@ -44,7 +44,7 @@ export class PagesComponent implements OnInit {
         // console.log(page);
         // this.candidateName = page["candidate"]
         this.pageBody = page;
-        // console.log(this.pageBody);
+        console.log(this.pageBody);
         if (page['urlList'].length > 0) {
           this.urlList = page['urlList'];
           if (this.categories) {

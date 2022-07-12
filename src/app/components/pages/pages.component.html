@@ -1,6 +1,6 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="container">
+<div class="container" >
     <!-- <div class="row justify-content-md-center ">
       <div class="col-sm-8">
           <img
@@ -27,10 +27,10 @@
                     >
                 </td>
                 <td >
-                    <table >
+                    <table>
                         <tr>
-                            <td>
-                                <h1>
+                            <td >
+                                <h1 >
                                     {{pageBody.candidate.firstName}}
                                     {{pageBody.candidate.lastName}}
                                 </h1>
@@ -87,7 +87,7 @@
 </ng-template>
 <br/><br/>
 
-<div class="container"  *ngIf="urlList != null && urlList.length > 0">
+<div class="container"  *ngIf="urlList.length > 0">
   <h1><b>MEDIA</b></h1><br>
   <div *ngFor = "let url of urlList" >
       <ng-container *ngIf= "url.urlID ==  2">
