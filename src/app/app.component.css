@@ -1,5 +1,12 @@
+body { min-height: 100vh; }
+
 .small-icon
 {
     font-size:8px;
     color: white
+}
+
+.polity-logo
+{
+    background-color: white;
 }
