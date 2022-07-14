@@ -46,20 +46,20 @@ export class UserEditPageComponent implements OnInit {
   platformDescription1: string = '';
   platformDescription2: string = '';
   platformDescription3: string = '';
-  policyID: any;
+  policyID: any = 1;
   user: any;
+  learnMore: string;
+  pages: any;
 
-  constructor
-  (
-    private router: Router, 
-    private pageService: PageService, 
+  constructor(
+    private router: Router,
+    private pageService: PageService,
     private userService: UserService
   ) {}
 
   ngOnInit(): void {
-
     this.userService.loginCheck();
-    this.user = localStorage.getItem("user");
+    this.user = localStorage.getItem('user');
     this.pageService.getPolicies().subscribe((res) => {
       // console.log(res);
       this.categories = res;
@@ -71,8 +71,7 @@ export class UserEditPageComponent implements OnInit {
     this.pageService.getPages(this.user.userID).subscribe((pages) => {
       this.pageService.pagesBS.next(pages);
       // console.log(pages);
-      if (Object.keys(pages).length > 0) 
-      {
+      if (Object.keys(pages).length > 0) {
         // console.log('It went into the if');
         // console.log(pages[Object.keys(pages).length-1])
         this.page = pages[Object.keys(pages).length - 1];
