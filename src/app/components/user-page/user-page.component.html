@@ -3,28 +3,44 @@
 
 <div class="container">
     <div class="row">
-      <div class="col">
-          <a href="user/add-page"><img class="dahsboard-image" src="assets/images/Dashboard/Build.PNG">
+      <div class="col " *ngIf="user == null; else addElseBlock">
+          <a href="user/add-page"><img class="dashboard-image" src="assets/images/Dashboard/Build-Profile.jpg">
           </a>
       </div>
-      <div class="col">
-        <a href="user/add-page"><img class="dahsboard-image" src="assets/images/Dashboard/Edit.PNG">
+      <div class="col" *ngIf="user != null; else editElseBlock">
+        <a href="user/edit-page"><img class="dashboard-image" src="assets/images/Dashboard/Edit-Profile.jpg">
         </a>
       </div>
 
     </div>
     <div class="row">
-        <div class="col" *ngIf="this.user.userType != 1">
+        <div class="col" *ngIf="user.userType != 1">
             <br/>
             <a href="/{{page.pageID}}">
-                <img  class="dahsboard-image" src="assets/images/Dashboard/View.PNG">
+                <img  class="dashboard-image" src="assets/images/Dashboard/View-Profile.jpg">
             </a>
         </div>
         <div class="col">
             <br/>
-            <a href="user/add-page"><img class="dahsboard-image" src="assets/images/Dashboard/Admin.PNG">
+            <a href="user/add-page"><img class="dashboard-image" src="assets/images/Dashboard/Admin-Profile.jpg">
             </a>
         </div>
     </div>
 </div>
+
+<ng-template #addElseBlock>
+  <div class="col">
+    <img class="dashboard-image fade" src="assets/images/Dashboard/Build-Profile.jpg">
+  </div>
+</ng-template>
+<ng-template #editElseBlock>
+  <div class="col">
+    <img class="dashboard-image fade" src="assets/images/Dashboard/Edit-Profile.jpg">
+  </div>
+</ng-template>
+<ng-template #viewElseBlock>
+  <div class="col">
+    <img class="dashboard-image fade" src="assets/images/Dashboard/View-Profile.jpg">
+  </div>
+</ng-template>
 <!-- <h2>Edit your website</h2> -->

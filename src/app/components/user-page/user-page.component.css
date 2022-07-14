@@ -7,9 +7,13 @@
 
 .dashboard-image
 {
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   background-color: white;
 }
 
+.fade
+{
+   opacity: 0.5;
+}
 
