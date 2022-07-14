@@ -10,3 +10,19 @@ body { min-height: 100vh; }
 {
     background-color: white;
 }
+
+/* .vnav
+{
+    position: absolute;
+    z-index: -1;
+} */
+
+.glyphicon
+{
+  filter: invert(100%);
+}
+
+.fa
+{
+  color: white;
+}
