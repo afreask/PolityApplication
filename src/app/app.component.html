@@ -1,10 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <ng-container *ngIf="this.user != null; else elseBlock">
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <div class="alert.alert-success" *ngIf="successMsg">
             <p>Success</p>
         </div>
-        <div class="row">
-            <div class="col-sm-auto bg-dark sticky-top">
+        <div class="row ">
+            <div class="col-sm-auto bg-dark sticky-top ">
                 <div class="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top">
                     <!-- <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                         <i class="bi-bootstrap fs-1"></i>
@@ -21,25 +22,31 @@
                               <p class="small-icon">Home</p>
                             </a>
                         </li>
-                        <li>
+                        <li *ngIf="page == null">
                           <a href="user/add-page" class="nav-link py-0 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
                               <img src="assets/images/Menu/Create-Icon.png"><br/>
                               <p class="small-icon">Create</p>
                           </a>
                         </li>
-                        <li *ngIf="page.pageID != null">
+                        <li *ngIf="page != null">
+                          <a href="user/edit-page/{{page.pageID}}" class="nav-link py-0 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                              <!-- <img src="assets/images/Menu/Create-Icon.png"><br/> -->
+                              <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                              <p class="small-icon">Edit</p>
+                          </a>
+                        </li>
+                        <li *ngIf="page != null">
                           <a href="/{{page.pageID}}" class="nav-link py-0 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
                               <img src="assets/images/Menu/My-Page-Icon.png"><br/>
                               <p class="small-icon">My Page</p>
                           </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
-                                <i class="bi-people fs-1"></i>
+                            <!-- <a class="nav-link active"  aria-current="page" (click) = "logout()" href="#">Logout</a> -->
+                            <a (click) = "logout()" href="#">
+                              <i class="fa fa-sign-out fa-2x"></i>
+                              <p class="small-icon">Logout</p>
                             </a>
-                        </li>
-                        <li>
-                            <a class="nav-link active"  aria-current="page" (click) = "logout()" href="#">Logout</a>
                         </li>
                     </ul>
 
@@ -55,7 +62,7 @@
                     </div> -->
                 </div>
             </div>
-            <div class="col-sm-auto py-3 px-5 sticky-top min-vh-100 nav-top">
+            <div class="col py-3 px-5 sticky-top min-vh-100 nav-top">
               <div class="row">
                 <div class="col-sm-auto sticky-top">
                     <img class="polity-logo" src="assets/images/Menu/Polity-Logo.png">
@@ -78,3 +85,4 @@
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
 </ng-template>
+
