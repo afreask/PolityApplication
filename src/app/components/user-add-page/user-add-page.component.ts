@@ -42,7 +42,7 @@ export class UserAddPageComponent implements OnInit {
   ideaTitle3: string = '';
   cardTitle: string = '';
   cardDetails: string = '';
-  youtube: string;
+  youtube: string = '';
   platformDescription: string = '';
   platformDescription1: string = '';
   platformDescription2: string = '';
@@ -77,13 +77,15 @@ export class UserAddPageComponent implements OnInit {
       // console.log(pages[Object.keys(pages).length-1])
       this.page = this.pages[Object.keys(this.pages).length - 1];
       console.log(this.page);
+      this.firstName = this.page.candidate.firstName;
+      this.lastName = this.page.candidate.lastName;
+      this.bio = this.page.candidate.bio;
+      if (this.page.candidate.emailList[0] > 0) {
+        this.email = this.page.candidate.emailList[0];
+      } else {
+        this.email = this.firstName + '.' + this.lastName + '@polity.vote';
+      }
     }
-    // this.pageService.getPages(this.user.userID).subscribe((pages) => {
-    //   this.pageService.pagesBS.next(pages);
-    //   // console.log(pages);
-
-    //   // console.log(Object.keys(value).length)
-    // });
   }
 
   addCandidate({ form, value }: any): void {
