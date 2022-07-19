@@ -8,7 +8,7 @@
     <p>Page exists. Please choose another.</p>
 </div>
 
-<h1 class="page-title text-center">Build up your own website</h1>
+<h1 class="page-title">Build up your own website</h1>
 <br/>
 <br/>
 <p class="text-center">
@@ -18,458 +18,523 @@
     Thank you for your patience.
 </p>
 
-<!-- Form for the candidate. -->
-<div class="container">
-    <div class="row justify-content-md-center text-center">
-      <h4 class="col-sm-8" data-bs-toggle="collapse" href="#candidateForm">
-        Candidate Biography
-      </h4>
-
+<div class="card">
+    <div class="card-header" data-bs-toggle="collapse" href="#candidateForm">
+        <p class="px-4">
+            <b>
+                Candidate Biography
+            </b>
+        </p>
     </div>
-    <br/>
-    <div class="row justify-content-md-center text-center">
-      <form ngNativeValidate #candidateBio = "ngForm" (ngSubmit)="addCandidate(candidateBio)">
-        <div class="form-group collapse" id="candidateForm" align="center">
-            <table>
-                <tr>
-                    <td><label class="fw-bold">First Name &nbsp;</label></td>
-                    <td>
-                        <input
-                            type = "text"
-                            class = "form-control"
-                            placeholder="Enter name"
-                            name = "firstName"
-                            [(ngModel)] = "firstName"
-                            #pageTitle = "ngModel"
-                            [disabled] = "firstName.trim() != '' && page.candidate.firstName != null"
-                            required
-                        >
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="fw-bold">Last Name &nbsp;</label></td>
-                    <td>
-                        <input
-                            type = "text"
-                            class = "form-control"
-                            placeholder="Enter name"
-                            name = "lastName"
-                            [(ngModel)] = "lastName"
-                            #pageTitle = "ngModel"
-                            [disabled] = "lastName.trim() != '' && page.candidate.lastName != null"
-                            required
-                        >
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <br/>
-                        <label class="fw-bold">Biography</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <textarea
-                            class="form-control"
-                            cols="30" rows="5"
-                            name = "bio"
-                            [(ngModel)] = "bio"
-                            #pageTitle = "ngModel"
-                            [disabled] = "bio.trim() != '' && page.candidate.bio != null"
-                            required
-                        >
-                        </textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="fw-bold">Email</label>
-                    </td>
-                    <td>
-                        <input
-                            type = "email"
-                            class = "form-control"
-                            placeholder="Enter email"
-                            name = "email"
-                            [(ngModel)] = "email"
-                            [disabled] = true
-                            #pageTitle = "ngModel"
-                        >
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <div class="form-group text-end" *ngIf="this.user.firstName == '' ">
-                            <button class = "btn btn-default" [disabled] = "!candidateBio.valid">Save</button>
-                            <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
-            First name is required!
-        </div> -->
-
-      </form>
-    </div>
-
-
-    <br>
-    <!-- Form for the profile pricture-->
-    <form novalidate  class="form-group collapse" id="candidateForm" #profilePicture = "ngForm" (ngSubmit)="addImage(profilePicture , 1)">
-        <div class="form-group" align="center">
-            <table>
-                <tr>
-                    <td class="col-sm-4 text-end">
-                        <label class="fw-bold">Upload Profile Picture:</label>&nbsp;
-                    </td>
-                    <td class="col-sm-4">
-                        <input
-                            type = "file"
-                            class = "file-input"
-                            placeholder="Upload"
-                            name = "profilePicture"
-                            accept="image/*"
-                            (change)= "getFile($event, 1)"
-                        >
-                    </td>
-                    <td>
-                        <button class = "btn btn-primary" [disabled] = "!profilePicture.valid">Upload</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><br></td>
-                </tr>
-            </table>
-        </div>
-    </form>
-</div>
-
-
-<!-- Form for the Urls -->
-<div class="container">
-  <div class="row justify-content-md-center text-center">
-      <h4 class="col-sm-8" data-bs-toggle="collapse" href="#urlForm">URLS</h4>
-  </div>
-  <form ngNativeValidate #f="ngForm" (ngSubmit)="addURL(f)">
-      <div class="form-group collapse" id="urlForm" align="center">
-            <p>
-                Please remember that you need the embed link for youtube videos as they will not<br/>
-                allow the use of the basic url.
-            </p>
-            <table class="">
-                <tr *ngFor = "let url of urlList">
-                        <ng-container
-                            *ngIf= "url.urlName != 'Profile Picture'
-                            && url.urlName != 'Key Platform Image'"
-                        >
-                            <td><label class="fw-bold">{{url.urlName}}</label> &nbsp;</td>
+    <div class="card-body" >
+        <div class="row justify-content-md-center collapse" id="candidateForm">
+            <form ngNativeValidate #candidateBio = "ngForm" (ngSubmit)="addCandidate(candidateBio)">
+              <div class="form-group" align="center">
+                  <table>
+                      <tr>
+                          <td ><label class="fw-bold">First Name</label></td>
+                          <td>
+                                <input
+                                    type = "text"
+                                    class = "form-control"
+                                    placeholder="Enter name"
+                                    name = "firstName"
+                                    [(ngModel)] = "firstName"
+                                    #pageTitle = "ngModel"
+                                    [disabled] = "firstName.trim() != '' && page.candidate.firstName != null"
+                                    required
+                                >
+                          </td>
+                      </tr>
+                      <tr>
+                            <td class="small-label">
+                                <label class="fw-bold">Last Name &nbsp;</label>
+                            </td>
                             <td>
                                 <input
-                                    type="url"
-                                    class="form-control"
-                                    placeholder="Please type a url"
-                                    name="{{url.urlName.toLowerCase()}}"
-                                    value="{url.urlID}"
-                                    [(ngModel)]= "url.link"
+                                    type = "text"
+                                    class = "form-control"
+                                    placeholder="Enter name"
+                                    name = "lastName"
+                                    [(ngModel)] = "lastName"
                                     #pageTitle = "ngModel"
+                                    [disabled] = "lastName.trim() != '' && page.candidate.lastName != null"
+                                    required
                                 >
-                                <div class="errors" *ngIf="url.urlName?.invalid && url.urlName?.dirty">
-                                    Problem detected
+                            </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <br/>
+                              <label class="fw-bold">Biography</label>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td colspan="2">
+                              <textarea
+                                  class="form-control"
+                                  cols="30" rows="5"
+                                  name = "bio"
+                                  [(ngModel)] = "bio"
+                                  #pageTitle = "ngModel"
+                                  [disabled] = "bio.trim() != '' && page.candidate.bio != null"
+                                  required
+                              >
+                              </textarea>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <label class="fw-bold">Email</label>
+                          </td>
+                          <td>
+                              <input
+                                  type = "email"
+                                  class = "form-control"
+                                  placeholder="Enter email"
+                                  name = "email"
+                                  [(ngModel)] = "email"
+                                  [disabled] = true
+                                  #pageTitle = "ngModel"
+                              >
+                          </td>
+                      </tr>
+                      <tr>
+                          <td></td>
+                          <td>
+                              <div class="form-group text-end" *ngIf="this.user.firstName == '' ">
+                                  <button class = "btn btn-default" [disabled] = "!candidateBio.valid">Save</button>
+                                  <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                              </div>
+                          </td>
+                      </tr>
+                  </table>
+              </div>
+            </form>
+
+            
+            <!-- Form for the profile pricture-->
+            <form novalidate  class="form-group collapse" id="candidateForm" #profilePicture = "ngForm" (ngSubmit)="addImage(profilePicture , 1)">
+                <br><br>
+                <div class="form-group"  align="center">
+                    <table>
+                        <tr>
+                            <td class="picture-label">
+                                <label class="fw-bold">Upload Profile Picture:</label>&nbsp;
+                            </td>
+                            <td class="col-sm-4">
+                                <input
+                                    type = "file"
+                                    class = "file-input"
+                                    placeholder="Upload"
+                                    name = "profilePicture"
+                                    accept="image/*"
+                                    (change)= "getFile($event, 1)"
+                                >
+                            </td>
+                            <td><button class = "btn btn-primary" [disabled] = "!profilePicture.valid">Upload</button></td>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+      
+      
+
+    </div>
+</div>
+<br/>
+
+<!-- Form for the Urls -->
+<div class="card">
+    <div class="card-header" data-bs-toggle="collapse" href="#urlForm">
+        <p class="px-4">
+            <b>
+                URLS
+            </b>
+        </p>
+    </div>
+    <div class="card-body">
+        <p class="px-4">
+            Please remember that you need the embed link for youtube videos as they will not allow the use of the basic url.
+        </p>
+        <div class="row justify-content-md-center collapse" id="urlForm">
+            <form ngNativeValidate #f="ngForm" (ngSubmit)="addURL(f)">
+                <div class="form-group" align="center">      
+                    <table>
+                        <tr *ngFor = "let url of urlList">
+                                <ng-container
+                                    *ngIf= "url.urlName != 'Profile Picture'
+                                    && url.urlName != 'Key Platform Image'"
+                                >
+                                    <td class="small-label"><label class="fw-bold">{{url.urlName}}</label> &nbsp;</td>
+                                    <td>
+                                        <input
+                                            type="url"
+                                            class="form-control"
+                                            placeholder="Please type a url"
+                                            name="{{url.urlName.toLowerCase()}}"
+                                            value="{url.urlID}"
+                                            [(ngModel)]= "url.link"
+                                            #pageTitle = "ngModel"
+                                        >
+                                        <div class="errors" *ngIf="url.urlName?.invalid && url.urlName?.dirty">
+                                            Problem detected
+                                        </div>
+                                    </td>
+                                </ng-container>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="d-flex float-end">
+                                    <button class = "btn btn-primary" [disabled] = "!f.valid">Save</button>&nbsp;
+                                    <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
                                 </div>
                             </td>
-                        </ng-container>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <div class="d-flex float-end">
-                            <button class = "btn btn-default" [disabled] = "!f.valid">Save</button>
-                            <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-      </div>
-  </form>
-  <br><br>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-
-<!-- Form for the key platforms. -->
-
-<form novalidate #keyPlatforms = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms, 1)">
-        <div class="form-group container" align="center">
-            <div class="row justify-content-md-center text-center">
-                <h4 class="col-sm-8" data-bs-toggle="collapse" href="#keyForm">Key Platforms</h4>
-            </div>
-
-            <table  class="form-group collapse" id="keyForm">
-                <tr>
-                    <td><label>Title idea &nbsp;</label></td>
-                    <td>
-                        <input
-                          type = "text"
-                          class = "form-control"
-                          placeholder="Enter title"
-                          name = "ideaTitle1"
-                          [(ngModel)] = "ideaTitle1"
-                          #pageTitle = "ngModel"
-                          required
-                        >
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Description</label>
-                    </td>
-                </tr>
-          <tr>
-              <td colspan="2">
-                  <textarea
-                    class="form-control"
-                    cols="30" rows="5"
-                    name = "platformDescription1"
-                    [(ngModel)] = "platformDescription1"
-                    #pageTitle = "ngModel"
-                    required
-                  >
-                </textarea>
-              </td>
-          </tr>
-          <tr>
-              <td></td>
-              <td>
-                  <div class="form-group text-end">
-                      <button class = "btn btn-primary" [disabled] = "!keyPlatforms.valid">Save</button>
-                      <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                  </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-</form>
-
-<!-- Form for the key platforms. -->
-<form novalidate #keyPlatforms2 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms2, 2)">
-    <div class="form-group" align="center">
-        <table  class="form-group collapse" id="keyForm">
-            <tr>
-                <td><label>Title idea &nbsp;</label></td>
-                <td>
-                    <input
-                      type = "text"
-                      class = "form-control"
-                      placeholder="Enter title"
-                      name = "ideaTitle2"
-                      [(ngModel)] = "ideaTitle2"
-                      #pageTitle = "ngModel"
-                      required
-                    >
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Description</label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea
-                    class="form-control"
-                    cols="30" rows="5"
-                    name = "platformDescription2"
-                    [(ngModel)] = "platformDescription2"
-                        #pageTitle = "ngModel"
-                        required
-                        >
-                    </textarea>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <div class="form-group text-end">
-                        <button class = "btn btn-primary" [disabled] = "!keyPlatforms2.valid">Save</button>
-                        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-</form>
-
 <br/>
+
 <!-- Form for the key platforms. -->
-<form novalidate #keyPlatforms3 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms3, 3)">
-    <div class="form-group" align="center" >
-        <table  class="form-group collapse" id="keyForm">
-            <tr>
-                <td><label>Title idea &nbsp;</label></td>
-                <td>
-                    <input
-                        type = "text"
-                        class = "form-control"
-                        placeholder="Enter title"
-                        name = "ideaTitle3"
-                        [(ngModel)] = "ideaTitle3"
-                        #pageTitle = "ngModel"
-                        required
-                    >
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Description</label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea
-                        class="form-control"
-                        cols="30" rows="5"
-                        name = "platformDescription3"
-                        [(ngModel)] = "platformDescription3"
-                        #pageTitle = "ngModel"
-                        required
-                    >
-                    </textarea>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <div class="form-group text-end">
-                        <button class = "btn btn-primary" [disabled] = "!keyPlatforms3.valid">Save</button>
-                        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
+<div class="card">
+    <div class="card-header" data-bs-toggle="collapse" href="#keyForm">
+        <p class="px-4">
+            <b>
+                Key Platforms
+            </b>
+        </p>
     </div>
-    <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
-        First name is required!
-    </div> -->
+    <div class="card-body">
+        <div class="collapse" id="keyForm">
+            <p class="px-4">
+                
+            </p>
+            <form novalidate #keyPlatforms = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms, 1)">
+                <div class="form-group" align="center">      
+                    <table  class="form-group">
+                        <tr>
+                            <td class="small-label">
+                                <b>
+                                    <label>Title idea &nbsp;</label>
+                                </b>
+                            </td>
+                            <td>
+                                <input
+                                type = "text"
+                                class = "form-control"
+                                placeholder="Enter title"
+                                name = "ideaTitle1"
+                                [(ngModel)] = "ideaTitle1"
+                                #pageTitle = "ngModel"
+                                required
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    <label>Description</label>
+                                </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea
+                                    class="form-control"
+                                    cols="30" rows="5"
+                                    name = "platformDescription1"
+                                    [(ngModel)] = "platformDescription1"
+                                    #pageTitle = "ngModel"
+                                    required
+                                >
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="form-group text-end">
+                                    <button class = "btn btn-primary" [disabled] = "!keyPlatforms.valid">Save</button>
+                                    <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                                </div>
+                                </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <br/>
+    
+            <form novalidate #keyPlatforms2 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms2, 2)">
+                <div class="form-group" align="center">
+                    <table class="form-group">
+                        <tr>
+                            <td class="small-label">
+                                <b>
+                                    <label>Title idea &nbsp;</label>
+                                </b>
+                            </td>
+                            <td>
+                                <input
+                                  type = "text"
+                                  class = "form-control"
+                                  placeholder="Enter title"
+                                  name = "ideaTitle2"
+                                  [(ngModel)] = "ideaTitle2"
+                                  #pageTitle = "ngModel"
+                                  required
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    <label>Description</label>
+                                </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea
+                                class="form-control"
+                                cols="30" rows="5"
+                                name = "platformDescription2"
+                                [(ngModel)] = "platformDescription2"
+                                    #pageTitle = "ngModel"
+                                    required
+                                    >
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="form-group text-end">
+                                    <button class = "btn btn-primary" [disabled] = "!keyPlatforms2.valid">Save</button>
+                                    <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <br/>
+    
+            <!-- Form for the key platforms. -->
+            <form novalidate #keyPlatforms3 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms3, 3)">
+                <div class="form-group" align="center" >
+                    <table  class="form-group">
+                        <tr>
+                            <td class="small-label">
+                                <b>
+                                    <label>Title idea &nbsp;</label>
+                                </b>
+                            </td>
+                            <td>
+                                <input
+                                    type = "text"
+                                    class = "form-control"
+                                    placeholder="Enter title"
+                                    name = "ideaTitle3"
+                                    [(ngModel)] = "ideaTitle3"
+                                    #pageTitle = "ngModel"
+                                    required
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    <label>Description</label>
+                                </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea
+                                    class="form-control"
+                                    cols="30" rows="5"
+                                    name = "platformDescription3"
+                                    [(ngModel)] = "platformDescription3"
+                                    #pageTitle = "ngModel"
+                                    required
+                                >
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="form-group text-end">
+                                    <button class = "btn btn-primary" [disabled] = "!keyPlatforms3.valid">Save</button>
+                                    <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
+                    First name is required!
+                </div> -->
+            
+            </form>
 
-</form>
-<br/><br/>
+            <br/><br/>
 
-<!-- Form for the platform image -->
-<form novalidate #platformImage = "ngForm" (ngSubmit)="addImage(platformImage , 2)" >
-    <div class="form-group" align="center">
-        <table  class="form-group collapse" id="keyForm">
-            <tr>
-                <td>
-                    <label>Upload Platform Image:</label>&nbsp;
-                </td>
-                <td>
-                    <input
-                    type = "file"
-                    class = "file-input"
-                        placeholder="Upload"
-                        name = "platformImage"
-                        accept="image/*"
-                        (change)= "getFile($event, 2)"
-                        >
-                    </td>
-                <td align="right">
-                <button class = "btn btn-primary" [disabled] = "!platformImage.valid">Upload</button>
-                </td>
-            </tr>
-        </table>
+            <!-- Form for the platform image -->
+            <form novalidate #platformImage = "ngForm" (ngSubmit)="addImage(platformImage , 2)" >
+                <div class="form-group" align="center">
+                    <table  class="form-group collapse" id="keyForm">
+                        <tr>
+                            <td class="picture-label">
+                                <label>Upload Platform Image:</label>&nbsp;
+                            </td>
+                            <td>
+                                <input
+                                type = "file"
+                                class = "file-input"
+                                    placeholder="Upload"
+                                    name = "platformImage"
+                                    accept="image/*"
+                                    (change)= "getFile($event, 2)"
+                                    >
+                                </td>
+                            <td align="right">
+                            <button class = "btn btn-primary" [disabled] = "!platformImage.valid">Upload</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</div>
+<br/>
 
 <!-- Form for the policy card. -->
-<form novalidate #policyCards = "ngForm" (ngSubmit)="addPolicyCard(policyCards)">
-    <div class="form-group" align="center">
-        <div class="row justify-content-md-center text-center">
-            <h4 class="col-sm-8" data-bs-toggle="collapse" href="#cardForm">Policy Cards</h4>
-        </div>
-        <table class="form-group collapse" id="cardForm">
-            <tr>
-                <td><label>Choose a policy category: &nbsp;</label></td>
-                <td>
-                    <select
-                        class="form-control"
-                        name="policyID"
-                        [(ngModel)] = "policyID"
-                        #pageTitle = "ngModel"
-                    >
-                        <ng-container *ngFor = "let category of categories">
-                            <option value="{{category.policyID}}" [selected] ="category.policyID == 1">{{category.category}}</option>
-                        </ng-container>
-                    </select>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td><label>Policy Title &nbsp;</label></td>
-                <td>
-                    <input
-                        type = "text"
-                        class = "form-control"
-                        placeholder="Enter title"
-                        name = "cardTitle"
-                        [(ngModel)] = "cardTitle"
-                        #pageTitle = "ngModel"
-                        required
-                    >
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Short Description</label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea
-                        class="form-control"
-                        cols="10" rows="2"
-                        name = "cardDetails"
-                        [(ngModel)] = "cardDetails"
-                        #pageTitle = "ngModel"
-                        required
-                    >
-                    </textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Long Description</label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea
-                        class="form-control"
-                        cols="50" rows="5"
-                        name = "learnMore"
-                        [(ngModel)] = "learnMore"
-                        #pageTitle = "ngModel"
-                        required
-                    >
-                    </textarea>
-                </td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td>
-                    <div class="form-group text-end">
-                        <button class = "btn btn-default" [disabled] = "!policyCards.valid">Save</button>
-                        <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
+<div class="card">
+    <div class="card-header" data-bs-toggle="collapse" href="#cardForm">
+        <p class="px-4">
+            <b>
+                Policy Cards
+            </b>
+        </p>
     </div>
-    <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
-        First name is required!
-    </div> -->
-    <br><br>
-</form>
+    <div class="card-body">
+        <div class="collapse" id="cardForm">
+            <form novalidate #policyCards = "ngForm" (ngSubmit)="addPolicyCard(policyCards)">
+                <div class="form-group" align="center">
+                    <table class="form-group" >
+                        <tr>
+                            <td style="width: 25%">
+                                <b>
+                                    <label>Choose a policy category: &nbsp;</label>
+                                </b>
+                            </td>
+                            <td>
+                                <select
+                                    class="form-control"
+                                    name="policyID"
+                                    [(ngModel)] = "policyID"
+                                    #pageTitle = "ngModel"
+                                >
+                                    <ng-container *ngFor = "let category of categories">
+                                        <option value="{{category.policyID}}" [selected] ="category.policyID == 1">{{category.category}}</option>
+                                    </ng-container>
+                                </select>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="small-label">
+                                <b>
+
+                                    <label>Policy Title:</label>
+                                </b>
+                            </td>
+                            <td>
+                                <input
+                                    type = "text"
+                                    class = "form-control"
+                                    placeholder="Enter title"
+                                    name = "cardTitle"
+                                    [(ngModel)] = "cardTitle"
+                                    #pageTitle = "ngModel"
+                                    required
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    <label>Short Description</label>
+                                </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea
+                                    class="form-control"
+                                    cols="10" rows="2"
+                                    name = "cardDetails"
+                                    [(ngModel)] = "cardDetails"
+                                    #pageTitle = "ngModel"
+                                    required
+                                >
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    <label>Long Description</label>
+                                </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea
+                                    class="form-control"
+                                    cols="50" rows="5"
+                                    name = "learnMore"
+                                    [(ngModel)] = "learnMore"
+                                    #pageTitle = "ngModel"
+                                    required
+                                >
+                                </textarea>
+                            </td>
+                        </tr>
+            
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="form-group text-end">
+                                    <button class = "btn btn-primary" [disabled] = "!policyCards.valid">Save</button>
+                                    &nbsp;
+                                    <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
+                    First name is required!
+                </div> -->
+                <br><br>
+            </form>
+        </div>
+    </div>
+    
+    
+</div>
+
+
 

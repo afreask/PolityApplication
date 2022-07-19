@@ -12,3 +12,18 @@ label
     font-size:8px;
     color: white
 }
+
+table
+{
+  width: 90%
+}
+
+.small-label
+{
+  width: 12%
+}
+
+.picture-label
+{
+  width: 22%
+}
