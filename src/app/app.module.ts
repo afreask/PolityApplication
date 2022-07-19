@@ -18,7 +18,7 @@ import { UserEditPageComponent } from './components/user-edit-page/user-edit-pag
 const appRoutes: Routes = [
   { path: 'user/page', component: UserPageComponent },
   { path: 'user/add-page', component: UserAddPageComponent },
-  { path: 'user/edit-page', component: UserEditPageComponent },
+  { path: 'user/edit-page/:page', component: UserEditPageComponent },
   { path: 'user/login', component: LoginComponent },
   { path: 'user/register', component: RegisterComponent },
   { path: ':page', component: PagesComponent },

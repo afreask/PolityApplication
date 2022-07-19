@@ -8,13 +8,14 @@
           </a>
       </div>
       <div class="col" *ngIf="user != null; else editElseBlock">
-        <a href="user/edit-page"><img class="dashboard-image" src="assets/images/Dashboard/Edit-Profile.jpg">
+        <a href="user/edit-page/{{page.pageID}}">
+          <img class="dashboard-image" src="assets/images/Dashboard/Edit-Profile.jpg">
         </a>
       </div>
 
     </div>
     <div class="row">
-        <div class="col" *ngIf="user.userType != 1">
+        <div class="col" *ngIf="user.userType != 1; else viewElseBlock">
             <br/>
             <a href="/{{page.pageID}}">
                 <img  class="dashboard-image" src="assets/images/Dashboard/View-Profile.jpg">

@@ -29,9 +29,9 @@
                           </a>
                         </li>
                         <li *ngIf="page != null">
-                          <a href="/user/edit-page/{{page.pageID}}" class="nav-link py-0 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                          <a [routerLink]="['user/edit-page', page.pageID]"  class="nav-link py-0 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
                               <!-- <img src="assets/images/Menu/Create-Icon.png"><br/> -->
-                              <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                              <img src="assets/images/Menu/Pencil-Icon.png"><br/>
                               <p class="small-icon">Edit</p>
                           </a>
                         </li>
@@ -44,7 +44,7 @@
                         <li>
                             <!-- <a class="nav-link active"  aria-current="page" (click) = "logout()" href="#">Logout</a> -->
                             <a (click) = "logout()" href="#">
-                              <i class="fa fa-sign-out fa-2x"></i>
+                              <img src="assets/images/Utility/Log-Out-Icon.png"><br/>
                               <p class="small-icon">Logout</p>
                             </a>
                         </li>
