@@ -1,12 +1,10 @@
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container" >
-    <!-- <div class="row justify-content-md-center ">
+    <div class="row justify-content-md-center ">
       <div class="col-sm-8">
           <img
               [src] = "safeProfilePicture"
-              width="500px"
-              height="500px"
           >
       </div>
       <div class="col-sm-4">
@@ -15,15 +13,13 @@
             {{pageBody.candidate.lastName}}
         </h1>
       </div>
-    </div> -->
+    </div>
     <table>
         <tbody>
             <tr>
                 <td style="width:160px" *ngIf= "safeProfilePicture != ''; else elsePictureBlock">
                     <img
                         [src] = "safeProfilePicture"
-                        width="500px"
-                        height="500px"
                     >
                 </td>
                 <td >
