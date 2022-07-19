@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  candidateList: any;
 
-  ngOnInit(): void {
+  constructor
+  (
+      public pageService: PageService
+  ) { }
+
+  ngOnInit(): void 
+  {
+      this.pageService.getAllCandidates().subscribe((res) => 
+      {
+          console.log(res)
+          if(res != null)
+          {
+              this.candidateList = res;
+              // console.log(this.candidateList);
+          }
+      });
   }
 
 }
