@@ -5,10 +5,12 @@
 </div>
 
 <div class="alert.alert-success" *ngIf="errorMsg">
-    <p>Page exists. Please choose another.</p>
+    <p >Page exists. Please choose another.</p>
 </div>
 
-<h1 class="page-title">Build up your own website</h1>
+<h1 class="page-title">
+  <b>BUILD UP YOUR OWN WEBSITE</b>
+</h1>
 <br/>
 <br/>
 <p class="text-center">
@@ -20,9 +22,11 @@
 
 <div class="card">
     <div class="card-header" data-bs-toggle="collapse" href="#candidateForm">
-        <p class="px-4">
+        <p class="px-4 card-title" >
             <b>
-                Candidate Biography
+              <u>
+                CANDIDATE BIOGRAPHY
+              </u>
             </b>
         </p>
     </div>
@@ -32,7 +36,9 @@
               <div class="form-group" align="center">
                   <table>
                       <tr>
-                          <td ><label class="fw-bold">First Name</label></td>
+                          <td class="small-label">
+                            <label class="fw-bold">First Name: &nbsp;</label>
+                          </td>
                           <td>
                                 <input
                                     type = "text"
@@ -48,7 +54,7 @@
                       </tr>
                       <tr>
                             <td class="small-label">
-                                <label class="fw-bold">Last Name &nbsp;</label>
+                                <label class="fw-bold">Last Name: &nbsp;</label>
                             </td>
                             <td>
                                 <input
@@ -85,7 +91,7 @@
                       </tr>
                       <tr>
                           <td>
-                              <label class="fw-bold">Email</label>
+                              <label class="fw-bold">Email: </label>
                           </td>
                           <td>
                               <input
@@ -112,17 +118,17 @@
               </div>
             </form>
 
-            
+
             <!-- Form for the profile pricture-->
-            <form novalidate  class="form-group collapse" id="candidateForm" #profilePicture = "ngForm" (ngSubmit)="addImage(profilePicture , 1)">
+            <form novalidate  class="form-group" #profilePicture = "ngForm" (ngSubmit)="addImage(profilePicture , 1)">
                 <br><br>
-                <div class="form-group"  align="center">
+                <div class="form-group" align="center">
                     <table>
                         <tr>
-                            <td class="picture-label">
-                                <label class="fw-bold">Upload Profile Picture:</label>&nbsp;
+                            <td class="picture-label" >
+                                <label class="fw-bold">Upload Profile Picture: &nbsp;</label>
                             </td>
-                            <td class="col-sm-4">
+                            <td class="">
                                 <input
                                     type = "file"
                                     class = "file-input"
@@ -132,7 +138,9 @@
                                     (change)= "getFile($event, 1)"
                                 >
                             </td>
-                            <td><button class = "btn btn-primary" [disabled] = "!profilePicture.valid">Upload</button></td>
+                            <td>
+                              <button class = "btn btn-primary" [disabled] = "!profilePicture.valid">Upload</button>
+                            </td>
                         </tr>
                         <tr>
                         </tr>
@@ -140,8 +148,8 @@
                 </div>
             </form>
         </div>
-      
-      
+
+
 
     </div>
 </div>
@@ -152,17 +160,19 @@
     <div class="card-header" data-bs-toggle="collapse" href="#urlForm">
         <p class="px-4">
             <b>
+              <u>
                 URLS
+              </u>
             </b>
         </p>
     </div>
     <div class="card-body">
-        <p class="px-4">
-            Please remember that you need the embed link for youtube videos as they will not allow the use of the basic url.
-        </p>
-        <div class="row justify-content-md-center collapse" id="urlForm">
+      <div class="row justify-content-md-center collapse" id="urlForm">
+            <p class="px-4">
+                Please remember that you need the embed link for youtube videos as they will not allow the use of the basic url.
+            </p>
             <form ngNativeValidate #f="ngForm" (ngSubmit)="addURL(f)">
-                <div class="form-group" align="center">      
+                <div class="form-group" align="center">
                     <table>
                         <tr *ngFor = "let url of urlList">
                                 <ng-container
@@ -208,17 +218,19 @@
     <div class="card-header" data-bs-toggle="collapse" href="#keyForm">
         <p class="px-4">
             <b>
+              <u>
                 Key Platforms
+              </u>
             </b>
         </p>
     </div>
     <div class="card-body">
         <div class="collapse" id="keyForm">
             <p class="px-4">
-                
+
             </p>
             <form novalidate #keyPlatforms = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms, 1)">
-                <div class="form-group" align="center">      
+                <div class="form-group" align="center">
                     <table  class="form-group">
                         <tr>
                             <td class="small-label">
@@ -271,7 +283,7 @@
                 </div>
             </form>
             <br/>
-    
+
             <form novalidate #keyPlatforms2 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms2, 2)">
                 <div class="form-group" align="center">
                     <table class="form-group">
@@ -326,7 +338,7 @@
                 </div>
             </form>
             <br/>
-    
+
             <!-- Form for the key platforms. -->
             <form novalidate #keyPlatforms3 = "ngForm" (ngSubmit)="addKeyPlatforms(keyPlatforms3, 3)">
                 <div class="form-group" align="center" >
@@ -383,7 +395,7 @@
                 <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
                     First name is required!
                 </div> -->
-            
+
             </form>
 
             <br/><br/>
@@ -512,7 +524,7 @@
                                 </textarea>
                             </td>
                         </tr>
-            
+
                         <tr>
                             <td></td>
                             <td>
@@ -532,8 +544,8 @@
             </form>
         </div>
     </div>
-    
-    
+
+
 </div>
 
 
