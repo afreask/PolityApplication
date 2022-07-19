@@ -1,0 +1,48 @@
+label
+{
+  vertical-align: text-bottom;
+  text-align: right;
+
+  /* text-orientation: vertical-rl; */
+  /* padding: -10px 20px; */
+}
+
+.small-icon
+{
+    font-size:8px;
+    color: white
+}
+
+table
+{
+  width: 90%
+}
+
+.small-label
+{
+  width: 15%
+}
+
+.picture-label
+{
+  width: 23%
+}
+
+/* .card
+{
+  border-radius: 25px;
+
+} */
+
+/* .card-title
+{
+    font-size: 14pt;
+} */
+
+.page-title
+{
+  font-family: montserrat;
+  font-weight: 900;
+  font-size: 42pt
+}
+
