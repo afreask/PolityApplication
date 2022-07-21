@@ -4,7 +4,7 @@ import {
   OnInit,
   ɵɵsetComponentScope,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 import { __values } from 'tslib';
@@ -52,50 +52,87 @@ export class UserEditPageComponent implements OnInit {
   pages: any;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private pageService: PageService,
     private userService: UserService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.userService.loginCheck();
-    this.user = localStorage.getItem('user');
-    this.pageService.getPolicies().subscribe((res) => {
-      // console.log(res);
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user)
+
+    // Gets the page using the page ID 
+    this.route.params.subscribe((params) => 
+    {
+      for (var i in this.user.pageList) 
+      {
+          if(this.user.pageList[i].pageID == params["page"])
+          {
+              this.page = this.user.pageList[i];
+          }
+      }
+    });
+
+    this.pageService.getPolicies().subscribe((res) => 
+    {
       this.categories = res;
     });
 
-    this.pageService.getURLs().subscribe((res) => {
+    this.pageService.getURLs().subscribe((res) => 
+    {
       this.urlList = res;
     });
-    this.pageService.getPages(this.user.userID).subscribe((pages) => {
-      this.pageService.pagesBS.next(pages);
-      // console.log(pages);
-      if (Object.keys(pages).length > 0) {
-        // console.log('It went into the if');
-        // console.log(pages[Object.keys(pages).length-1])
-        this.page = pages[Object.keys(pages).length - 1];
-        console.log(this.page);
-      }
-      // console.log(Object.keys(value).length)
-    });
+
+    this.firstName = this.page.candidate.firstName;
+    this.lastName = this.page.candidate.lastName;
+    this.bio = this.page.candidate.bio;
+    this.email  = this.page.candidate.email;
   }
 
-  addCandidate({ form, value }: any): void {
+  updateFirstName({ form, value }: any): void 
+  {
+
+    // form.reset();
+    console.log(this.firstName);
+
+    // this.pageService.postUpdateCandidateFirstName(value).subscribe((res) => {
+    //   this.pageService.getPages(this.user.userID).subscribe((pages) => {
+    //     this.pageService.pagesBS.next(pages);
+    //   });
+    //   this.page = res;
+    //   this.success = true;
+    // });
+  }
+
+  updateCandidateLastName({ form, value }: any): void {
     form.reset();
     // console.log(value);
-    if (value.email != null && value.email.trim() != '') {
-      value['emailList'] = [{ emailAddress: value.email }];
-      delete value['email'];
-    }
 
-    this.pageService.postAddPage(value).subscribe((res) => {
+    this.pageService.postUpdateFirstName(value).subscribe((res) => {
       this.pageService.getPages(this.user.userID).subscribe((pages) => {
         this.pageService.pagesBS.next(pages);
       });
       this.page = res;
       this.success = true;
     });
+  }
+
+  updateBio({ form, value }: any): void 
+  {
+
+    // form.reset();
+    console.log(value);
+
+    // this.pageService.postUpdateCandidateFirstName(value).subscribe((res) => {
+    //   this.pageService.getPages(this.user.userID).subscribe((pages) => {
+    //     this.pageService.pagesBS.next(pages);
+    //   });
+    //   this.page = res;
+    //   this.success = true;
+    // });
   }
 
   addURL({ form, value }: any) {
