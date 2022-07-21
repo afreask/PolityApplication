@@ -120,4 +120,43 @@ export class PageService {
     return this.http.post(`https://localhost:44394/pages/UploadImage`, fd);
     // return this.http.post(`https://politywebapplication20220706124808.azurewebsites.net/pages/UploadImage`, fd);
   }
+
+  postUpdateCandidateFirstName(value: any, userID?: any, candidateID?: any) {
+    // console.log(value)
+    const headers = new HttpHeaders()
+      .append(
+        'Content-Type',
+        'application/json'
+      );
+    const body=JSON.stringify(value);
+    const params = new HttpParams()
+    .append('firstName', value)
+    .append('userID', userID)
+    .append('page', candidateID);
+    return this.http
+      .post<any>('https://localhost:44394/pages/UpdateFirstName', body, {
+      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
+        headers: headers,
+        params: params,
+      })
+  }
+
+  postUpdateFirstName(value: any, userID?: any) {
+    // console.log(value)
+    const headers = new HttpHeaders()
+      .append(
+        'Content-Type',
+        'application/json'
+      );
+    const body=JSON.stringify(value);
+    const params = new HttpParams()
+    .append('firstName', value)
+    .append('userID', userID);
+    return this.http
+      .post<any>('https://localhost:44394/pages/UpdateFirstName', body, {
+      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
+        headers: headers,
+        params: params,
+      })
+  }
 }
