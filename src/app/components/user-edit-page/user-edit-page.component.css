@@ -46,3 +46,7 @@ table
   font-size: 42pt
 }
 
+.save_delete_panel_required
+{
+  border-radius: 20%;
+}
