@@ -28,61 +28,89 @@
    </div>
    <div class="card-body" >
        <div class="row justify-content-md-center collapse" id="candidateForm">
-           <form ngNativeValidate #candidateBio = "ngForm" (ngSubmit)="addCandidate(candidateBio)">
+           
              <div class="form-group" align="center">
+                <form ngNativeValidate #firstNameForm = "ngForm" (ngSubmit)="updateFirstName(firstName)">
+                    <table>
+                        <tr>
+                            <td class="small-label">
+                                <label class="fw-bold">First Name</label>
+                            </td>
+                            <td>
+                                <input
+                                    type = "text"
+                                    class = "form-control"
+                                    placeholder="Enter name"
+                                    name = "firstName"
+                                    [(ngModel)] = "firstName"
+                                    #pageTitle = "ngModel"
+                                    required
+                                >
+                            </td>
+                            <td align="center">
+                                <button class="save_delete_panel_required" [disabled] = "!firstNameForm.valid">
+                                    <img  src="assets/images/Utility/Save-icon.png">
+                                </button>
+                            </td>
+                         </tr>
+                    </table>
+                </form>
+                <form ngNativeValidate #lastNameForm = "ngForm" (ngSubmit)="updateCandidateLastName(lastName)">
+                    <table>
+                        <tr>
+                            <td class="small-label">
+                                <label class="fw-bold">Last Name &nbsp;</label>
+                            </td>
+                            <td>
+                                <input
+                                    type = "text"
+                                    class = "form-control"
+                                    placeholder="Enter name"
+                                    name = "lastName"
+                                    [(ngModel)] = "lastName"
+                                    #pageTitle = "ngModel"
+                                    [disabled] = "lastName.trim() != '' && page.candidate.lastName != null"
+                                    required
+                                >
+                            </td>
+                            <td align="center">
+                                <button class="save_delete_panel_required" [disabled] = "!lastNameForm.valid">
+                                    <img  src="assets/images/Utility/Save-icon.png">
+                                </button>
+                            </td>
+                         </tr>
+                    </table>
+                </form>
+                <form ngNativeValidate #bioForm = "ngForm" (ngSubmit)="updateBio(lastName)">
+                    <table>
+                        <tr>
+                            <td>
+                                <br/>
+                                <label class="fw-bold">Biography</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea
+                                    class="form-control"
+                                    cols="30" rows="5"
+                                    name = "bio"
+                                    [(ngModel)] = "bio"
+                                    #pageTitle = "ngModel"
+                                    required
+                                >
+                                </textarea>
+                            </td>
+                            <td align="center" >
+                                <button class="save_delete_panel_required" [disabled] = "!bioForm.valid">
+                                    <img  src="assets/images/Utility/Save-icon.png">
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
                  <table>
-                     <tr>
-                         <td ><label class="fw-bold">First Name</label></td>
-                         <td>
-                               <input
-                                   type = "text"
-                                   class = "form-control"
-                                   placeholder="Enter name"
-                                   name = "firstName"
-                                   [(ngModel)] = "firstName"
-                                   #pageTitle = "ngModel"
-                                   [disabled] = "firstName.trim() != '' && page.candidate.firstName != null"
-                                   required
-                               >
-                         </td>
-                     </tr>
-                     <tr>
-                           <td class="small-label">
-                               <label class="fw-bold">Last Name &nbsp;</label>
-                           </td>
-                           <td>
-                               <input
-                                   type = "text"
-                                   class = "form-control"
-                                   placeholder="Enter name"
-                                   name = "lastName"
-                                   [(ngModel)] = "lastName"
-                                   #pageTitle = "ngModel"
-                                   [disabled] = "lastName.trim() != '' && page.candidate.lastName != null"
-                                   required
-                               >
-                           </td>
-                     </tr>
-                     <tr>
-                         <td>
-                             <br/>
-                             <label class="fw-bold">Biography</label>
-                         </td>
-                     </tr>
-                     <tr>
-                         <td colspan="2">
-                             <textarea
-                                 class="form-control"
-                                 cols="30" rows="5"
-                                 name = "bio"
-                                 [(ngModel)] = "bio"
-                                 #pageTitle = "ngModel"
-                                 [disabled] = "bio.trim() != '' && page.candidate.bio != null"
-                                 required
-                             >
-                             </textarea>
-                         </td>
-                     </tr>
+
                      <tr>
                          <td>
                              <label class="fw-bold">Email</label>
@@ -102,19 +130,18 @@
                      <tr>
                          <td></td>
                          <td>
-                             <div class="form-group text-end" *ngIf="this.user.firstName == '' ">
+                             <!-- <div class="form-group text-end" *ngIf="this.user.firstName == '' ">
                                  <button class = "btn btn-default" [disabled] = "!candidateBio.valid">Save</button>
                                  <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                             </div>
+                             </div> -->
                          </td>
                      </tr>
                  </table>
              </div>
-           </form>
 
 
            <!-- Form for the profile pricture-->
-           <form novalidate  class="form-group collapse" id="candidateForm" #profilePicture = "ngForm" (ngSubmit)="addImage(profilePicture , 1)">
+           <form novalidate  class="form-group" id="candidateForm" #profilePicture = "ngForm" (ngSubmit)="addImage(profilePicture , 1)">
                <br><br>
                <div class="form-group"  align="center">
                    <table>
