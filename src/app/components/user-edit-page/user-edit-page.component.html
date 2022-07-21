@@ -8,19 +8,14 @@
    <p>Page exists. Please choose another.</p>
 </div>
 
-<h1 class="page-title">Build up your own website</h1>
+<h1 class="page-title">UPDATE YOUR CANDIDATE PROFILE</h1>
 <br/>
 <br/>
-<p class="text-center">
-   Please note that you need to create a candidate first before making the rest. <br/>
-   This add function will not let you make links without the page created.<br/>
-   An edit page function is being created for you to modify your pages.<br/>
-   Thank you for your patience.
-</p>
 
+<!-- Form for the Candidate's bio -->
 <div class="card">
    <div class="card-header" data-bs-toggle="collapse" href="#candidateForm">
-       <p class="px-4">
+       <p class="px-4 card-title">
            <b>
                Candidate Biography
            </b>
@@ -28,9 +23,9 @@
    </div>
    <div class="card-body" >
        <div class="row justify-content-md-center collapse" id="candidateForm">
-           
+
              <div class="form-group" align="center">
-                <form ngNativeValidate #firstNameForm = "ngForm" (ngSubmit)="updateFirstName(firstName)">
+                <form ngNativeValidate #firstNameForm = "ngForm" (ngSubmit)="updateFirstName(firstname)">
                     <table>
                         <tr>
                             <td class="small-label">
@@ -42,7 +37,7 @@
                                     class = "form-control"
                                     placeholder="Enter name"
                                     name = "firstName"
-                                    [(ngModel)] = "firstName"
+                                    [(ngModel)] = "firstname"
                                     #pageTitle = "ngModel"
                                     required
                                 >
@@ -55,7 +50,7 @@
                          </tr>
                     </table>
                 </form>
-                <form ngNativeValidate #lastNameForm = "ngForm" (ngSubmit)="updateCandidateLastName(lastName)">
+                <form ngNativeValidate #lastNameForm = "ngForm" (ngSubmit)="updateCandidateLastName(lastname)">
                     <table>
                         <tr>
                             <td class="small-label">
@@ -66,10 +61,9 @@
                                     type = "text"
                                     class = "form-control"
                                     placeholder="Enter name"
-                                    name = "lastName"
-                                    [(ngModel)] = "lastName"
+                                    name = "lastname"
+                                    [(ngModel)] = "lastname"
                                     #pageTitle = "ngModel"
-                                    [disabled] = "lastName.trim() != '' && page.candidate.lastName != null"
                                     required
                                 >
                             </td>
@@ -81,7 +75,7 @@
                          </tr>
                     </table>
                 </form>
-                <form ngNativeValidate #bioForm = "ngForm" (ngSubmit)="updateBio(lastName)">
+                <form ngNativeValidate #bioForm = "ngForm" (ngSubmit)="updateBio(bio)">
                     <table>
                         <tr>
                             <td>
@@ -109,39 +103,34 @@
                         </tr>
                     </table>
                 </form>
-                 <table>
-
-                     <tr>
-                         <td>
-                             <label class="fw-bold">Email</label>
-                         </td>
-                         <td>
-                             <input
-                                 type = "email"
-                                 class = "form-control"
-                                 placeholder="Enter email"
-                                 name = "email"
-                                 [(ngModel)] = "email"
-                                 [disabled] = true
-                                 #pageTitle = "ngModel"
-                             >
-                         </td>
-                     </tr>
-                     <tr>
-                         <td></td>
-                         <td>
-                             <!-- <div class="form-group text-end" *ngIf="this.user.firstName == '' ">
-                                 <button class = "btn btn-default" [disabled] = "!candidateBio.valid">Save</button>
-                                 <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                             </div> -->
-                         </td>
-                     </tr>
-                 </table>
+                <form ngNativeValidate #emailForm = "ngForm" (ngSubmit)="updateCandidateEmail(email)">
+                  <table>
+                    <tr>
+                      <td>
+                          <label class="fw-bold">Email</label>
+                      </td>
+                      <td>
+                          <!-- <input
+                              type = "email"
+                              class = "form-control"
+                              placeholder="Enter email"
+                              name = "email"
+                              [(ngModel)] = "email"
+                              [disabled] = true
+                              #pageTitle = "ngModel"
+                          > -->
+                          {{email}}
+                      </td>
+                      <td align="center">
+                      </td>
+                    </tr>
+                  </table>
+                </form>
              </div>
 
 
            <!-- Form for the profile pricture-->
-           <form novalidate  class="form-group" id="candidateForm" #profilePicture = "ngForm" (ngSubmit)="addImage(profilePicture , 1)">
+           <form novalidate  class="form-group" id="candidateForm" #profilePictureForm = "ngForm" (ngSubmit)="addImage(profilepicture , 1)">
                <br><br>
                <div class="form-group"  align="center">
                    <table>
@@ -154,12 +143,12 @@
                                    type = "file"
                                    class = "file-input"
                                    placeholder="Upload"
-                                   name = "profilePicture"
+                                   name = "profilepicture"
                                    accept="image/*"
                                    (change)= "getFile($event, 1)"
                                >
                            </td>
-                           <td><button class = "btn btn-primary" [disabled] = "!profilePicture.valid">Upload</button></td>
+                           <td><button class = "btn btn-primary" [disabled] = "!profilePictureForm.valid">Upload</button></td>
                        </tr>
                        <tr>
                        </tr>
@@ -167,9 +156,6 @@
                </div>
            </form>
        </div>
-
-
-
    </div>
 </div>
 <br/>
@@ -177,7 +163,7 @@
 <!-- Form for the Urls -->
 <div class="card">
    <div class="card-header" data-bs-toggle="collapse" href="#urlForm">
-       <p class="px-4">
+       <p class="px-4 card-title">
            <b>
                URLS
            </b>
@@ -188,43 +174,49 @@
            Please remember that you need the embed link for youtube videos as they will not allow the use of the basic url.
        </p>
        <div class="row justify-content-md-center collapse" id="urlForm">
-           <form ngNativeValidate #f="ngForm" (ngSubmit)="addURL(f)">
-               <div class="form-group" align="center">
-                   <table>
-                       <tr *ngFor = "let url of urlList">
-                               <ng-container
-                                   *ngIf= "url.urlName != 'Profile Picture'
-                                   && url.urlName != 'Key Platform Image'"
-                               >
-                                   <td class="small-label"><label class="fw-bold">{{url.urlName}}</label> &nbsp;</td>
-                                   <td>
-                                       <input
-                                           type="url"
-                                           class="form-control"
-                                           placeholder="Please type a url"
-                                           name="{{url.urlName.toLowerCase()}}"
-                                           value="{url.urlID}"
-                                           [(ngModel)]= "url.link"
-                                           #pageTitle = "ngModel"
-                                       >
-                                       <div class="errors" *ngIf="url.urlName?.invalid && url.urlName?.dirty">
-                                           Problem detected
-                                       </div>
-                                   </td>
-                               </ng-container>
-                       </tr>
-                       <tr>
-                           <td></td>
-                           <td>
-                               <div class="d-flex float-end">
-                                   <button class = "btn btn-primary" [disabled] = "!f.valid">Save</button>&nbsp;
-                                   <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
-                               </div>
-                           </td>
-                       </tr>
-                   </table>
-               </div>
-           </form>
+         <div class="form-group" align="center">
+            <form ngNativeValidate #f="ngForm" (ngSubmit)="updateURL(f, url.urlID)" *ngFor = "let url of urlList">
+              <table>
+                    <tr>
+                        <input type="hidden" value="{{url.urlID}}">
+                        <ng-container
+                            *ngIf= "url.urlName != 'Profile Picture'
+                            && url.urlName != 'Key Platform Image'"
+                        >
+                          <td class="small-label"><label class="fw-bold">{{url.urlName}}</label> &nbsp;</td>
+                          <td>
+                              <input
+                                  type="url"
+                                  class="form-control"
+                                  placeholder="Please type a url"
+                                  name="{{url.urlName.toLowerCase()}}"
+                                  [(ngModel)]= "this[url.urlName.toLowerCase().replaceAll(' ','')]"
+                                  #pageTitle = "ngModel"
+                              >
+                              <div class="errors" *ngIf="url.urlName?.invalid && url.urlName?.dirty">
+                                  Problem detected
+                              </div>
+                          </td>
+                          <td align="center" >
+                            <button class="save_delete_panel_required" [disabled] = "!bioForm.valid">
+                              <img  src="assets/images/Utility/Save-icon.png">
+                            </button>
+                          </td>
+                        </ng-container>
+                    </tr>
+
+              </table>
+            </form>
+            <!-- <tr>
+              <td></td>
+              <td> -->
+                <!-- <div class="d-flex float-end">
+                  <button class = "btn btn-primary" [disabled] = "!f.valid">Save</button>&nbsp;
+                  <a class="btn btn-primary" routerLink="/user/page">Cancel</a>
+                </div> -->
+              <!-- </td>
+            </tr> -->
+          </div>
        </div>
    </div>
 </div>
@@ -233,7 +225,7 @@
 <!-- Form for the key platforms. -->
 <div class="card">
    <div class="card-header" data-bs-toggle="collapse" href="#keyForm">
-       <p class="px-4">
+       <p class="px-4 card-title">
            <b>
                Key Platforms
            </b>
@@ -416,7 +408,7 @@
            <br/><br/>
 
            <!-- Form for the platform image -->
-           <form novalidate #platformImage = "ngForm" (ngSubmit)="addImage(platformImage , 2)" >
+           <form novalidate #platformImageForm = "ngForm" (ngSubmit)="addImage(keyplatformimage , 2)" >
                <div class="form-group" align="center">
                    <table  class="form-group collapse" id="keyForm">
                        <tr>
@@ -428,13 +420,13 @@
                                   type = "file"
                                   class = "file-input"
                                       placeholder="Upload"
-                                      name = "platformImage"
+                                      name = "keyplatformimage"
                                       accept="image/*"
                                       (change)= "getFile($event, 2)"
                                 >
                                </td>
                            <td align="right">
-                           <button class = "btn btn-primary" [disabled] = "!platformImage.valid">Upload</button>
+                           <button class = "btn btn-primary" [disabled] = "!platformImageForm.valid">Upload</button>
                            </td>
                        </tr>
                    </table>
@@ -448,7 +440,7 @@
 <!-- Form for the policy card. -->
 <div class="card">
    <div class="card-header" data-bs-toggle="collapse" href="#cardForm">
-       <p class="px-4">
+       <p class="px-4 card-title">
            <b>
                Policy Cards
            </b>
@@ -456,7 +448,8 @@
    </div>
    <div class="card-body">
        <div class="collapse" id="cardForm">
-           <form novalidate #policyCards = "ngForm" (ngSubmit)="addPolicyCard(policyCards)">
+           <form novalidate #policyCards = "ngForm" (ngSubmit)="updatePolicyCard(policyCards, policyID)"
+            *ngFor = "let card of this.page.candidate.cardList">
                <div class="form-group" align="center">
                    <table class="form-group" >
                        <tr>

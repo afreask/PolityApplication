@@ -9,6 +9,7 @@ import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 import { __values } from 'tslib';
 import { FormsModule } from '@angular/forms';
+import { bindNodeCallback } from 'rxjs';
 
 @Component({
   selector: 'app-user-add-page',
@@ -62,15 +63,6 @@ export class UserAddPageComponent implements OnInit {
     this.userService.loginCheck();
     this.user = JSON.parse(localStorage.getItem('user'));
 
-    this.pageService.getPolicies().subscribe((res) => {
-      // console.log(res);
-      this.categories = res;
-    });
-
-    this.pageService.getURLs().subscribe((res) => {
-      this.urlList = res;
-    });
-
     this.pages = this.user.pageList;
     if (Object.keys(this.pages).length > 0) {
       // console.log('It went into the if');
@@ -85,7 +77,64 @@ export class UserAddPageComponent implements OnInit {
       } else {
         this.email = this.firstName + '.' + this.lastName + '@polity.vote';
       }
+
+      if (this.page.urlList.length > 0) {
+        for (var i = 0; i < this.page.urlList.length; i++) {
+          switch (this.page.urlList[i].urlName) {
+            case 'Facebook':
+              this.facebook = this.page.urlList[i].link;
+              console.log(this.facebook);
+              break;
+            case 'LinkedIn':
+              this.linkedIn = this.page.urlList[i].link;
+              console.log(this.linkedIn);
+              break;
+            case 'Donate':
+              this.donate = this.page.urlList[i].link;
+              console.log(this.donate);
+              break;
+            case 'Instagram':
+              this.instagram = this.page.urlList[i].link;
+              console.log(this.instagram);
+              break;
+            case 'Key Platform Image':
+              this.platformImage = this.page.urlList[i].link;
+              console.log(this.platformImage);
+              break;
+            case 'Lawn Sign':
+              this.lawnSign = this.page.urlList[i].link;
+              console.log(this.lawnSign);
+              break;
+            case 'Profile Picture':
+              this.profilePicture = this.page.urlList[i].link;
+              console.log(this.profilePicture);
+              break;
+            case 'Twitter':
+              this.twitter = this.page.urlList[i].link;
+              console.log(this.twitter);
+              break;
+            case 'Volunteer':
+              this.volunteer = this.page.urlList[i].link;
+              console.log(this.volunteer);
+              break;
+            case 'Youtube':
+              this.youtube = this.page.urlList[i].link;
+              console.log(this.youtube);
+              break;
+          }
+        }
+      }
     }
+
+    this.pageService.getPolicies().subscribe((res) => {
+      // console.log(res);
+      this.categories = res;
+    });
+
+    this.pageService.getURLs().subscribe((res) => {
+      this.urlList = res;
+      // console.log(this.urlList);
+    });
   }
 
   addCandidate({ form, value }: any): void {
@@ -94,18 +143,19 @@ export class UserAddPageComponent implements OnInit {
       value['emailList'] = [{ emailAddress: value.email }];
       delete value['email'];
     }
+    console.log(this.email);
     // console.log(this.user)
-    this.pageService.postAddPage(value, this.user.userID).subscribe((res) => {
-      this.pageService.getPages(this.user.userID).subscribe((pages) => {
-        this.pageService.pagesBS.next(pages);
-      });
-      this.page = res;
-      console.log(res);
-      this.user.pageList.push(this.page);
-      localStorage.setItem('user', JSON.stringify(this.user));
-      this.success = true;
-      window.location.reload();
-    });
+    // this.pageService.postAddPage(value, this.user.userID).subscribe((res) => {
+    //   this.pageService.getPages(this.user.userID).subscribe((pages) => {
+    //     this.pageService.pagesBS.next(pages);
+    //   });
+    //   this.page = res;
+    //   console.log(res);
+    //   this.user.pageList.push(this.page);
+    //   localStorage.setItem('user', JSON.stringify(this.user));
+    //   this.success = true;
+    //   window.location.reload();
+    // });
   }
 
   addURL({ form, value }: any) {

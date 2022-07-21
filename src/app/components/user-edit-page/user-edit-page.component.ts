@@ -21,20 +21,20 @@ export class UserEditPageComponent implements OnInit {
   success: boolean = false;
   successMsg: string = '';
   errorMsg: boolean = false;
-  firstName: string = '';
-  lastName: string = '';
+  firstname: string = '';
+  lastname: string = '';
   bio: string = '';
   facebook: string;
   instagram: string;
-  linkedIn: string;
+  linkedin: string;
   twitter: string;
   donate: string;
-  lawnSign: string;
+  lawnsign: string;
   volunteer: string;
   email: string;
   page: any;
-  profilePicture: File = null;
-  platformImage: File = null;
+  profilepicture: File = null;
+  keyplatformimage: File = null;
   ideaTitle: string = '';
   ideaTitle1: string = '';
   ideaTitle2: string = '';
@@ -50,6 +50,7 @@ export class UserEditPageComponent implements OnInit {
   user: any;
   learnMore: string;
   pages: any;
+  tmp: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -58,45 +59,53 @@ export class UserEditPageComponent implements OnInit {
     private userService: UserService
   ) {}
 
-  ngOnInit(): void 
-  {
+  ngOnInit(): void {
     this.userService.loginCheck();
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user)
+    console.log(this.user);
 
-    // Gets the page using the page ID 
-    this.route.params.subscribe((params) => 
-    {
-      for (var i in this.user.pageList) 
-      {
-          if(this.user.pageList[i].pageID == params["page"])
-          {
-              this.page = this.user.pageList[i];
-          }
+    // Gets the page using the page ID
+    this.route.params.subscribe((params) => {
+      for (var i in this.user.pageList) {
+        if (this.user.pageList[i].pageID == params['page']) {
+          this.page = this.user.pageList[i];
+        }
       }
     });
 
-    this.pageService.getPolicies().subscribe((res) => 
-    {
+    this.pageService.getPolicies().subscribe((res) => {
       this.categories = res;
     });
 
-    this.pageService.getURLs().subscribe((res) => 
-    {
+    this.pageService.getURLs().subscribe((res) => {
       this.urlList = res;
     });
 
-    this.firstName = this.page.candidate.firstName;
-    this.lastName = this.page.candidate.lastName;
+    this.firstname = this.page.candidate.firstName;
+    this.lastname = this.page.candidate.lastName;
     this.bio = this.page.candidate.bio;
-    this.email  = this.page.candidate.email;
+
+    if (
+      this.page.candidate.emailList.length > 0 &&
+      this.page.candidate.emailList[0].emailAddress != null &&
+      this.page.candidate.emailList[0].emailAddress.trim() != ''
+    ) {
+      this.email = this.page.candidate.emailList[0].emailAddress;
+    } else {
+      this.email = this.firstname + '.' + this.lastname + '@polity.vote';
+    }
+
+    if (this.page.urlList.length > 0) {
+      for (var i = 0; i < this.page.urlList.length; i++) {
+        this[this.page.urlList[i].urlName.replace(/ /g, '').toLowerCase()] =
+          this.page.urlList[i].link;
+      }
+    }
   }
 
-  updateFirstName({ form, value }: any): void 
-  {
-
+  updateFirstName({ form, value }: any): void {
     // form.reset();
-    console.log(this.firstName);
+    console.log(this.firstname);
 
     // this.pageService.postUpdateCandidateFirstName(value).subscribe((res) => {
     //   this.pageService.getPages(this.user.userID).subscribe((pages) => {
@@ -120,9 +129,7 @@ export class UserEditPageComponent implements OnInit {
     });
   }
 
-  updateBio({ form, value }: any): void 
-  {
-
+  updateBio({ form, value }: any): void {
     // form.reset();
     console.log(value);
 
@@ -133,6 +140,20 @@ export class UserEditPageComponent implements OnInit {
     //   this.page = res;
     //   this.success = true;
     // });
+  }
+
+  updateCandidateEmail({ form, value }: any): void {
+    console.log(this.email);
+  }
+
+  updateURL({ form, value }: any, id: any): void {
+    console.log(value);
+    console.log(id);
+  }
+
+  updatePolicyCard({ form, value }: any, id: any): void {
+    console.log(value);
+    console.log(id);
   }
 
   addURL({ form, value }: any) {
@@ -165,9 +186,9 @@ export class UserEditPageComponent implements OnInit {
 
     if (result != null) {
       if (num === 1) {
-        this.profilePicture = <File>(e.target as HTMLInputElement).files[0];
+        this.profilepicture = <File>(e.target as HTMLInputElement).files[0];
       } else if (num === 2) {
-        this.platformImage = <File>(e.target as HTMLInputElement).files[0];
+        this.keyplatformimage = <File>(e.target as HTMLInputElement).files[0];
       }
     }
   }
@@ -176,8 +197,8 @@ export class UserEditPageComponent implements OnInit {
     form.reset();
     console.log(value);
 
-    if (this.platformImage != null) {
-      this.pageService.postImage(this.platformImage).subscribe((res) => {
+    if (this.keyplatformimage != null) {
+      this.pageService.postImage(this.keyplatformimage).subscribe((res) => {
         console.log(res);
         this.success = true;
         this.successMsg = res.toString();
@@ -220,16 +241,16 @@ export class UserEditPageComponent implements OnInit {
 
   addImage({ form, value }: any, num: number): void {
     if (num > 0) {
-      if (num === 1 && this.profilePicture != null) {
-        console.log(this.profilePicture);
-        this.pageService.postImage(this.profilePicture).subscribe((res) => {
+      if (num === 1 && this.profilepicture != null) {
+        console.log(this.profilepicture);
+        this.pageService.postImage(this.profilepicture).subscribe((res) => {
           console.log(res);
           this.success = true;
           this.successMsg = res.toString();
         });
-      } else if (num === 2 && this.platformImage != null) {
-        console.log(this.platformImage);
-        this.pageService.postImage(this.platformImage).subscribe((res) => {
+      } else if (num === 2 && this.keyplatformimage != null) {
+        console.log(this.keyplatformimage);
+        this.pageService.postImage(this.keyplatformimage).subscribe((res) => {
           console.log(res);
           this.success = true;
           this.successMsg = res.toString();

@@ -34,16 +34,21 @@ table
 
 } */
 
-/* .card-title
+.card-title
 {
-    font-size: 14pt;
-} */
+    /* font-size: 14pt; */
+    font-family: montserrat;
+    font-weight: 900;
+    text-decoration: underline;
+    font-size: 12pt;
+}
 
 .page-title
 {
   font-family: montserrat;
   font-weight: 900;
-  font-size: 42pt
+  font-size: 35pt;
+
 }
 
 .save_delete_panel_required
