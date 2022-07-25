@@ -55,6 +55,24 @@ export class PageService {
       })
   }
 
+  postGetPageLinks(value: any) {
+    // console.log(value)
+    const headers = new HttpHeaders()
+      .append(
+        'Content-Type',
+        'application/json'
+      );
+    const body=JSON.stringify(value);
+    const params = new HttpParams()
+    .append('pageID', value)
+    return this.http
+      .post<any>('https://localhost:44394/pages/GetPageLinks', body, {
+      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/GetPageLinks', body, {
+        headers: headers,
+        params: params,
+      })
+  }
+
   postAddPageLinks(value: any, userID?: string) {
     // console.log(value)
     const headers = new HttpHeaders()
@@ -121,7 +139,7 @@ export class PageService {
     // return this.http.post(`https://politywebapplication20220706124808.azurewebsites.net/pages/UploadImage`, fd);
   }
 
-  postUpdateCandidateFirstName(value: any, userID?: any, candidateID?: any) {
+  postUpdateCandidateFirstName(value: any, userID?: any, personID?: any) {
     // console.log(value)
     const headers = new HttpHeaders()
       .append(
@@ -131,17 +149,17 @@ export class PageService {
     const body=JSON.stringify(value);
     const params = new HttpParams()
     .append('firstName', value)
-    .append('userID', userID)
-    .append('page', candidateID);
+    .append('personID', personID)
+    .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/UpdateFirstName', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
+      .post<any>('https://localhost:44394/pages/UpdateCandidateFirstName', body, {
+      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateFirstName', body, {
         headers: headers,
         params: params,
       })
   }
 
-  postUpdateFirstName(value: any, userID?: any) {
+  postUpdateCandidateLastName(value: any, userID?: any, personID?: any) {
     // console.log(value)
     const headers = new HttpHeaders()
       .append(
@@ -150,10 +168,70 @@ export class PageService {
       );
     const body=JSON.stringify(value);
     const params = new HttpParams()
-    .append('firstName', value)
+    .append('lastName', value)
+    .append('personID', personID)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/UpdateFirstName', body, {
+      .post<any>('https://localhost:44394/pages/UpdateCandidateLastName', body, {
+      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateLastName', body, {
+        headers: headers,
+        params: params,
+      })
+  }
+
+  postUpdateCandidateBio(value: any, userID?: any, candidateID?: any) {
+    // console.log(value)
+    const headers = new HttpHeaders()
+      .append(
+        'Content-Type',
+        'application/json'
+      );
+    const body=JSON.stringify(value);
+    const params = new HttpParams()
+    .append('bio', value)
+    .append('candidateID', candidateID)
+    .append('userID', userID);
+    return this.http
+      .post<any>('https://localhost:44394/pages/UpdateCandidateBio', body, {
+      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateBio', body, {
+        headers: headers,
+        params: params,
+      })
+  }
+
+  postUpdatePageURL(value: any, userID?: any, pageID?: any) {
+    console.log(pageID)
+    const headers = new HttpHeaders()
+      .append(
+        'Content-Type',
+        'application/json'
+      );
+    const body=JSON.stringify(value);
+    const params = new HttpParams()
+    .append('url', value)
+    .append('pageID', pageID)
+    .append('userID', userID);
+    return this.http
+      .post<any>('https://localhost:44394/pages/UpdatePageLink', body, {
+      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdatePageLink', body, {
+        headers: headers,
+        params: params,
+      })
+  }
+
+  postUpdateKeyPlaform(value: any, userID?: any) {
+    // console.log(value)
+    const headers = new HttpHeaders()
+      .append(
+        'Content-Type',
+        'application/json'
+      );
+    const body=JSON.stringify(value);
+    const params = new HttpParams()
+    .append('platform', value)
+    .append('userID', userID);
+    return this.http
+      .post<any>('https://localhost:44394/pages/UpdateCandidatePlatform', body, {
       // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
         headers: headers,
         params: params,
