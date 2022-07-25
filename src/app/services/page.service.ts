@@ -27,13 +27,13 @@ export class PageService {
   }
 
   getPolicies() {
-    return this.http.get(`https://localhost:44394/pages/Policies`);
-    // return this.http.get(`https://politywebapplication20220706124808.azurewebsites.net/pages/Policies`);
+    // return this.http.get(`https://localhost:44394/pages/Policies`);
+    return this.http.get(`https://politywebapplication20220706124808.azurewebsites.net/pages/Policies`);
   }
 
   getURLs() {
-    return this.http.get(`https://localhost:44394/pages/URLs`);
-    // return this.http.get(`https://politywebapplication20220706124808.azurewebsites.net/pages/URLs`);
+    // return this.http.get(`https://localhost:44394/pages/URLs`);
+    return this.http.get(`https://politywebapplication20220706124808.azurewebsites.net/pages/URLs`);
   }
 
   postAddPage(value: any, userID?: any) {
@@ -48,8 +48,8 @@ export class PageService {
     .append('candidate', value)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/AddCandidate', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
+      // .post<any>('https://localhost:44394/pages/AddCandidate', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
         headers: headers,
         params: params,
       })
@@ -66,8 +66,8 @@ export class PageService {
     const params = new HttpParams()
     .append('pageID', value)
     return this.http
-      .post<any>('https://localhost:44394/pages/GetPageLinks', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/GetPageLinks', body, {
+      // .post<any>('https://localhost:44394/pages/GetPageLinks', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/GetPageLinks', body, {
         headers: headers,
         params: params,
       })
@@ -85,8 +85,8 @@ export class PageService {
     .append('page', value)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/AddPageLinks', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddPageLinks', body, {
+      // .post<any>('https://localhost:44394/pages/AddPageLinks', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddPageLinks', body, {
         headers: headers,
         params: params,
     })
@@ -104,8 +104,8 @@ export class PageService {
     .append('page', value)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/AddPolicyCard', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddPolicyCard', body, {
+      // .post<any>('https://localhost:44394/pages/AddPolicyCard', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddPolicyCard', body, {
         headers: headers,
         params: params,
     })
@@ -123,8 +123,8 @@ export class PageService {
     .append('page', value)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/AddCandidatePlatforms', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidatePlatforms', body, {
+      // .post<any>('https://localhost:44394/pages/AddCandidatePlatforms', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidatePlatforms', body, {
         headers: headers,
         params: params,
     })
@@ -135,8 +135,8 @@ export class PageService {
     fd.append('image', file, file.name);
     // console.log(fd.has("image"))
 
-    return this.http.post(`https://localhost:44394/pages/UploadImage`, fd);
-    // return this.http.post(`https://politywebapplication20220706124808.azurewebsites.net/pages/UploadImage`, fd);
+    // return this.http.post(`https://localhost:44394/pages/UploadImage`, fd);
+    return this.http.post(`https://politywebapplication20220706124808.azurewebsites.net/pages/UploadImage`, fd);
   }
 
   postUpdateCandidateFirstName(value: any, userID?: any, personID?: any) {
@@ -152,8 +152,8 @@ export class PageService {
     .append('personID', personID)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/UpdateCandidateFirstName', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateFirstName', body, {
+      // .post<any>('https://localhost:44394/pages/UpdateCandidateFirstName', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateFirstName', body, {
         headers: headers,
         params: params,
       })
@@ -172,8 +172,8 @@ export class PageService {
     .append('personID', personID)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/UpdateCandidateLastName', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateLastName', body, {
+      // .post<any>('https://localhost:44394/pages/UpdateCandidateLastName', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateLastName', body, {
         headers: headers,
         params: params,
       })
@@ -192,8 +192,8 @@ export class PageService {
     .append('candidateID', candidateID)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/UpdateCandidateBio', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateBio', body, {
+      // .post<any>('https://localhost:44394/pages/UpdateCandidateBio', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateBio', body, {
         headers: headers,
         params: params,
       })
@@ -212,8 +212,8 @@ export class PageService {
     .append('pageID', pageID)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/UpdatePageLink', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdatePageLink', body, {
+      // .post<any>('https://localhost:44394/pages/UpdatePageLink', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdatePageLink', body, {
         headers: headers,
         params: params,
       })
@@ -231,8 +231,8 @@ export class PageService {
     .append('platform', value)
     .append('userID', userID);
     return this.http
-      .post<any>('https://localhost:44394/pages/UpdateCandidatePlatform', body, {
-      // .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
+      // .post<any>('https://localhost:44394/pages/UpdateCandidatePlatform', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
         headers: headers,
         params: params,
       })
