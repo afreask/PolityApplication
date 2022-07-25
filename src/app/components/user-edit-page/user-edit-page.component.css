@@ -7,6 +7,15 @@ label
   /* padding: -10px 20px; */
 }
 
+/* table
+{
+   background-color: silver;
+} */
+input
+{
+  border: none;
+}
+
 .small-icon
 {
     font-size:8px;
@@ -20,12 +29,18 @@ table
 
 .small-label
 {
-  width: 15%
+  width: 15%;
+  font-family: montserrat;
+  font-weight: 900;
+  font-size: 10pt;
 }
 
 .picture-label
 {
-  width: 23%
+  width: 23%;
+  font-family: montserrat;
+  font-weight: 900;
+  font-size: 10pt;
 }
 
 /* .card
@@ -54,4 +69,5 @@ table
 .save_delete_panel_required
 {
   border-radius: 20%;
+  border:0cm;
 }
