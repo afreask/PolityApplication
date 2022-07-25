@@ -62,6 +62,9 @@ export class UserEditPageComponent implements OnInit {
   pages: any;
   tmp: string;
   policycardform: any;
+  cardtitleslist: any = [];
+  carddetailslist: any = [];
+  cardlearnmorelist: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -101,13 +104,17 @@ export class UserEditPageComponent implements OnInit {
     this.lastname = this.page.candidate.lastName;
     this.bio = this.page.candidate.bio;
 
-    if (
+    if 
+    (
       this.page.candidate.emailList.length > 0 &&
       this.page.candidate.emailList[0].emailAddress != null &&
       this.page.candidate.emailList[0].emailAddress.trim() != ''
-    ) {
+    ) 
+    {
       this.email = this.page.candidate.emailList[0].emailAddress;
-    } else {
+    } 
+    else 
+    {
       this.email = this.firstname + '.' + this.lastname + '@polity.vote';
     }
 
@@ -132,6 +139,15 @@ export class UserEditPageComponent implements OnInit {
     {
       this.ideaTitle3 = this.page.candidate.kpList[2].ideaTitle;
       this.platformDescription3 = this.page.candidate.kpList[2].platformDescription;
+    }
+
+    for(var x = 0; x < this.page.candidate.cardList.length; x++)
+    {
+        // console.log(this.page.candidate.cardList[x]);
+        this.cardtitleslist.push(this.page.candidate.cardList[x].cardTitle);
+        this.carddetailslist.push(this.page.candidate.cardList[x].cardDetails);
+        this.cardlearnmorelist.push(this.page.candidate.cardList[x].learnMore);
+        console.log(this.cardtitleslist);
     }
 
     this.policycardform = this.fb.group({

@@ -575,7 +575,7 @@
 
         
            <form novalidate #policyCards = "ngForm" (ngSubmit)="updatePolicyCard(policyCards, policyID)"
-            *ngFor = "let card of this.page.candidate.cardList">
+            *ngFor = "let card of this.page.candidate.cardList; let i = index">
                <div class="form-group" align="center">
                    <table class="form-group" >
                        <tr>
@@ -612,7 +612,7 @@
                                    class = "form-control"
                                    placeholder="Enter title"
                                    name = "cardTitle"
-                                   [(ngModel)] = "cardTitle"
+                                   [(ngModel)] = "cardtitleslist[i]"
                                    #pageTitle = "ngModel"
                                    required
                                >
