@@ -12,18 +12,18 @@ export class PageService {
   public pagesBS = new BehaviorSubject<Object>(1);
 
   getAllCandidates() {
-    return this.http.get('https://localhost:44394/pages/GetAllCandidates');
-    // return this.http.get('https://politywebapplication20220706124808.azurewebsites.net/pages/GetUserPages'+userID);
+    // return this.http.get('https://localhost:44394/pages/GetAllCandidates');
+    return this.http.get('https://politywebapplication20220706124808.azurewebsites.net/pages/GetAllCandidates');
   }
 
   getPages(userID: number) {
-    return this.http.get('https://localhost:44394/pages/GetUserPages'+userID);
-    // return this.http.get('https://politywebapplication20220706124808.azurewebsites.net/pages/GetUserPages'+userID);
+    // return this.http.get('https://localhost:44394/pages/GetUserPages'+userID);
+    return this.http.get('https://politywebapplication20220706124808.azurewebsites.net/pages/GetUserPages'+userID);
   }
 
   getPage(pageID: string) {
-    return this.http.get(`https://localhost:44394/pages/` + pageID);
-    // return this.http.get(`https://politywebapplication20220706124808.azurewebsites.net/pages/` + pageID);
+    // return this.http.get(`https://localhost:44394/pages/` + pageID);
+    return this.http.get(`https://politywebapplication20220706124808.azurewebsites.net/pages/` + pageID);
   }
 
   getPolicies() {
@@ -232,7 +232,27 @@ export class PageService {
     .append('userID', userID);
     return this.http
       // .post<any>('https://localhost:44394/pages/UpdateCandidatePlatform', body, {
-      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidatePlatform', body, {
+        headers: headers,
+        params: params,
+      })
+  }
+
+  postUpdatePolicyCard(value: any, userID?: any, candidateID?: any) {
+    // console.log(value)
+    const headers = new HttpHeaders()
+      .append(
+        'Content-Type',
+        'application/json'
+      );
+    const body=JSON.stringify(value);
+    const params = new HttpParams()
+    .append('pc', value)
+    .append('userID', userID)
+    .append('candidateID', candidateID);
+    return this.http
+      // .post<any>('https://localhost:44394/pages/AddUpdatePolicyCard', body, {
+      .post<any>('https://politywebapplication20220706124808.azurewebsites.net/pages/AddUpdatePolicyCard', body, {
         headers: headers,
         params: params,
       })
