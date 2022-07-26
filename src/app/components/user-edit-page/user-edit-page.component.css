@@ -1,7 +1,7 @@
 label
 {
   vertical-align: text-bottom;
-  text-align: right;
+  /* text-align: right; */
 
   /* text-orientation: vertical-rl; */
   /* padding: -10px 20px; */
@@ -41,6 +41,7 @@ table
   font-family: montserrat;
   font-weight: 900;
   font-size: 10pt;
+  vertical-align: text-bottom;
 }
 
 /* .card
