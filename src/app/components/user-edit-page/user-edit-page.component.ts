@@ -62,9 +62,6 @@ export class UserEditPageComponent implements OnInit {
   pages: any;
   tmp: string;
   policycardform: any;
-  cardtitleslist: any = [];
-  carddetailslist: any = [];
-  cardlearnmorelist: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -141,73 +138,62 @@ export class UserEditPageComponent implements OnInit {
       this.platformDescription3 = this.page.candidate.kpList[2].platformDescription;
     }
 
-    for(var x = 0; x < this.page.candidate.cardList.length; x++)
-    {
-        // console.log(this.page.candidate.cardList[x]);
-        this.cardtitleslist.push(this.page.candidate.cardList[x].cardTitle);
-        this.carddetailslist.push(this.page.candidate.cardList[x].cardDetails);
-        this.cardlearnmorelist.push(this.page.candidate.cardList[x].learnMore);
-        console.log(this.cardtitleslist);
-    }
-
+    
     this.policycardform = this.fb.group({
       policycards: this.fb.array([])
     });
+
+    var pcl = this.page.candidate.cardList; //Policy Card List
+    console.log(pcl)
+    for(var x = 0; x < pcl.length; x++)
+    {
+        // console.log(this.page.candidate.cardList[x]);
+        const cardList = this.policycardform.controls.policycards as FormArray;
+        console.log(cardList);
+        cardList.push(this.fb.group({
+          cardID: pcl[x].cardID,
+          cardTitle: pcl[x].cardTitle,
+          category: '',
+          learnMore: pcl[x].learnMore,
+          cardDetails: pcl[x].cardDetails,
+          policyID: pcl[x].policyID
+        }));
+    }
   }
 
-  // getPolicyCards()
-  // {
-  //     return this.policycardform.controls.policycards as FormArray;
-  // }
+  get PolicyCards()
+  {
+      return this.policycardform.controls.policycards as FormArray;
+  }
 
-  // AddPolicyCard() {
-  //   const cardList = this.policycardform.controls.policycards as FormArray;
-  //   console.log(cardList);
-  //   cardList.push(this.fb.group({
-  //     // username: ['', {
-  //     // validators:[this.isNameDuplicate()],
-  //     // updateOn:'blur'}],
-  //     cardTitle: '',
-  //     category: '',
-  //     learnMore: '',
-  //     cardDetails: '',
-  //     policyID: '',
-  //   }));
-  // }
+  AddPolicyCard() {
+    const cardList = this.policycardform.controls.policycards as FormArray;
+    console.log(cardList);
+    cardList.push(this.fb.group({
+      cardID: 0,
+      cardTitle: '',
+      category: '',
+      learnMore: '',
+      cardDetails: '',
+      policyID: '',
+    }));
+  }
 
-  // textInputer(e: Event,index: number, attr:string)
-  // {
-  //     this.policycardform.get("policycards").value[index][attr] =(e.target as HTMLInputElement).value
-  //     console.log(this.policycardform.get("policycards").value);
-  //     // this.policycardform.value.cardTitle = 
-  //     // var element = attr + index;
-  //     // console.log(document.getElementById(attr + index));
-  //     // this.policycardform.controls.policycards.value[index][attr] = (e.target as HTMLInputElement).value
-  //     // this.policycardform.controls.policycards.controls[index].controls[attr] = (e.target as HTMLInputElement).value
-  //     // console.log((e.target as HTMLInputElement).value)
-  //     console.log(this.policycardform.controls.policycards[index]);
-  //     document.getElementsByName(attr)[index].textContent = (e.target as HTMLInputElement).value
-  //     // console.log(document.getElementsByName(attr)[index].nodeValue);
-  //     // this
-  // }
-
-  // isNameDuplicate(): ValidatorFn {
-  //     return (c: AbstractControl): { [key: string]: boolean } | null => {
-  //     const userNames = this.policycardform.get("credentials").value;
-  //     console.log(userNames);
-  //     const names = userNames.map(item=> item.username.trim());
-  //     const hasDuplicate = names.some(
-  //     (name, index) => names.indexOf(name, index + 1) != -1
-  //   );
-
-  //   if (hasDuplicate) {
-  //     console.log(hasDuplicate);
-  //     return { duplicate: true };
-  //   }
-
-  //   return null;
-  //   }
-  // }  
+  textInputer(e: Event,index: number, attr:string)
+  {
+      this.policycardform.get("policycards").value[index][attr] =(e.target as HTMLInputElement).value
+      console.log(this.policycardform.get("policycards").value);
+      // this.policycardform.value.cardTitle = 
+      // var element = attr + index;
+      // console.log(document.getElementById(attr + index));
+      // this.policycardform.controls.policycards.value[index][attr] = (e.target as HTMLInputElement).value
+      // this.policycardform.controls.policycards.controls[index].controls[attr] = (e.target as HTMLInputElement).value
+      // console.log((e.target as HTMLInputElement).value)
+      // console.log(this.policycardform.controls.policycards[index]);
+      // document.getElementsByName(attr)[index].textContent = (e.target as HTMLInputElement).value
+      // // console.log(document.getElementsByName(attr)[index].nodeValue);
+      // this
+  }
 
   updateCandidateFirstName({ form, value }: any): void 
   {
@@ -408,9 +394,12 @@ export class UserEditPageComponent implements OnInit {
     });
   }
 
-  updatePolicyCard({ form, value }: any, id: any): void {
-    console.log(value);
-    console.log(id);
+  updatePolicyCard(index: number): void {
+    // console.log(value);
+    // console.log(index);
+    console.log(this.PolicyCards.controls[index].value)
+    var pc = this.PolicyCards.controls[index].value
+
   }
 
   // updateURL(value: any, id: any)

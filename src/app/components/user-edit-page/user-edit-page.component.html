@@ -482,10 +482,10 @@
    <div class="card-body">
        <div class="collapse" id="cardForm">
         
-            <!-- <form [formGroup]="policycardform">
+            <form [formGroup]="policycardform">
                 <div 
                     formArrayName="policycards" 
-                    *ngFor="let creds of policycardform.controls.policycards?.value; let i = index"
+                    *ngFor="let creds of policycardform.controls.policycards.controls; let i = index"
                     class="form-group" align="center"
                 >
                     <ng-container [formGroupName]="i">
@@ -493,7 +493,7 @@
                             <tr>
                                 <td class="picture-label" >
                                     <b>
-                                        <label>Choose a policy category: &nbsp;</label>
+                                        <label>Choose a policy category:</label>
                                     </b>
                                 </td>
                                 <td >
@@ -518,7 +518,7 @@
                                     <input
                                         type = "text"
                                         placeholder="Enter title"
-                                        name="cardTitle"
+                                        formControlName="cardTitle"
                                         style="width: 100%"
                                         (change)="textInputer($event, i, 'cardTitle')"
                                         [value]="this.policycardform.get('policycards').value[i]['cardTitle']"
@@ -556,25 +556,31 @@
                                     <textarea
                                         class="form-control"
                                         cols="50" rows="5"
-                                        name = "learnMore"
+                                        formControlName = "learnMore"
                                         required
                                     >
                                     </textarea>
                                 </td>
                             </tr>
+                            <tr>
+                                <td></td>
+                                <td align='right'>
+                                    <button class="save_delete_panel_required" (click)="updatePolicyCard(i)">
+                                        <img  src="assets/images/Utility/Save-icon.png">
+                                    </button>
+                                </td>
+                            </tr>
                         </table>
-                        <input placeholder="cardDetails" formControlName="cardDetails">
-                        <input placeholder="learnMore" formControlName="learnMore">
                     </ng-container>
 
                 </div>
 
 
                     <button (click)="AddPolicyCard()">Add</button>
-            </form> -->
+            </form>
 
         
-           <form novalidate #policyCards = "ngForm" (ngSubmit)="updatePolicyCard(policyCards, policyID)"
+           <!-- <form novalidate #policyCards = "ngForm" (ngSubmit)="updatePolicyCard(policyCards, policyID)"
             *ngFor = "let card of this.page.candidate.cardList; let i = index">
                <div class="form-group" align="center">
                    <table class="form-group" >
@@ -671,11 +677,11 @@
                        </tr>
                    </table>
                </div>
-               <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
+               <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
                    First name is required!
-               </div> -->
+               </div> 
                <br><br>
-           </form>
+           </form> -->
        </div>
    </div>
 
