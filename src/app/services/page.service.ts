@@ -11,6 +11,13 @@ export class PageService {
   // An observable that is used to auto update every component that uses pages
   public pagesBS = new BehaviorSubject<Object>(1);
 
+  getPolicyCardStyles() {
+    // return this.http.get('https://localhost:44394/pages/GetCardStyle');
+    return this.http.get(
+      'https://politywebapplication20220706124808.azurewebsites.net/pages/GetCardStyles'
+    );
+  }
+
   getAllCandidates() {
     // return this.http.get('https://localhost:44394/pages/GetAllCandidates');
     return this.http.get(
