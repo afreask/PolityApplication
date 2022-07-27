@@ -37,6 +37,7 @@ export class UserEditPageComponent implements OnInit {
   instagram: string;
   linkedin: string;
   twitter: string;
+  slideshare: string;
   donate: string;
   lawnsign: string;
   volunteer: string;
@@ -62,6 +63,8 @@ export class UserEditPageComponent implements OnInit {
   tmp: string;
   policycardform: any;
   PolicyCardStyle: any;
+  public styleList: any;
+  cardFilterID: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -91,6 +94,11 @@ export class UserEditPageComponent implements OnInit {
 
     this.pageService.getURLs().subscribe((res) => {
       this.urlList = res;
+      // console.log(this.urlList);
+    });
+
+    this.pageService.getPolicyCardStyles().subscribe((styles) => {
+      this.styleList = styles;
     });
 
     this.firstname = this.page.candidate.firstName;
@@ -158,7 +166,6 @@ export class UserEditPageComponent implements OnInit {
         cardTitle: this.page.candidate.cardList[x].cardTitle,
       });
     }
-    console.log(this.cardTitleList);
   }
 
   get PolicyCards() {
@@ -277,6 +284,9 @@ export class UserEditPageComponent implements OnInit {
     for (var x = 0; x < this.page.urlList.length; x++) {
       if (this.page.urlList[x].urlID == id) {
         puID = this.page.urlList[x].pageURLID;
+        // console.log(
+        //   this[this.page.urlList[x].urlName.toLowerCase().replaceAll(' ', '')]
+        // );
       }
     }
 
@@ -562,5 +572,7 @@ export class UserEditPageComponent implements OnInit {
 
   test() {
     console.log(this.policyID);
+
+    console.log(this.styleList);
   }
 }
