@@ -9,13 +9,15 @@ export class UserService {
   constructor(private router: Router, private http: HttpClient) {}
 
   // public user = this.getUser();
+  serverLink = `https://localhost:44394/`;
+  // serverLink = `https://politywebapplication20220706124808.azurewebsites.net/`
 
   getUser() {
-    return this.http.get(`https://localhost:44394/`);
+    return this.http.get(this.serverLink);
   }
 
   register(user) {
-    return this.http.post(`https://localhost:44394/user/register`, user);
+    return this.http.post(this.serverLink + `user/register`, user);
   }
 
   login(user) {
@@ -33,10 +35,7 @@ export class UserService {
     //   headers: headers,
     //   params: params,
     // });
-    return this.http.post(
-      `https://politywebapplication20220706124808.azurewebsites.net/user/login`,
-      user
-    );
+    return this.http.post(this.serverLink + `user/login`, user);
     // return this.http.post(`https://localhost:44394/user/login`, user);
   }
 

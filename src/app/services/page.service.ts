@@ -10,49 +10,37 @@ export class PageService {
 
   // An observable that is used to auto update every component that uses pages
   public pagesBS = new BehaviorSubject<Object>(1);
+  serverLink = `https://localhost:44394/`;
+  // serverLink = `https://politywebapplication20220706124808.azurewebsites.net/`
 
   getPolicyCardStyles() {
     // return this.http.get('https://localhost:44394/pages/GetCardStyle');
-    return this.http.get(
-      'https://politywebapplication20220706124808.azurewebsites.net/pages/GetCardStyles'
-    );
+    return this.http.get(this.serverLink + 'pages/GetCardStyle');
   }
 
   getAllCandidates() {
     // return this.http.get('https://localhost:44394/pages/GetAllCandidates');
-    return this.http.get(
-      'https://politywebapplication20220706124808.azurewebsites.net/pages/GetAllCandidates'
-    );
+    return this.http.get(this.serverLink + 'pages/GetAllCandidates');
   }
 
   getPages(userID: number) {
     // return this.http.get('https://localhost:44394/pages/GetUserPages' + userID);
-    return this.http.get(
-      'https://politywebapplication20220706124808.azurewebsites.net/pages/GetUserPages' +
-        userID
-    );
+    return this.http.get(this.serverLink + 'pages/GetUserPages' + userID);
   }
 
   getPage(pageID: string) {
     // return this.http.get(`https://localhost:44394/pages/` + pageID);
-    return this.http.get(
-      `https://politywebapplication20220706124808.azurewebsites.net/pages/` +
-        pageID
-    );
+    return this.http.get(this.serverLink + `pages/` + pageID);
   }
 
   getPolicies() {
     // return this.http.get(`https://localhost:44394/pages/Policies`);
-    return this.http.get(
-      `https://politywebapplication20220706124808.azurewebsites.net/pages/Policies`
-    );
+    return this.http.get(this.serverLink + `pages/Policies`);
   }
 
   getURLs() {
     // return this.http.get(`https://localhost:44394/pages/URLs`);
-    return this.http.get(
-      `https://politywebapplication20220706124808.azurewebsites.net/pages/URLs`
-    );
+    return this.http.get(this.serverLink + `pages/URLs`);
   }
 
   postAddPage(value: any, userID?: any) {
@@ -70,14 +58,10 @@ export class PageService {
         // 'https://localhost:44394/pages/AddCandidate',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidate',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/AddCandidate', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -94,14 +78,10 @@ export class PageService {
         // 'https://localhost:44394/pages/GetPageLinks',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/GetPageLinks',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/GetPageLinks', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -120,14 +100,10 @@ export class PageService {
         // 'https://localhost:44394/pages/AddPageLinks',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/AddPageLinks',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/AddPageLinks', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -146,14 +122,10 @@ export class PageService {
         // 'https://localhost:44394/pages/AddPolicyCard',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/AddPolicyCard',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/AddPolicyCard', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -172,14 +144,10 @@ export class PageService {
         // 'https://localhost:44394/pages/AddCandidatePlatforms',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/AddCandidatePlatforms',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/AddCandidatePlatforms', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -189,10 +157,7 @@ export class PageService {
     // console.log(fd.has("image"))
 
     // return this.http.post(`https://localhost:44394/pages/UploadImage`, fd);
-    return this.http.post(
-      `https://politywebapplication20220706124808.azurewebsites.net/pages/UploadImage`,
-      fd
-    );
+    return this.http.post(this.serverLink + `pages/UploadImage`, fd);
   }
 
   postUpdateCandidateFirstName(value: any, userID?: any, personID?: any) {
@@ -211,14 +176,10 @@ export class PageService {
         // 'https://localhost:44394/pages/UpdateCandidateFirstName',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateFirstName',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/UpdateCandidateFirstName', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -239,14 +200,10 @@ export class PageService {
         // 'https://localhost:44394/pages/UpdateCandidateLastName',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateLastName',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/UpdateCandidateLastName', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -267,14 +224,10 @@ export class PageService {
         //   'https://localhost:44394/pages/UpdateCandidateBio',
         //   body,
         //   {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidateBio',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/UpdateCandidateBio', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -295,14 +248,10 @@ export class PageService {
         // 'https://localhost:44394/pages/UpdatePageLink',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/UpdatePageLink',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/UpdatePageLink', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -322,14 +271,10 @@ export class PageService {
         // 'https://localhost:44394/pages/UpdateCandidatePlatform',
         // body,
         // {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/UpdateCandidatePlatform',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/UpdateCandidatePlatform', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 
@@ -350,14 +295,10 @@ export class PageService {
         //   'https://localhost:44394/pages/AddUpdatePolicyCard',
         //   body,
         //   {
-        .post<any>(
-          'https://politywebapplication20220706124808.azurewebsites.net/pages/AddUpdatePolicyCard',
-          body,
-          {
-            headers: headers,
-            params: params,
-          }
-        )
+        .post<any>(this.serverLink + 'pages/AddUpdatePolicyCard', body, {
+          headers: headers,
+          params: params,
+        })
     );
   }
 }
