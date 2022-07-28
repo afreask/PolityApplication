@@ -11,10 +11,10 @@ label
 {
    background-color: silver;
 } */
-input
+/* input
 {
   border: none;
-}
+} */
 
 button
 {
@@ -34,20 +34,22 @@ table
 
 .small-label
 {
-  width: 15%;
+  width: 13%;
   font-family: montserrat;
   font-weight: 900;
   font-size: 10pt;
-  vertical-align: middle;
+  padding-top: 0.8%;
+  padding-left: 2%
 }
 
 .picture-label
 {
+  text-align:left;
   width: 23%;
   font-family: montserrat;
   font-weight: 900;
   font-size: 10pt;
-  vertical-align: middle;
+  padding-left: 2%
 }
 
 /* .card
@@ -131,4 +133,19 @@ table
 .urlContainer
 {
   border-radius: 10px;
+}
+
+.bioContainer
+{
+  border-radius: 10%;
+}
+
+.saveImage
+{
+  align-items: top;
+}
+
+.inputRow
+{
+  padding-top: 10px;
 }

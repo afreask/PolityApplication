@@ -22,64 +22,77 @@
        </p>
    </div>
    <div class="card-body" >
-        <div class="row justify-content-md-center collapse" id="candidateForm">
+      <div class="row justify-content-md-center collapse" id="candidateForm">
+        <div class="container bioContainer">
+          <div class="container bg-light">
+            <div class="row">
+              <p class="divHeader">ADD CANDIDATE NAME</p>
+              <hr>
+            </div>
+            <div class="row">
+              <form ngNativeValidate  #firstNameForm = "ngForm" (ngSubmit)="updateCandidateFirstName(firstname)">
+                <div class="row inputRow">
+                  <div class="col-sm-4 small-label">
+                    <label class="fw-bold">First Name</label>
+                  </div>
+                  <div class="col-9">
+                    <input
+                        type = "text"
+                        class = "form-control"
+                        placeholder="Enter name"
+                        name = "firstName"
+                        [(ngModel)] = "firstname"
+                        #pageTitle = "ngModel"
+                        required
+                    >
+                  </div>
+                  <div class="col">
+                    <button class="save_delete_panel_required" [disabled] = "!firstNameForm.valid">
+                      <img  src="assets/images/Utility/Save-icon.png">
+                    </button>
+                  </div>
+                </div>
+              </form>
 
-            <div class="form-group " align="center">
-            <form ngNativeValidate  #firstNameForm = "ngForm" (ngSubmit)="updateCandidateFirstName(firstname)">
+              <form ngNativeValidate #lastNameForm = "ngForm" (ngSubmit)="updateCandidateLastName(lastname)">
+                <div class="row inputRow">
+                  <div class="col-sm-4 small-label">
+                    <label class="fw-bold">Last Name</label>
+                  </div>
+                  <div class="col-9">
+                    <input
+                      type = "text"
+                      class = "form-control"
+                      placeholder="Enter name"
+                      name = "lastname"
+                      [(ngModel)] = "lastname"
+                      #pageTitle = "ngModel"
+                      required
+                    >
+                  </div>
+                  <div class="col">
+                    <button class="save_delete_panel_required" [disabled] = "!lastNameForm.valid">
+                      <img  src="assets/images/Utility/Save-icon.png">
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <br>
+          </div>
+          <br/>
+        </div>
+        <div class="container bioContainer">
+          <div class="container bg-light">
+            <div class="row">
+              <p class="divHeader">ADD CANDIDATE BIO</p>
+              <hr>
+            </div>
+            <div class="row">
+              <form ngNativeValidate #bioForm = "ngForm" (ngSubmit)="updateCandidateBio(bio)">
                 <table>
                     <tr>
                         <td class="small-label">
-                            <label class="fw-bold">First Name</label>
-                        </td>
-                        <td>
-                            <input
-                                type = "text"
-                                class = "form-control"
-                                placeholder="Enter name"
-                                name = "firstName"
-                                [(ngModel)] = "firstname"
-                                #pageTitle = "ngModel"
-                                required
-                            >
-                        </td>
-                        <td align="center">
-                            <button class="save_delete_panel_required" [disabled] = "!firstNameForm.valid">
-                                <img  src="assets/images/Utility/Save-icon.png">
-                            </button>
-                        </td>
-                        </tr>
-                </table>
-            </form><br/>
-            <form ngNativeValidate #lastNameForm = "ngForm" (ngSubmit)="updateCandidateLastName(lastname)">
-                <table>
-                    <tr>
-                        <td class="small-label">
-                            <label class="fw-bold">Last Name &nbsp;</label>
-                        </td>
-                        <td>
-                            <input
-                                type = "text"
-                                class = "form-control"
-                                placeholder="Enter name"
-                                name = "lastname"
-                                [(ngModel)] = "lastname"
-                                #pageTitle = "ngModel"
-                                required
-                            >
-                        </td>
-                        <td align="center">
-                            <button class="save_delete_panel_required" [disabled] = "!lastNameForm.valid">
-                                <img  src="assets/images/Utility/Save-icon.png">
-                            </button>
-                        </td>
-                        </tr>
-                </table>
-            </form><br/>
-            <form ngNativeValidate #bioForm = "ngForm" (ngSubmit)="updateCandidateBio(bio)">
-                <table>
-                    <tr>
-                        <td class="small-label">
-                            <br/>
                             <label class="fw-bold">Biography</label>
                         </td>
                         <td></td>
@@ -96,15 +109,22 @@
                             >
                             </textarea>
                         </td>
-                        <td align="center" >
+                        <td align="center saveImage " >
                             <button class="save_delete_panel_required" [disabled] = "!bioForm.valid">
                                 <img  src="assets/images/Utility/Save-icon.png">
                             </button>
                         </td>
                     </tr>
                 </table>
-            </form><br/>
-            <form ngNativeValidate #emailForm = "ngForm" (ngSubmit)="updateCandidateEmail(email)">
+              </form>
+            </div>
+          </div>
+          <br>
+        </div>
+        <div class="container bioContainer">
+          <div class="container bg-light urlContainer">
+            <div class="row">
+              <form ngNativeValidate #emailForm = "ngForm" (ngSubmit)="updateCandidateEmail(email)">
                 <table>
                 <tr>
                     <td class="small-label">
@@ -126,35 +146,42 @@
                     </td>
                 </tr>
                 </table>
-            </form>
+              </form>
             </div>
-
-
-            <!-- Form for the profile pricture-->
-            <form ngNativeValidate class="form-group" id="candidateForm" #profilePictureForm = "ngForm" (ngSubmit)="updateImage(profilepicture , 1)">
-                <br><br>
-                <div class="form-group"  align="center">
-                    <table>
-                        <tr>
-                            <td class="picture-label">
-                                <label class="fw-bold">Update Profile Picture:</label>&nbsp;
-                            </td>
-                            <td>
-                                <input
-                                    type = "file"
-                                    class = "file-input"
-                                    placeholder="Upload"
-                                    name = "profilepicture"
-                                    accept="image/*"
-                                    (change)= "getFile($event, 1)"
-                                >
-                            </td>
-                            <td><button class = "btn btn-primary" [disabled] = "!profilePictureForm.valid">Upload</button></td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
+          </div>
+          <br>
         </div>
+        <div class="container bioContainer">
+          <div class="container bg-light urlContainer">
+            <div class="row">
+                <!-- Form for the profile pricture-->
+                <form ngNativeValidate class="form-group" id="candidateForm" #profilePictureForm = "ngForm" (ngSubmit)="updateImage(profilepicture , 1)">
+                  <br><br>
+                  <div class="form-group"  align="center">
+                      <table>
+                          <tr>
+                              <td class="picture-label">
+                                  <label class="fw-bold">Update Profile Picture:</label>&nbsp;
+                              </td>
+                              <td>
+                                  <input
+                                      type = "file"
+                                      class = "file-input"
+                                      placeholder="Upload"
+                                      name = "profilepicture"
+                                      accept="image/*"
+                                      (change)= "getFile($event, 1)"
+                                  >
+                              </td>
+                              <td><button class = "btn btn-primary" [disabled] = "!profilePictureForm.valid">Upload</button></td>
+                          </tr>
+                      </table>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
    </div>
 </div>
 <br/>
@@ -400,57 +427,6 @@
                 </ng-container>
              </ng-container>
            </div>
-         </div>
-       </div>
-
-       <div class="container collapse urlContainer" id="MediaForm">
-         <br/>
-         <div class="container bg-light urlContainer">
-            <div class="row">
-              <p class="divHeader">UPLOAD MEDIA</p>
-              <hr>
-            </div>
-           <div class="row">
-             <br>
-             <ng-container *ngFor = "let url of urlList">
-               <ng-container
-               *ngIf= "url.urlName == 'Slideshare'"
-               >
-
-               <form ngNativeValidate #f="ngForm" (ngSubmit)="updatePageURL(f, url.urlID)" >
-                <table align="center">
-                  <tr>
-                      <td class="picture-label">
-                        <label class="fw-bold">
-                          Link From {{url.urlName}}
-                        </label>
-                      </td>
-                      <td>
-                        <input
-                            type="url"
-                            class="form-control"
-                            placeholder="Please type a url"
-                            name="{{url.urlName.toLowerCase()}}"
-                            [(ngModel)]= "this[url.urlName.toLowerCase().replaceAll(' ','')]"
-                            #pageTitle = "ngModel"
-                        >
-                        <div class="errors" *ngIf="url.urlName?.invalid && url.urlName?.dirty">
-                            Problem detected
-                        </div>
-                      </td>
-                      <td align="center">
-                        <img  src="assets/images/Utility/Save-Button.png" (click)="updatePageURL(f, url.urlID)">
-                        <img  (click)="deleteUrl(url.pageURLID)" src="assets/images/Utility/Trash.png">
-                      </td>
-
-                    </tr>
-                    <tr><br/></tr>
-                  </table>
-                </form>
-               </ng-container>
-             </ng-container>
-           </div>
-
          </div>
        </div>
 
@@ -794,56 +770,43 @@
 
                     </td>
                   </tr>
-                  <tr>
-                    <td colspan="2">
-                      <ng-container *ngFor="let card of this.page.candidate.cardList; let i = index">
-                        <ng-container *ngIf="card.policyID == this.cardFilterID">
-                          <div class="col">
-                            <div class="card " style="width:18rem; border:none; ">
-                              <ng-container>
-                                <span *ngIf="card.cardStyle == 1">
-                                  <img src="assets/images/Cards/Art-Card.png" class="card-img" alt="...">
-                                </span>
-                                <span *ngIf="card.cardStyle == 2">
-                                  <img src="assets/images/Cards/Train-Card.png" class="card-img" alt="...">
-                                </span>
-                                <span *ngIf="card.cardStyle == 3">
-                                  <img  src="assets/images/Cards/Tax-Card.png" style="border-radius: 10%;" alt="...">
-                                </span>
-                              </ng-container>
-                              <div class="card-img-overlay" align="" style=" display: inline-block; padding:20%">
-                                <h5 class="card-title" >{{card.cardTitle}}</h5>
-                                <p class="card-text">{{card.cardDetails}}</p>
-                                <p class="card-text">
-                                  <a href="">
-                                    LEARN MORE
-                                  </a>
-                                </p>
 
-                                <span style="  position: absolute; left: 0; bottom:0">
-                                  <img  src="assets/images/Utility/Pencil-Icon-With-Box.png" alt="...">
-                                </span>
-                              </div>
-
-                            </div>
-                          </div>
-                        </ng-container>
-                      </ng-container>
-
-                    </td>
-                  </tr>
                 </table>
             </div>
             <div class="row">
+              <div class="col-sm-4">
+                <br/>
+                <ng-container *ngFor="let card of this.page.candidate.cardList; let i = index">
+                  <ng-container *ngIf="card.policyID == this.cardFilterID">
+                    <div class="col">
+                      <div class="card " style="width:18rem; border:none;" data-bs-toggle="modal" data-bs-target="#UpdateModal">
+                        <ng-container>
+                          <span *ngIf="card.cardStyle == 1">
+                            <img src="assets/images/Cards/Art-Card.png" class="card-img" alt="...">
+                          </span>
+                          <span *ngIf="card.cardStyle == 2">
+                            <img src="assets/images/Cards/Train-Card.png" class="card-img" alt="...">
+                          </span>
+                          <span *ngIf="card.cardStyle == 3">
+                            <img  src="assets/images/Cards/Tax-Card.png" style="border-radius: 10%;" alt="...">
+                          </span>
+                        </ng-container>
+                        <div class="card-img-overlay" align="" style=" display: inline-block; padding:20%">
+                          <h5 class="card-title" >{{card.cardTitle}}</h5>
+                          <p class="card-text">{{card.cardDetails}}</p>
+                          <p class="card-text">
+                            <a href="">
+                              LEARN MORE
+                            </a>
+                          </p>
+                        </div>
 
-
+                      </div>
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </div>
             </div>
-            <table align="center">
-              <tr >
-
-              </tr>
-
-            </table>
           </div>
           <!-- <form [formGroup]="policycardform">
               <div
@@ -1065,139 +1028,6 @@
              <br><br>
           </form>
 
-          <form novalidate #updatePolicyCardForm = "ngForm" (ngSubmit)="updatePolicyCard(updatePolicyCardForm)"
-            *ngFor = "let card of this.page.candidate.cardList; let i = index">
-              <div class="form-group" align="center">
-                  <table class="form-group" >
-                      <tr>
-                          <td class="picture-label">
-                              <b>
-                                  <label>Choose a policy category: &nbsp;</label>
-                              </b>
-                          </td>
-                          <td>
-                              <select
-                                  class="form-control"
-                                  name="policyID"
-                                  [(ngModel)] = "policyID"
-                                  #pageTitle = "ngModel"
-                                  (change)="test()"
-                              >
-                                  <ng-container *ngFor = "let category of categories">
-                                      <option value="{{category.policyID}}" [selected] ="category.policyID == 1">{{category.category}}</option>
-                                  </ng-container>
-                              </select>
-                          </td>
-                          <td>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="small-label">
-                              <b>
-
-                                  <label>Policy Title:</label>
-                              </b>
-                          </td>
-                          <td>
-                            <select
-                                class="form-control"
-                                name="PolicyTitle"
-                                [(ngModel)] = "cardTitle"
-                                #pageTitle = "ngModel"
-                            >
-                                <ng-container *ngFor = "let title of this.cardTitleList">
-                                    <option
-                                      *ngIf="title.policyID == this.policyID"
-                                      value="{{title.cardTitle}}"
-                                    >
-                                      {{title.cardTitle}}
-                                    </option>
-                                </ng-container>
-                            </select>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="small-label">
-                              <b>
-
-                                  <label>Style:</label>
-                              </b>
-                          </td>
-                          <td>
-                            <select
-                                class="form-control"
-                                name="PolicyCardStyle"
-                                [(ngModel)] = "PolicyCardStyle"
-                                #pageTitle = "ngModel"
-
-                            >
-                                <ng-container *ngFor = "let style of this.styleList">
-                                    <option
-                                      value="{{style.styleID}}"
-                                      [selected] ="style.styleID == 1"
-                                    >
-                                      {{style.styleName}}
-                                    </option>
-                                </ng-container>
-                            </select>
-                          </td>
-                        </tr>
-                      <tr>
-                          <td>
-                              <b>
-                                  <label>Short Description</label>
-                              </b>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td colspan="2">
-                              <textarea
-                                  class="form-control"
-                                  cols="10" rows="2"
-                                  name = "cardDetails"
-                                  [(ngModel)] = "cardDetails"
-                                  #pageTitle = "ngModel"
-                                  required
-                              >
-                              </textarea>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <b>
-                                  <label>Long Description</label>
-                              </b>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td colspan="2">
-                              <textarea
-                                  class="form-control"
-                                  cols="50" rows="5"
-                                  name = "learnMore"
-                                  [(ngModel)] = "learnMore"
-                                  #pageTitle = "ngModel"
-                                  required
-                              >
-                              </textarea>
-                          </td>
-                      </tr>
-
-                      <tr>
-                          <td></td>
-                          <td align='right'>
-                              <button class="save_delete_panel_required" (click)="updatePolicyCard(i)">
-                                  <img  src="assets/images/Utility/Save-icon.png">
-                              </button>
-                          </td>
-                      </tr>
-                  </table>
-              </div>
-              <!-- <div class = "alert alert-danger" *ngIf = "pageTitle.errors?.required && pageTitle.touched">
-                  First name is required!
-              </div> -->
-              <br><br>
-          </form>
 
         </div>
        </div>
